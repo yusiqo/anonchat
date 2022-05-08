@@ -853,7 +853,7 @@ def checker():
 ╰─◉➤ Telegram Channel: @ZetTekno\n
         """
                         print(ms)
-                        if pins="Pinsiz"
+                        if pins=="Pinsiz":
                             try:
                                 tele=open("tele","r").read()
                                 idm=open("idm","r").read()

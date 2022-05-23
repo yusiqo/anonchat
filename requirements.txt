@@ -394,14 +394,14 @@ try:
         hesap=open("exxen.txt","r").read()+"\n" + hesap +"\n"
         open("exxen.txt","w").write(hesap)
     def blekle(message):
+        hesp=""
         hesap=message.text 
         for i in open("blutv.txt","r").read().splitlines():
             if len(i) <= 4:
                 pass
             else:
                 hesp+= i
-        hesap=hesap + hesp
-        open("blutv.txt","w").write(hesap)
+                open("blutv.txt","w").write(hesp)
     if __name__ == '__main__':
         bot.polling(none_stop=True)
 except:

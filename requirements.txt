@@ -225,7 +225,7 @@ try:
                             if len(i) <= 4:
                                 pass
                             else:
-                                hesp+= i
+                                hesp+= i + "\n"
                         hsp=random.choice(hesp.splitlines())
                         data['balance'][user] -= 10
                         json.dump(data, open('users.json', 'w'))
@@ -268,7 +268,7 @@ try:
                             if len(i) <= 4:
                                 pass
                             else:
-                                hesp+= i
+                                hesp+= i + "\n"
                         hsp=random.choice(hesp.splitlines())
                         data['balance'][user] -= 10
                         json.dump(data, open('users.json', 'w'))

@@ -384,6 +384,7 @@ try:
             markup.add(types.InlineKeyboardButton(text='Blutv- 10Coin', callback_data='ex2'))
             bot.send_message(userid,f"Stok:\nBluTv: {blus}\nExxen: {exxen}",parse_mode="Markdown",reply_markup=markup)
     def exekle(message):
+        hesp=""
         hesap=message.text 
         for i in open("exxen.txt","r").read().splitlines():
             if len(i) <= 4:

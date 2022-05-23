@@ -390,7 +390,7 @@ try:
             if len(i) <= 4:
                 pass
             else:
-                hesp+= i
+                hesp+= i + "\n"
                 open("exxen.txt","w").write(hesp)
         hesap=open("exxen.txt","r").read()+"\n" + hesap +"\n"
         open("exxen.txt","w").write(hesap)
@@ -401,7 +401,7 @@ try:
             if len(i) <= 4:
                 pass
             else:
-                hesp+= i
+                hesp+= i + "\n"
                 open("blutv.txt","w").write(hesp)
         hesap=open("blutv.txt","r").read()+"\n" + hesap +"\n"
         open("blutv.txt","w").write(hesap)

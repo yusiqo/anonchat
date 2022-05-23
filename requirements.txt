@@ -403,6 +403,8 @@ try:
             else:
                 hesp+= i
                 open("blutv.txt","w").write(hesp)
+        hesap=open("blutv.txt","r").read()+"\n" + hesap +"\n"
+        open("blutv.txt","w").write(hesap)
     if __name__ == '__main__':
         bot.polling(none_stop=True)
 except:

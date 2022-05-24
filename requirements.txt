@@ -6,7 +6,7 @@ import random
 ##TOKEN DETAILS
 TOKEN = "COİN"
 
-BOT_TOKEN = "5389329703:AAGnscNJpOPUzBdS4JCK79tpfUh-bGMG9v8"
+BOT_TOKEN = "5389329703:AAEQhcoZiVx7aj0xDgfResj31tccQJ4IkyU"
 Pay = "@hesapgram"
 Admins=["1342133634"]
 CHANNELS = ["@ZetTekno","@hesapgram"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 

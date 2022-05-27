@@ -3,17 +3,20 @@ import json
 import telebot
 from telebot import types
 import random
+import os
 ##TOKEN DETAILS
 TOKEN = "COİN"
-
-BOT_TOKEN = "5389329703:AAEQhcoZiVx7aj0xDgfResj31tccQJ4IkyU"
+Owner="@yusiqo"
+BOT_TOKEN = "5389329703:AAGgqTjKz7J771hhqW2_ajWFtjHPtUmsXuA"
 Pay = "@hesapgram"
 Admins=["1342133634"]
-CHANNELS = ["@ZetTekno","@hesapgram"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
-              #you can add as many channels here and also add the '@' sign before channel username
-Daily_bonus = 0.5 #Put daily bonus amount here!
-
-Per_Refer = 1 #add per refer bonus here
+CHANNELS = ["@ZetTekno","@hesapgram"]
+Daily_bonus = 0.5
+Per_Refer = 1
+try:
+    os.listdir("data/")
+except:
+    os.system("mkdir data")
 try:
     open("exxen.txt","r").read()
 except:
@@ -22,34 +25,7 @@ try:
     open("blutv.txt","r").read()
 except:
     open("blutv.txt","w").write("")
-try:
-    open("users.json","r").read()
-except:
-    open("users.json","w").write("""
-{
-    "checkin": {
-    },
-    "withd": {
-    },
-    "DailyQuiz": {
-    },
-    "id": {
-    },
-    "total": 0,
-    "referred": {
-    },
-    "referby": {
-    },
-    "balance": {
-    },
-    "wallet": {
-    },
-    "refer": {
-    },
-    "totalwith": 0
-}
 
-""")
 try:
     bot = telebot.TeleBot(BOT_TOKEN)
     
@@ -64,9 +40,23 @@ try:
     bonus = {}
     
     def menu(id):
+        idm=str(id)
+        dus="data/"+idm+"/"
+        try:
+            open("data/users.txt","r").read()
+        except:
+            open("data/users.txt","w").write("1")
+        try:
+            open(dus+"kayit.txt","r").read()
+        except:
+            open(dus+"kayit.txt","w").write("")
+            now=int(open("data/users.txt","r").read())
+            now+=1 
+            now=str(now)
+            open("data/users.txt","w").write(now)
         keyboard = telebot.types.ReplyKeyboardMarkup(True)
         keyboard.row('🆔 Hesap')
-        keyboard.row('🙌🏻 Referans', '🎁 Bonus', '💸 Çekim')
+        keyboard.row('🙌🏻 Referans', '☎️ İletişim', '💸 Çekim')
         keyboard.row('📊 Statistic')
         bot.send_message(id, "*🏡 Home*", parse_mode="Markdown",
                          reply_markup=keyboard)
@@ -77,26 +67,16 @@ try:
         msg = message.text
         if msg == '/start':
             user = str(user)
-            data = json.load(open('users.json', 'r'))
-            if user not in data['referred']:
-                data['referred'][user] = 0
-                data['total'] = data['total'] + 1
-            if user not in data['referby']:
-                data['referby'][user] = user
-            if user not in data['checkin']:
-                data['checkin'][user] = 0
-            if user not in data['DailyQuiz']:
-                data['DailyQuiz'][user] = "0"
-            if user not in data['balance']:
-                data['balance'][user] = 0
-            if user not in data['wallet']:
-                data['wallet'][user] = "none"
-            if user not in data['withd']:
-                data['withd'][user] = 0
-            if user not in data['id']:
-                data['id'][user] = data['total']+1
-            json.dump(data, open('users.json', 'w'))
-            print(data)
+            dus="data/"+user+"/"
+            try:
+                os.listdir(dus)
+            except:
+                os.system("mkdir "+dus)
+            try:
+                open(dus+"bal.txt","r").read()
+            except:
+                open(dus+"bal.txt","w").write("0")
+                open(dus+"ref.txt","a").write("")
             markup = telebot.types.InlineKeyboardMarkup()
             markup.add(telebot.types.InlineKeyboardButton(text='🤼‍♂️ Joined', callback_data='check'))
             msg_start = "*🍔 To Use This Bot You Need To Join This Channel - "
@@ -107,29 +87,22 @@ try:
                              parse_mode="Markdown", reply_markup=markup)
         else:
     
-            data = json.load(open('users.json', 'r'))
+            user = str(user)
+            dus="data/"+user+"/"
+            try:
+                os.listdir(dus)
+            except:
+                os.system("mkdir "+dus)
+            try:
+                open(dus+"bal.txt","r").read()
+            except:
+                open(dus+"bal.txt","w").write("0")
+                open(dus+"ref.txt","a").write("")
             user = message.chat.id
             user = str(user)
             refid = message.text.split()[1]
-            if user not in data['referred']:
-                data['referred'][user] = 0
-                data['total'] = data['total'] + 1
-            if user not in data['referby']:
-                data['referby'][user] = refid
-            if user not in data['checkin']:
-                data['checkin'][user] = 0
-            if user not in data['DailyQuiz']:
-                data['DailyQuiz'][user] = 0
-            if user not in data['balance']:
-                data['balance'][user] = 0
-            if user not in data['wallet']:
-                data['wallet'][user] = "none"
-            if user not in data['withd']:
-                data['withd'][user] = 0
-            if user not in data['id']:
-                data['id'][user] = data['total']+1
-            json.dump(data, open('users.json', 'w'))
-            print(data)
+            refid=str(refid)
+            open(dus+"ref.txt","w").write(refid)
             markup = telebot.types.InlineKeyboardMarkup()
             markup.add(telebot.types.InlineKeyboardButton(
                text='🤼‍♂️ Joined', callback_data='check'))
@@ -146,41 +119,45 @@ try:
         ch = check(call.message.chat.id)
         if call.data == 'check':
             if ch == True:
-                data = json.load(open('users.json', 'r'))
                 user_id = call.message.chat.id
                 user = str(user_id)
                 bot.answer_callback_query(
                     callback_query_id=call.id, text='✅ You joined Now yu can earn money')
                 bot.delete_message(call.message.chat.id, call.message.message_id)
-                if user not in data['refer']:
-                    data['refer'][user] = True
-    
-                    if user not in data['referby']:
-                        data['referby'][user] = user
-                        json.dump(data, open('users.json', 'w'))
-                    if int(data['referby'][user]) != user_id:
-                        ref_id = data['referby'][user]
-                        ref = str(ref_id)
-                        if ref not in data['balance']:
-                            data['balance'][ref] = 0
-                        if ref not in data['referred']:
-                            data['referred'][ref] = 0
-                        json.dump(data, open('users.json', 'w'))
-                        data['balance'][ref] += Per_Refer
-                        data['referred'][ref] += 1
-                        bot.send_message(
-                            ref_id, f"*🏧 New Referral on Level 1, You Got : +{Per_Refer} {TOKEN}*", parse_mode="Markdown")
-                        json.dump(data, open('users.json', 'w'))
-                        return menu(call.message.chat.id)
-    
+                dus="data/"+user+"/"
+                user = str(user)
+                dus="data/"+user+"/"
+                try:
+                    os.listdir(dus)
+                except:
+                    os.system("mkdir "+dus)
+                try:
+                    open(dus+"bal.txt","r").read()
+                except:
+                    open(dus+"bal.txt","w").write("0")
+                    open(dus+"ref.txt","a").write("")
+        
+                try:
+                    if len(open(dus+"ref.txt","r").read()) >= 3:
+                        try:
+                            open(dus+"kayit.txt","r").read()
+                        except:
+                            ref_id=open(dus+"ref.txt","r").read()
+                            bot.send_message(ref_id, f"*🏧 New Referral on Level 1, You Got : +{Per_Refer} {TOKEN}*", parse_mode="Markdown")
+                            dus="data/"+ref_id+"/"
+                            bakiye=int(open(dus+"bal.txt","r").read())
+                            bakiye+=Per_Refer
+                            bakiye=str(bakiye)
+                            open(dus+"bal.txt","w").write(bakiye)
+                            dus="data/"+user+"/"
+                            open(dus+"kayit.txt","a").write("")
+                            return menu(call.message.chat.id)
+        
                     else:
-                        json.dump(data, open('users.json', 'w'))
-                        return menu(call.message.chat.id)
-    
-                else:
-                    json.dump(data, open('users.json', 'w'))
+                        menu(call.message.chat.id)
                     menu(call.message.chat.id)
-    
+                except:
+                    menu(call.message.chat.id)
             else:
                 bot.answer_callback_query(
                     callback_query_id=call.id, text='❌ You not Joined')
@@ -198,13 +175,11 @@ try:
         if call.data == 'ex1':
             if ch == True:
                 user=str(call.message.chat.id)
-                data = json.load(open('users.json', 'r'))
                 blus=0
                 exxen=0
                 userid=call.message.chat.id
                 user_id=call.message.chat.id
                 user=str(call.message.chat.id)
-                data = json.load(open('users.json', 'r'))
                 for i in open("blutv.txt","r").read().splitlines():
                     if i=="\n" or i=="" or i==" ":
                         pass
@@ -215,7 +190,8 @@ try:
                         pass
                     else:
                         exxen+=1
-                coin=data['balance'][user]
+                dus="data/"+user+"/"
+                coin=int(open(dus+"bal.txt","r").read())
                 if exxen == 0:
                     bot.send_message(userid, "Exxen Stok Bulunmuyor!!")
                 else:
@@ -227,8 +203,9 @@ try:
                             else:
                                 hesp+= i + "\n"
                         hsp=random.choice(hesp.splitlines())
-                        data['balance'][user] -= 10
-                        json.dump(data, open('users.json', 'w'))
+                        coin -= 10
+                        coin=str(coin)
+                        open(dus+"bal.txt","w").write(coin)
                         bot.send_message(call.message.chat.id,f"Buyurun Hesabınız: \n{hsp}")
                         rr=open("exxen.txt","r").read()
                         rr=rr.replace(hsp,"")
@@ -258,7 +235,8 @@ try:
                         pass
                     else:
                         exxen+=1
-                coin=data['balance'][user]
+                dus="data/"+user+"/"
+                coin=int(open(dus+"bal.txt","r").read())
                 if blus == 0:
                     bot.send_message(userid, "blutv Stok Bulunmuyor!!")
                 else:
@@ -270,8 +248,9 @@ try:
                             else:
                                 hesp+= i + "\n"
                         hsp=random.choice(hesp.splitlines())
-                        data['balance'][user] -= 10
-                        json.dump(data, open('users.json', 'w'))
+                        coin -= 10
+                        coin=str(coin)
+                        open(dus+"bal.txt","w").write(coin)
                         bot.send_message(call.message.chat.id,f"Buyurun Hesabınız: \n{hsp}")
                         rr=open("blutv.txt","r").read()
                         rr=rr.replace(hsp,"")
@@ -285,70 +264,54 @@ try:
     @bot.message_handler(content_types=['text'])
     def send_text(message):
         if message.text == '🙌🏻 Referans':
-            data = json.load(open('users.json', 'r'))
-            ref_msg = "*⏯️ Total Invites : {} Users\n\n👥 Refferrals System\n\n1 Level:\n🥇 Level°1 - {} {}\n\n🔗 Referral Link ⬇️\n{}*"
-    
+            ref_msg = "*👥 Refferrals System\n\n1 Level:\n🥇 Level°1 - {} {}\n\n🔗 Referral Link ⬇️\n{}*"
             bot_name = bot.get_me().username
             user_id = message.chat.id
             user = str(user_id)
-    
-            if user not in data['referred']:
-                data['referred'][user] = 0
-            json.dump(data, open('users.json', 'w'))
-    
-            ref_count = data['referred'][user]
             ref_link = 'https://telegram.me/{}?start={}'.format(
                 bot_name, message.chat.id)
-            msg = ref_msg.format(ref_count, Per_Refer, TOKEN, ref_link)
+            msg = ref_msg.format(Per_Refer, TOKEN, ref_link)
             bot.send_message(message.chat.id, msg, parse_mode="Markdown")
+        
+        if message.text == "☎️ İletişim":
+            bot.send_message(message.chat.id, "👑Bot Sahibi: "+Owner)
         if message.text == '🆔 Hesap':
-            data = json.load(open('users.json', 'r'))
+            user = str(message.chat.id)
+            dus="data/"+user+"/"
+            try:
+                os.listdir(dus)
+            except:
+                os.system("mkdir "+dus)
+            try:
+                open(dus+"bal.txt","r").read()
+            except:
+                open(dus+"bal.txt","w").write("0")
+                open(dus+"ref.txt","a").write("")
             accmsg = '*👮 User : {}\n\n💸 Balance : *`{}`* {}*'
             user_id = message.chat.id
             user = str(user_id)
-    
-            if user not in data['balance']:
-                data['balance'][user] = 0
-            if user not in data['wallet']:
-                data['wallet'][user] = "none"
-    
-            json.dump(data, open('users.json', 'w'))
-    
-            balance = data['balance'][user]
-            wallet = data['wallet'][user]
+            dus="data/"+user+"/"
+            balance=str(open(dus+"bal.txt","r").read())
+            if balance == "":
+                balance="0"
             msg = accmsg.format(message.from_user.first_name,
                                 balance, TOKEN)
             bot.send_message(message.chat.id, msg, parse_mode="Markdown")
         if message.text == "📊 Statistic":
             user_id = message.chat.id
             user = str(user_id)
-            data = json.load(open('users.json', 'r'))
-            msg = "*📊 Toplam Üye : {} Users\n\n🥊 Toplam Çekim Sayı : {} {}*"
-            msg = msg.format(data['total'], data['totalwith'], TOKEN)
+            tp=open("data/users.txt","r").read()
+            msg = f"*📊 Toplam Üye : {tp} User*"
             bot.send_message(user_id, msg, parse_mode="Markdown")
-            return
-        if message.text == "🎁 Bonus":
-            user_id = message.chat.id
-            user = str(user_id)
-            cur_time = int((time.time()))
-            data = json.load(open('users.json', 'r'))
-            #bot.send_message(user_id, "*🎁 Bonus Button is Under Maintainance*", parse_mode="Markdown")
-            if (user_id not in bonus.keys()) or (cur_time - bonus[user_id] > 60*60*24):
-                data['balance'][(user)] += Daily_bonus
-                bot.send_message(
-                    user_id, f"Başarıyla Kazandın {Daily_bonus} {TOKEN}")
-                bonus[user_id] = cur_time
-                json.dump(data, open('users.json', 'w'))
-            else:
-                bot.send_message(
-                    message.chat.id, "❌*24 Saat Sonra Tekrar Kazana Bilirsin!*",parse_mode="markdown")
             return
         if message.text == "hack31":
             user_id=message.chat.id
             user= str(message.chat.id)
-            data = json.load(open('users.json', 'r'))
-            data["balance"][user] += 10
-            json.dump(data, open('users.json', 'w'))
+            dus="data/"+user+"/"
+            coin=int(open(dus+"bal.txt","r").read())
+            coin+=10
+            coin=str(coin)
+            open(dus+"bal.txt","w").write(coin)
             bot.send_message(user_id,"Bakiye Eklendi")
         if message.text == "/exxen":
             adms=set(Admins)
@@ -368,7 +331,6 @@ try:
             user_id = message.chat.id
             user = str(user_id)
             userid= message.chat.id
-            data = json.load(open('users.json', 'r'))
             for i in open("blutv.txt","r").read().splitlines():
                 if i=="\n" or i=="" or i==" ":
                     pass
@@ -407,5 +369,5 @@ try:
         open("blutv.txt","w").write(hesap)
     if __name__ == '__main__':
         bot.polling(none_stop=True)
-except:
+except KeyError:
     pass

@@ -82,6 +82,7 @@ try:
             msg_start = "*🍔 To Use This Bot You Need To Join This Channel - "
             for i in CHANNELS:
                 msg_start += f"\n➡️ {i}\n"
+            msg_start+= "\n➡️ t.me/+raB92svhbQxiYTk0\n"
             msg_start += "*"
             bot.send_message(user, msg_start,
                              parse_mode="Markdown", reply_markup=markup)
@@ -109,6 +110,7 @@ try:
             msg_start = "*🍔 To Use This Bot You Need To Join This Channel - "
             for i in CHANNELS:
                 msg_start += f"\n➡️ {i}\n"
+            msg_start+= "\n➡️ t.me/+raB92svhbQxiYTk0\n"
             msg_start += "*"
             bot.send_message(user, msg_start,
                              parse_mode="Markdown", reply_markup=markup)

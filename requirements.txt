@@ -10,7 +10,7 @@ Owner="@yusiqo"
 BOT_TOKEN = "5389329703:AAGgqTjKz7J771hhqW2_ajWFtjHPtUmsXuA"
 Pay = "@hesapgram"
 Admins=["1342133634"]
-CHANNELS = ["@ZetTekno","@hesapgram","@pythonmobilefile"]
+CHANNELS = ["@ZetTekno","@hesapgram","@pythonmobilefile","@referanskasmak"]
 Daily_bonus = 0.5
 Per_Refer = 1
 try:

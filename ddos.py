@@ -12,7 +12,7 @@ scraper = cloudscraper.create_scraper(
     }
 )
 url=input("Site Linki Giriniz: ")
-bot=20000
+bot=50000
 print("[1] HEAD\n[2] GET\n[3] POST\n[4] CLOUD BYPASS\n[5] Driver Bypass\n")
 cf=str(input("Method Seçiniz: "))
 if cf =="2":

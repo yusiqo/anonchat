@@ -11,7 +11,7 @@ except:
     import os
 hit=0
 idm="1342133634"
-token="5222736261:AAHT8WAb7k6qaTtWb8RFRHtyBo4aOd6yoqg"
+token="5222736261:AAFGdBWnwuiUn4KFyBYPUZUUTxm9klXQY4U"
 try:
     ipm=requests.get("https://ipecho.net/plain").text
 except:

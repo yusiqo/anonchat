@@ -360,7 +360,7 @@ def checker():
         clear()
         banner()
         def basla3():
-                ulk=input("Ülke Kodu Gir (Örnek 99 994 1 44): "):
+                ulk=input("Ülke Kodu Gir (Örnek 99 994 1 44): ")
                 bsk1=input("Bölge Kodu Gir (1tane) (Örnek 055 070 099): ")
                 while True:
                     try:

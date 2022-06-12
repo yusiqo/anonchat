@@ -109,7 +109,7 @@ def checker():
     uz=len(total)
     clear()
     banner()
-    print("Hangi Config?\n1) BluTv\n2) Exxen\n3) SmsOnay.com\n4) Gain\n5) Pubg (mail)\n6) Proxy (http(s))\n7) Twitter (oto combo)\n8) m3u Checker (oto)\n9) Onaylat.com")
+    print("Hangi Config?\n1) BluTv\n2) Exxen\n3) SmsOnay.com\n4) Gain\n5) Pubg (mail)\n6) Proxy (http(s))\n7) Twitter (oto combo)\n8) m3u Checker (oto)\n9) Onaylat.com\n10) Kazanio.com")
     hesap=input(GREEN+"Config No="+ END)
     def m3u():
         import requests

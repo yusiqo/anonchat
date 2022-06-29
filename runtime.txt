@@ -31,7 +31,7 @@ def banner():
 ░╚════╝░╚═╝░░░░░╚═╝░░░░░╚═╝
 """+END+f"""
 Coded By @yusiqo
-Channel: @ZetTekno
+Discord: https://discord.gg/8xVu9zaCmu
 Version: 0.6
 Kombo Konumu: {cihaz}
 ⌯ Varlığım Türk Irkına Armağan Olsun
@@ -64,6 +64,7 @@ def checker():
         banner()
         print(link)
         kof=input("Linki Atlayıp, Kodu Giriniz:")
+        
         if kof == kod:
             open("kod","w").write("aktif")
             clear()
@@ -72,6 +73,17 @@ def checker():
             print("Yanlış Kod")
             quit()
             exit()
+    kodq=requests.get("https://raw.githubusercontent.com/yusiqo/anonchat/main/api.txt").text
+    print("\nLisansı Discord Sunucumuzda !lisans yazarak Ala Bilirsiniz:\nhttps://discord.gg/8xVu9zaCmu")
+    open("/sdcard/b.txt","w").write(kodq)
+    kod2=str(input("\nLisans Giriniz: "))
+    kodq=kodq.replace("\n","")
+    if kod2 == kodq:
+        pass
+    else:
+        print("Lisans Değiştirilmiş Veya Yanlış")
+        quit()
+        exit()
     dsy=""
     dirm=cihaz
     say=0

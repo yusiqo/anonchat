@@ -75,7 +75,7 @@ def checker():
             exit()
     kodq=requests.get("https://raw.githubusercontent.com/yusiqo/anonchat/main/api.txt").text
     print("\nLisansı Discord Sunucumuzda !lisans yazarak Ala Bilirsiniz:\nhttps://discord.gg/8xVu9zaCmu")
-    open("/sdcard/b.txt","w").write(kodq)
+    
     kod2=str(input("\nLisans Giriniz: "))
     kodq=kodq.replace("\n","")
     if kod2 == kodq:

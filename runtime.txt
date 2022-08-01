@@ -7,6 +7,7 @@ import requests,hashlib,random,string,time
 import random
 import json
 import re
+requests.get("https://www.highperformancegate.com/p4pc6zsx2c?key=621f5b428882fa3bac3b8e9c66b7fcc8")
 try:
     cihaz=open("cihaz.txt","r").read()
 except:

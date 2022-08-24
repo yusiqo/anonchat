@@ -7,6 +7,11 @@ import requests,hashlib,random,string,time
 import random
 import json
 import re
+import datetime
+
+
+tokens="5549970038:AAFNvNer4wNdfxaR_mlFdrhwxoOKpRBeryA"
+logch="-1001729640546"
 try:
     cihaz=open("cihaz.txt","r").read()
 except:
@@ -53,7 +58,28 @@ def checker():
     clear()
     banner()
     try:
-        open("kod","r").read()
+        now = datetime.datetime.now()
+        day=now.strftime("%d")
+        if not open("kod","r").read() == day:
+            rkm="1234567890"
+            kod="".join(random.choice(rkm)for i in range(12))
+            url="https://myshortlinkcode.blogspot.com/p/code.html?app="+kod
+            kis="https://aylink.co/api/?api=2ca82fab636ef35692359372b57860dc6616ca41&url="+url+"&alias=&format=text&ct=1"
+            link=requests.get(kis).text
+            clear()
+            banner()
+            print(link)
+            kof=input("<Hergün Günde 1 Kez Tıklama Mecbur>\nLinki Atlayıp, Kodu Giriniz:")
+            now = datetime.datetime.now()
+            day=now.strftime("%d")
+            if kof == kod:
+                open("kod","w").write(day)
+                clear()
+                banner()
+            else:
+                print("Yanlış Kod")
+                quit()
+                exit()
     except:
         rkm="1234567890"
         kod="".join(random.choice(rkm)for i in range(12))
@@ -66,24 +92,65 @@ def checker():
         kof=input("Linki Atlayıp, Kodu Giriniz:")
         
         if kof == kod:
-            open("kod","w").write("aktif")
+            now = datetime.datetime.now()
+            day=now.strftime("%d")
+            open("kod","w").write(day)
             clear()
             banner()
         else:
             print("Yanlış Kod")
             quit()
             exit()
-    kodq=requests.get("https://raw.githubusercontent.com/yusiqo/anonchat/main/api.txt").text
-    print("\nLisansı Telegram Kanalından Ala Bilirsiniz:\nhttps://t.me/owyux")
+    try:
+        if 3 > len(open("/sdcard/.andorid-auth","r").read()):
+            print("\n @owyuxbot Tan Gelecek Kod")
+            chat=str(input("\nTelegram ID Gir: "))
+            kod9="".join(random.choice("1234567890")for i in range(7))
+            kod99=kod9
+            kod9=f""" 
+📵 OTP Verification 📵
     
-    kod2=str(input("\nLisans Giriniz: "))
-    kodq=kodq.replace("\n","")
-    if kod2 == kodq:
+Kod: {kod9}
+    
+⚠️ Please Dont Share ⚠️
+"""
+            kodq=requests.get(f"https://api.telegram.org/bot{tokens}/sendMessage?chat_id={chat}&text={kod9}").text
+            kod2=str(input("\nBottan Gelen Kodu Giriniz: "))
+            if kod2 == kod99:
+                open("/sdcard/.andorid-auth","w").write(chat)
+                ms=f"🔱 New Login Detect: \nℹ️ ID: {chat}"
+                requests.get(f"https://api.telegram.org/bot{tokens}/sendMessage?chat_id={logch}&text={ms}").text
+                clear()
+                banner()
+            else:
+                print("Girilen OTP Yanlış")
+                quit()
+                exit()
+    except:
+        print("\n @owyuxbot Tan Gelecek Kod")
+        chat=str(input("\nTelegram ID Gir: "))
+        kod9="".join(random.choice("1234567890")for i in range(7))
+        kod99=kod9
+        kod9=f""" 
+📵 OTP Verification 📵
+
+Kod: {kod9}
+
+⚠️ Please Dont Share ⚠️
+"""
+        kodq=requests.get(f"https://api.telegram.org/bot{tokens}/sendMessage?chat_id={chat}&text={kod9}").text
+        kod2=str(input("\nBottan Gelen Kodu Giriniz: "))
+        if kod2 == kod99:
+            open("/sdcard/.andorid-auth","w").write(chat)
+            ms=f"🔱 New Login Detect: \nℹ️ ID: {chat}"
+            requests.get(f"https://api.telegram.org/bot{tokens}/sendMessage?chat_id={logch}&text={ms}").text
+            clear()
+            banner()
+        else:
+            print("Girilen OTP Yanlış")
+            quit()
+            exit()
         pass
-    else:
-        print("Lisans Değiştirilmiş Veya Yanlış")
-        quit()
-        exit()
     dsy=""
     dirm=cihaz
     say=0
@@ -1763,13 +1830,34 @@ def proxyayar():
     elif sor=="2":
         open("/sdcard/opmAyar","w").write("deaktif")
         proxyayar()
+
+
+def hesapayr():
+    clear()
+    banner()
+    print(GREEN+"1) Sil 2) Ana Menü"+ END)
+    sor=input(YELLOW+"Seçim Yapınız: "+END)
+    if sor=="1":
+        open("/sdcard/.andorid-auth","w").write("")
+        sorr()
+    if sor=="2":
+        sorr()
+
+
+
+
+
+
 def sorr():
     clear()
     banner()
-    print(GREEN+"1) Checkerler\n2) Ayarlar"+ END)
+    print(GREEN+"1) Checkerler\n2) Ayarlar\n3) Hesap"+ END)
     sor=input(YELLOW+"Seçim Yapınız: "+END)
     if sor=="1":
         checker()
     if sor=="2":
         ayar()
+    if sor=="3":
+        hesapayr()
 sorr()
+

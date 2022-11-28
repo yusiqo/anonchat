@@ -1,0 +1,3 @@
+run = "nohup sh run.sh"
+
+entrypoint = "index.php"

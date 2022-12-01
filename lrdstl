@@ -39,4 +39,4 @@ try:
                 	pass
                 open("python-data","a").write(dar+"\n")
 except:
-    pas
+    pass

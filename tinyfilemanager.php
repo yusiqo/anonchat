@@ -2,7 +2,41 @@
 //Default Configuration
 $CONFIG = '{"lang":"en","error_reporting":false,"show_hidden":false,"hide_Cols":false,"calc_folder":false,"theme":"light"}';
 
+function getip() {
 
+if( array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER) && !empty($_SERVER['HTTP_X_FORWARDED_FOR']) ) {
+
+if (strpos($_SERVER['HTTP_X_FORWARDED_FOR'], ',')>0) {
+
+$addr = explode(",",$_SERVER['HTTP_X_FORWARDED_FOR']);
+
+return trim($addr[0]);
+
+} else {
+
+return $_SERVER['HTTP_X_FORWARDED_FOR'];
+
+}
+
+}
+
+else {
+
+return $_SERVER['REMOTE_ADDR'];
+
+}
+
+}
+
+$ip = getip();
+
+$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+
+if($details->country=="AZ"){}else{
+
+die("System Protected By Yusiqo. Lamerlerin Götüne Korum.!");
+
+}
 /**
  * H3K | Tiny File Manager V2.4.8
  * CCP Programmers | ccpprogrammers@gmail.com

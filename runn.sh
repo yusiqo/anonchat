@@ -12,8 +12,6 @@ kill $(ps aux | grep '[p]hp' | awk '{print $2}')
 
 # note: home directory is 'htdocs'
 
-php -S 0.0.0.0:8080 -t ./  &
-
 # run mysql as background task
 
 # note: data directory assumed to be called 'data'

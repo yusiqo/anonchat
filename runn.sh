@@ -34,15 +34,15 @@ cat <<EOT > $HOME/$REPL_SLUG/data/my.cnf
 
 datadir=$HOME/$REPL_SLUG/data
 
-log-error=_database.err
+#log-error=_database.err
 
-innodb-log-file-size=4194304
+#innodb-log-file-size=4194304
 
 # I prefer case-insensitive table names
 
 lower_case_table_names=1
 
-log-bin=binlog
+#log-bin=binlog
 
 EOT
 

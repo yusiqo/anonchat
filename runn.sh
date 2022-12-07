@@ -2,15 +2,11 @@
 
 # clean shutdown of existing database
 
-mariadb-admin shutdown
-
-# kill any existing php server(s)
-
-kill $(ps aux | grep '[p]hp' | awk '{print $2}')
 
 # run php server as background task
 
 # note: home directory is 'htdocs'
+
 
 # run mysql as background task
 
@@ -51,5 +47,4 @@ echo $MYSQL_HOME
 # Now start the mariadb server as a background task with the parameters in my.cnf
 
 mysqld_safe &
-
-# Logging is in nohup.out (shell log) & data/_database.log (database log)
+sleep 2

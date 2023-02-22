@@ -1,0 +1,1427 @@
+from telethon import events
+import asyncio
+import base64
+import time
+from time import sleep
+from telethon import events, Button
+import random
+from telethon import TelegramClient
+
+# (Telethon) Telgraf Client
+API_ID = 11385233
+API_HASH = "16d51f2c856dec1c9abf7f4b31fb9d6e"
+bot_token = "5811734998:AAElX-oONC1fSwBTb0ZtyunDul2-oPYmDY8"
+
+# Murti Client
+Murti = TelegramClient('Murti', API_ID, API_HASH).start(bot_token=bot_token)
+
+yeni_kisi = (
+"Hoş Geldin, Bana Ne Getirdin¿",
+"Hoşgeldin, Gel İki Lafın Belini Kıralım",
+"Hoşgeldin, Sohbet'e Katılmaktan Çekinme Lütfen",
+"Hoşgeldin, Naber?",
+)
+
+hgemoji = (
+"😊",
+"🌹",
+"🎈",
+"😘",
+"👀",
+"💋",
+"😍",
+"✨",
+"💞",
+"😋",
+"🌠",
+"🎉",
+"💥",
+"⚡",
+"✅",
+"💘",
+)
+
+kalpler = (
+"🧡", 
+"💛",
+"💚", 
+"💙",
+"💜",
+"🤎",
+"🖤", 
+"🤍", 
+"💕", 
+"💞", 
+"💓", 
+"💗",
+"💖",
+"💘",
+"💝",
+)
+
+gece = (
+"İyi Geceler 💘",
+"Sana da :)",
+"İyi Geceler, Tatlı Rüyalar 🌠",
+)
+
+guno = (
+"Günaydın 💘",
+"Günoo",
+"Günüm Aydı Sayende 😍",
+)
+
+selam = (
+"Aleyküm Selam",
+"Selam Knk",
+"Selam",
+"Selam Caney",
+"Ooo Naber",
+"Aleyküm Selam Babba",
+"Naber",
+)
+
+nasılsın = (
+"İyiyim, Sen?",
+"Bir Yapay Zeka Nasıl Olursa Öyleyim",
+"İyi Gibi, Sen? ",
+"Seninle İyiyim",
+"İyi Sen?",
+"İyi Olmaya Çalışıyorum",
+"Cevap Yok 😐",
+)
+
+sagol = (
+"Sen Sağol",
+"Öp Bakim",
+"Eyvallah",
+"Sen Sağol Yiğidim",
+"Ay Noluyo Noluyo",
+"Sende Sağol Cano",
+"Sende Sağol Allek",
+)
+
+gidiyorum = (
+"Yolun Açık Olsun",
+"Çabuk Gel Ha",
+)
+
+geldim = (
+"Hoşgeldin 💞",
+"Hoşgeldin, Ama Elin Boş Geldin 😒"
+)
+
+bora = (
+"Efendim, Ballı Turtam",
+"Ayy Ne Kadar Da Güzel Dedin",
+"Benim Buyrun",
+"Ağzından Bal Damlıyor",
+)
+
+ban = (
+"Kaos İstiyoruz",
+"Ama Ama 🥺",
+"Sen Bu İşi Biliyon",
+"Suçu Neydi Ki?",
+)
+
+müslümbaba = (
+"Gariplerin Babası",
+"Affet Beni Akşam Üstü",
+"Öğleden Sonra Affet",
+"Çünkü Sen!, Çölüme Yağmur Oldun",
+"Tam Ayrıldık Derken..",
+)
+
+bot = (
+"Biri Bot Mu? Dedi",
+"Bot Mu? O da Kim",
+"Bot Haa, Nerde O?",
+"Kime Dedin Bakim Onu",
+)
+
+trip = (
+"Başladık Yine Triplere",
+"Hep Trip, Hep Trip",
+"Ne Oldu Gene? :|",
+"Kim Küstürdü Seni Bakim?",
+)
+
+evetben = (
+"Eeee",
+"Evet Ben?",
+"Ben?",
+"Bana Mı Dedin",
+)
+
+sevindim = (
+"İyi Olalım",
+"Daim Olsun",
+"Hep İyi Ol",
+)
+
+korkarım = (
+"Tüylerim Diken Diken Oldu",
+"Çok Korkarım",
+"Sevgili Arkadaşım, Beni Neden Korkutuyorsun",
+)
+
+nedeni = (
+"Kablumbağa Deden",
+"Bilmem",
+"Nerden Bileyim",
+)
+
+yeterla = (
+"Bu Sabaha Kadar Devam Edecek Gibi Görünüyor 😐",
+"Ohoooooo",
+)
+
+bbb = (
+"Bbb",
+"Bbbbbbbbbb",
+)
+
+muah = (
+"Islak Öpme Haa",
+"La La Yavaş La",
+"Göttür Koçum",
+"Iyyh",
+"Bizi Öpen Yok 😔",
+)
+
+ask = (
+"Havada Aşk Kokusu Var",
+"Aşk Mı 😔",
+"Doğru Kişiyi Bulduğundan Emin Misin?",
+)
+
+para = (
+"Ne Kadar 🤑",
+"Alemlere Akıyoruz..",
+"Bana Yok Mu¿",
+"🤑 Para Mı?, Stabil Çalışabilmem İçin Bana da Lazım",
+)
+
+bal = (
+"Ohh Afied",
+"Bal Yiaa Cidden",
+"Bal Mı?, Çok Severim",
+)
+
+oyunbotu = (
+"🎬 Oyun Ve Film Botumuz\n\n✨ @inekgame_bot\n🎈 @GalaOyunRobot",
+)
+
+sual = (
+"Aynen Aynen",
+"Hmm",
+"Okeyyy",
+"Okee",
+"👀",
+)
+
+sus = (
+"Bana Mı Dedin 😔",
+"Yapma Ama Öyle",
+"Bizimde Duygularımız Var Ama 😔",
+"Karşındakini De Düşün Ya Kalbi Kırılırsa",
+"Umursamıyorum Bile",
+"Ama Ne Güzel Sohbet Ediyorduk",
+"Off Ama Yaa",
+"Susmam Ki",
+)
+
+rand = (
+"O Nasıl Random",
+"Keyifler Yerinde Sanırım",
+"Siz Hep Böyle Gülün",
+"Siz Gülünce Güzelsiniz :)",
+"Yüzünüzden Gülücük Hiç Eksik Olmasın",
+)
+
+kötü = (
+"Bunu Duyduğuma Üzüldüm",
+"İyi Olmaya Bakın",
+)
+
+gibi = (
+"Neden Gibi?",
+"Hmm",
+)
+
+sahip = (
+"@uslanmazmurti Sahip Sanırım Sana Sesleniyorlar",
+"@uslanmazmurti Sahip, Bak Hele Buraya",
+)
+
+siir = (
+"Şiir Veya Güzel Sözlerde Tek Bir Kanal Tanırım\n\n💞 @belkigununbirinde",
+"Sana Bir Şiir Kanalı Önereyim\n\n✨ @belkigununbirinde",
+)
+
+basket = (
+"🏀",
+"🏀",
+"🏀",
+"🏀",
+)
+
+futbol = (
+"⚽",
+"⚽",
+"⚽",
+"⚽",
+)
+
+küfür = (
+"Ayıp Oluyo Knk Ya",
+"Ayp Ayp",
+"Sus Beh Terbiyesizzzz",
+"Neden? Öyle Dedin Ki Şimdi",
+"Ne? Gerek Vardı Küfüre",
+"Küfür Olmadan Devam Etsek 👉👈",
+"Kanka Sen Bir Kahve İç Gel, Keyfin Yerine Gelsin",
+"Küfür Etmeyi Bırakda Dedikodu Yapalım",
+)
+
+daim = (
+"Hep Daim Ol!",
+"Daim Ol!",
+"Mutluluğun Daim Olsun",
+)
+
+tsk = (
+"Pardon, Anneniz Arı Mı?\n🍯 Bal Gibi Çocuk Yapmış da",
+"AyAyAyAyAyAy",
+"😊🌹",
+)
+
+yangın = (
+"Yandım Fatma Yanıyorum",
+"Nerede?",
+"Mesaj Yazmak Yerine İtfaiye Çağırsana 👀",
+)
+
+saat = (
+"Ne Yapacaksın Saati?, Gel Dedikodu Edelim",
+"Boşver Saati, Gel Dedikodu Edelim",
+"R0lex Mi?",
+)
+
+cay = (
+"Benim Yerimede İç",
+"Milli İçeceğimiz",
+"Severisssss",
+"Hööööpppprrrrttt",
+)
+
+tm = (
+"Sana Tamam",
+"Hmm",
+"Nasılsın? Kanka",
+"Naber?",
+)
+
+mis = (
+"Sen Gibi Miss",
+"Biz Gibi Miss",
+"Pm Yolu Göründü 😁",
+"Hihi Ebet",
+)
+
+aynen = (
+"Hmmmm",
+"Olabilir",
+"Hmm",
+)
+
+hm = (
+"Buna Bir Son Vermemiz Lazım 😂",
+"Yeter Tamam",
+"Ayayayayayay",
+)
+
+ne = (
+"Ne? Ne?",
+"Hmm",
+"Bilmem",
+"Neymiş",
+)
+
+yani = (
+"Eee",
+"Hmmm",
+"Eh Yani?",
+)
+
+oflama = (
+"Oflama Ulaa",
+"Ne Oldu Sana Bakim",
+"Hmm",
+"Ne Oldu?",
+"Neden Pufladın Bakayım",
+)
+
+efm = (
+"Efendi Mi? Nerde O",
+"Çok Mu Efendi",
+"Hmmm",
+"Efendisi Nerdesin",
+)
+
+anldm = (
+"Neyi?",
+"Hmm",
+"Akıllı Çocuk",
+"Aferin Sana",
+)
+
+oyunubaslat = (
+"**🎮 Hangi Oyunu Oynayacağını Seç Ve Bana Söyle**\n\n`Zarat` => Senin Şansına Zar Atarım 🎲\n`Dartat` => Senin Şansına Dart Atarım 🎯\n`Dsor` => Doğruluk Sorusu Sorar ✅\n`Csor` => Cesaret Sorusu Sorar 💥",
+)
+
+zar = (
+">>>🎲 1<<<",
+">>>🎲 2<<<",
+">>>🎲 3<<<",
+">>>🎲 4<<<",
+">>>🎲 5<<<",
+">>>🎲 6<<<",
+)
+
+dart = (
+">>>🎯 1<<<",
+">>>🎯 2<<<",
+">>>🎯 3<<<",
+">>>🎯 4<<<",
+">>>🎯 5<<<",
+">>>🎯 6<<<",
+">>>🎯 7<<<",
+">>>🎯 8<<<",
+">>>🎯 9<<<",
+">>>🎯 10<<<",
+">>>🎯 11<<<",
+">>>🎯 12<<<>>> 💞 Tebrikler <<<",
+)
+
+senona = (
+"😊 Sen Ona Aşıksın!",
+"💞 Ben Hala Ayaktayım",
+"🚬 🌠",
+)
+
+uyanık = (
+"Sen Ona Aşıksın!",
+"🚬 Al Yak",
+"Bugünde Dertliyiz Diyosun¿",
+"Neyin Var? Bakalım",
+"Saat Kaç Olmuş 🥴",
+"🌠",
+)
+
+yok = (
+"Bir Şey Mi? Kaçırdım",
+"Hmm",
+)
+
+kıskanc = (
+"Hmmm",
+"Seven Kıskanır 💞",
+"🌠",
+)
+
+sigara = (
+"Tüketmemeni Öneririm :)",
+"Sigara Mı? Iyhh",
+"Bende Pasif İçici Oluyorum 😂",
+"Dumanı Bile Zehirli!",
+)
+
+lan = (
+"Lan Derken?",
+"Ayıp Oluyor Bilader",
+"Lan Deme Lan",
+"Sana Hiç Yakışmadı!",
+)
+
+ama = (
+"Ama Demek Yok!",
+"Ama Mı?, Neden? Ama, Kim? Ama",
+"Çok Kurtlar Vadisi İzlemiş Birine Benziyorsun",
+"Hmm",
+)
+
+clist = (
+"Seçtiğiniz bir sosyal medya hesabınızdan çok çirkin bir fotoğrafınızı paylaşın.",
+"Mesaj yazma bölümünüzü telefonunuzdan açın gözlerinizi kapatın ve rasgele bir kişiye körü körüne bir metin gönderin.",
+"Önümüzdeki 5 dakika boyunca söylediğin her şeyden sonra “mee” diyeceksin",	
+"Önümüzdeki 5 dakika içinde birinin hayvanı olun.",
+"İnstagramını oyunculardan birine ver. 5 dk boyunca her yere bakmak serbest.",	
+"Oyundan bir kişiye serenat yap (kız ise erkeğe, erkek ise kıza)",
+"Sonraki 3 tur boyunca şiveyle konuş.",	
+"3 dakika boyunca bebek taklidi yap!",
+"Telefonunda ki en sevmediğin fotoğrafını at",
+"En beğendiğin fotoğrafını at",	
+"Whatsapp’da 2 konuşmanı at",
+"Özel mesajlarını ssi al ve gruba at",
+"Whatsapp’da son konuşmanı at",	
+"Bir deftere 20 kez ben çatlağım yaz ve resmini at",
+"Telegramda son konuşmanı ss at.",
+"Biyografine +18 bir cümle yaz; 3 Saat duracak.!",	
+"Galerinin bir kısmını ss alıp at",
+"Galerindeki 16. Fotoğrafı at.",
+"Instagram yada telegramdan tanımadığın birine komik olmayan bir fıkra anlat.",	
+"Ninni Söyleyerek Ses At",
+"Bugununle ilgili kısa bir hikaye uydur.",
+"Grupta ki en çok hoşuna giden karşı cinse seni seviyorum diye mesaj at.",	
+"Galerindeki 16. Fotoğrafı at.",
+"Galerindeki 30. Fotoğrafı at.",
+"Whatsapp’da konuşduğun kişilerin ss ini at",	
+"Grubun üye listesine gir ve 7. kişiye anlık at. (Grup daha az kişiyse ya da aktif sayısı azsa üstten saymaya devam et)",	
+"En son konuştuğun kişiye \"Hayırlı Cumalar\" diye mesaj at.(platform farketmez)",	
+"Şuan ki halini fotoğraf çekip atar mısın?",
+"Grupta üyeler kısmına gir 11. kişiye \"Analar neler doğuruyor bee\" diye ses at ve cevabını grupla paylaş.",	
+"Profil fotoğrafına nefret ettiğin bir ünlünün resmini koy.",
+"Kafanda yumurta kır ve fotosunu at",	
+"Gruptan sevdiğin bir kişinin fotoğrafını profil resmi yap",
+"Balkona veya pencereye cık dısardakılerın duyacagı sekılde sarkı soyle videoya al gruba at.",	
+"İtiraf et: üye çalmak için kaç hesabın var?",
+"Gruptaki 5 abazaya seni seviyorum de",
+"İki dakika tavuk gibi davran.",
+"Seçtiğiniz bir hayvanı taklit edin.",	
+"Seçtiğin bir nesneyi yalayın ve gruba fotosunu atın.",
+"Gruba gerçekten utanç verici bir fotoğrafını göster.",	
+"Çirkin bir selfie çek ve sosyal medya uygulamalarından birinde yayınla 1.5 saat kalacak.",
+"Bir kaşık un ye ve video ya al gruba at",	
+"Hiç tanımadığın birine Kurban Bayramınızı kutlarım deyin",
+"Sevdiğin bir kişiye \"ben seni neden sevdim niçin sevdim niye sevdim bunların bi izahı yok gördün işte sevdim. Yaw sahi ben seni nidennn sevdim \" de. Cevap geldiğinde grupla paylaş biz de gülelim",	
+"Telegram'daki en kalabalık grubu aç ve \"Benim adım turşu bidonu!\" diyerek ses kaydedip en kalabalık gruba gönder.",
+"Hemcinsin olan yakın bir arkadaşına ona aşık olduğunu söyle.",
+"Sürahiden su iç ve fotoğraf at.",	
+"En çok konuştuğun karşı cinsten arkadaşına \" Seni çok seviyorum galiba aşık oldum\" yaz ve tepkisini bizimle paylaş",	
+"İsmini 1 saatliğine Abdül <ismin> yap. (örneğin adın Berk ise AbdülBerk yap)",
+"İnstagram'da dm kutunu (mesajlar bölümü) ss al gruba at.",	
+"Tanımadığın birisine şu cümleyi atıp sohbet başlat: \"Aşkımızın suya düşeceğini bilseydim , balık olurdum\"",	
+"En komik fotoğrafını grupla paylaş.",
+"Grupta üyeler kısmına gir 11. kişiye \"Analar neler doğuruyor bee\" diye ses at ve cevabını grupla paylaş.",	
+"Tanımadığın birine şu mesajı at sonra cevabını grupla paylaş ➡️\n \"Bu mesaj özel bir frekansla gönderilmiştir. Zekilerde hafıza kaybı, aptallarda kısa sureli körlük ibnelerde de bir anlık gülümseme yapar!\"",	
+"@ yaz çıkan ilk kişiyi etiketle ve seni seviyorum yaz.",
+"Tanımadığın birine \" sanırım sana aşık oldum\" diye mesaj at.",	
+"Telegram hakkında kısmına \"Şak Şak Turizm\" yaz 1 saat boyunca dursun.",
+"Birine Sesli Öpücük At Ve Etiketle",	
+"Telegramda son konuşmanı ss at.",
+"Galerinin En Alttan 7. Fotosunu gönder", 
+"Sonraki 3 tur boyunca şiveyle konuş. Farklı şivelere kayış olursa /zar Komutunu kullanarak 6 ya en cok yaklaşan oyuncu sana ceza verecek", 
+"Üç çorba kaşığı acı salça (veya buna benzer bir şey) ye ve video ya al gruba at", 
+"5 dakika boyunca oyundaki birinin evcil hayvanı olmasını isteyebilirsin.",
+"Yeri yala Ve fotoğraf/videosunu gruba at", 
+"/zar Komutunu kullanarak 6 ya en cok yaklaşan oyuncuya sosyal medya hesaplarından birini 5dk ver", 
+"3 dakika boyunca bir ünlüyü taklit et.", 
+"Birisi taklit edilen sanatçıyı tahmin edene kadar bir sanatçıyı taklit et", 
+"Grubun ortaya koyduğu bir konu etrafında sekiz satır ve iki mısralık bir şiir yaz", 
+"Oyundaki kişilerin ortak kararıyla gruptan birini öp ses atarak (ortak karar verilemezse /zar komutundan 1 e en yakın oyuncuyu öp).", "5 dakika boyunca oyundaki bir kişinin kölesi ol.", 
+"Bir süpürgeyle veya paspas ile dans et ve videosunu at", 
+"Gerçek aşkının kim olduğunu ilan et",
+"Ağzını hareket ettirmeden baştan sona alfabeyi oku okurken video at", 
+"Aklına gelen ilk kelimeyi hemen söyle.", 
+"Oyundaki oyunculardan biri hakkında hikaye uydur", 
+"15 saniye içerisinde sondan başa doğru alfabeyi oku okurken ses at", 
+"Bir köpek gibi havla havlarken ses at", 
+"Bir şarkıyı baştan sona söyle söylerken ses at",
+"Çıktığın en kötü ve en iyi kişiyi açıkla.", 
+"Bir dakika boyunca karşı cinsten biri gibi yürü.",
+"Sevgiline atıp atabileceğin en acımasız mesajı gönder.",
+"Oyunda yer alan her kişi hakkında bildiğin komik bir şey anlat.", 
+"Ünlü restoranlardan birini ara ve menülerini öğrenirken dalga geç.",
+"Eski bir şarkıyı aç ve onu taklit ederek söylemeye çalış söylerken ses at",
+"1 tur boyunca farklı bir dilde konuş.", 
+"Eski sevgiline mesaj at ve onu unutamadığını söyle.",
+"2 tur boyunca “sen” kelimesini duyunca kuş gibi ses çıkart.", 
+"Telefondaki tarayıcı geçmişini herkese göster.",
+"Odadan birisi için satın alacakmış gibi iç çamaşırı araştırması yap.",
+)
+
+dlist = (
+	"Telefonunda en son aradığın şey neydi?",
+"Birisi kız arkadaşın / erkek arkadaşından ayrılmak için sana 1 milyon tl önerseydi, yapar mıydın?",	"Bu grupda en az kimi seviyorsun ve neden?",
+"Hiç sınıfta yüksek sesle geğirdin mi?",	
+"Hiç sınıfta yüksek sesle geğirdin mi?",
+"Yerden bir şeyi alıp hiç yedin mi?",	
+"Bir gün karşı cins olarak uyanırsan, ilk yapacağın şey nedir?",	
+"Hiç havuzda işedin mi?",
+"Asansörde hiç gaz kaçırdın mı?",	
+"Tuvalette otururken aklınıza gelen şeyler nelerdir?",
+"Büyüyen hayali bir arkadaşınız var mıydı?",	
+"En kötü alışkanlığınız nedir?",
+"Burnunu karıştırır mısın?",
+"Banyoda şarkı söyler misin?",
+"Hiç üzerine işedin mi?",
+"Toplumda en utanç verici anınız neydi?",
+"Aynada kendinle hiç konuştun mu?",
+"Web geçmişinizi, birileri görürse utanacağınız şey ne olurdu?",
+"Uykunda konuşur musun?",	
+"Gizli aşkın kim?",
+"Benim hakkımda neyi sevmiyorsun?",
+"Şu an ne renk iç çamaşır giyiyorsun?",
+"Son attığın mesaj neydi?",
+"İnsanları yanan bir binadan kurtarıyor olsaydınız ve bir kişiyi bu grupdan geride bırakmak zorunda kalırsanız, kim olurdu?",	
+"İç çamaşırlarını ne sıklıkla yıkıyorsun?",
+"Hiç kulak kiri tattın mı?",
+"Hiç osurup başka birini suçladın mı?",
+"Hiç terinin tadına baktın mı?",
+"Bu odadaki kim bugüne kadarki en kötü insan olurdu? Neden?",
+"Yeniden doğmuş olsaydın, hangi yüz yılda doğmak isterdin?",
+"Söylediğiniz veya yaptığınız bir şeyi silmek için zamanda geriye gidebilseydiniz, bu hangi yıl olurdu?",	
+"Erkek arkadaşın veya kız arkadaşın seni hiç utandırdı mı?",
+"Birdenbire görünmez olsaydın ne yapardın?",
+"Banyoda kaldığınız en uzun süre nedir ve neden bu kadar uzun süre kaldınız?",
+"Şimdiye kadar gördüğüm en garip rüyayı anlat.",	
+"Duşta işiyor musun?","Hala yaptığın en çocukça şey nedir?",
+"Hangi çocuk filmini tekrar tekrar izleyebilirsin?",
+"Ayak kokunuz kötü mü?",
+"Saçma takma adların var mı?",
+"Telefonunuzda hangi uygulamada en çok zaman harcıyorsunuz?",
+"Tek bir oturuşta yediğin en çok yemek ne?",
+"Tek başınayken dans ediyor musun?",
+"Karanlıktan korkar mısın?",
+"Bütün gün evdeysen ne yapardın?",
+"Günde kaç öz çekim yapıyorsunuz?",
+"En son ne zaman dişlerini fırçaladın?",	
+"En sevdiğin pijamalar neye benziyor?",
+"Hiç yerden bir şey yedin mi?",
+"Yapmaman gereken bir şeyi yaparken hiç yakalandın mı?",	
+"Vücudunun hangi bölümünü seviyorsun, hangi kısmından nefret ediyorsun?",
+"Hiç bitlendin mi?",	
+"Pantolonunu hiç kestin mi?",
+"Tabağını yalıyor musun?",
+"Kimsenin senin hakkında bilmediği bir şey nedir?",	
+"Hiç tabağını yaladın mı?",
+"Dirseğini yalayabilir misin?",
+"Eğer buradaki herkesi yanan bir binadan kurtarmaya çalışıyor olsaydın ve birini geride bırakmak zorunda kalırsan, kimi geride bırakırdın?",
+"Telefonda aradığın son şey neydi?",
+"Bir uygulamayı telefonunuzdan silmek zorunda kalsanız hangisini silerdiniz?",
+"Bir ilişkideki en büyük korkun nedir?",	
+"Odanın her bir kişi hakkında bir tane olumlu, bir tane olumsuz şey söyleyin.",
+"Sevmediğin kötü huyun var mı?",
+"Hayatında yaptığın en çılgın şey nedir?",
+"Üç gün boyunca bir adada mahsur kalmış olsaydınız, bu grupdan kimleri seçerdiniz?",	
+"Bu odadaki en sinir bozucu kişi kim?",
+"Bu grupdan biriyle evlenmek zorunda kalsan kim olurdu?",
+"En uzun ilişkiniz ne kadar sürdü?",	
+"Bir ünlü Instagram’da seni takip etseydi bu ünlünün kim olmasını isterdin?",
+"Instagram’da 5 kişiyi silmek zorunda olsan kimleri silerdin?",
+"Kaç çocuk sahibi olmak istersin?",
+"Hayallerinizdeki kişiyi tarif edin.",
+"Messi mi Ronaldo mu?",
+"İlk işin neydi?",
+"Üniversite hakkındaki en büyük korkun nedir?",
+"En iyi arkadaşının seninle aynı üniversiteye gitmesini ister misin?",
+"Mevcut erkek arkadaşının ya da kız arkadaşının seninle aynı üniversiteye gitmesini ister misin?",
+"Hayalindeki iş ne?",	
+"Hiç bir dersten başarısız oldun mu?",
+"Hiç kopya çektin mi?",
+"Hiç sınıfta uyudun mu?",
+"Sınıfta asla yanında oturmak istemeyeceğin kim?",
+"Derse hiç geç kaldın mı?",
+"Bir öğretmenin önünde yaptığın en utanç verici şey nedir?",
+"Hiç masanın altına sakız attın mı?",	
+"Hiç okulda kavga ettin mi?",
+"Bir sınavdan aldığın en kötü puan neydi?",
+"Sınıfta hiç uyuya kaldın mı?",
+"Hiç gözaltına alındın mı?",
+"Eğer görünmez olsaydın hangi derse gizlice girerdin?",
+"En kötü grup hangisidir?",
+"Bu grupdaki sır tutma konusunda en çok zorlanan kişi kimdir?",
+"Söylediğin en son yalan neydi?",
+"Spor yapar mısın?",
+"Hayatının geri kalanında sadece bir kıyafet giyebilseydin, bu kıyafetin hangi renk olurdu?",
+"Sizce Türkiye’nin eğitim sisteminde yapılması gereken en önemli değişiklik nedir?",
+"Karanlıktan/yükseklikten korkar mısın?",
+"Kendi görünuşünü 1 ile 10 arasında puanla :)",
+"Yaptıgın en yasadışı şey neydi?",
+"Şimdi sana bir evlenme teklifi gelse ve sevmediğin biri olsa, ve bu sana son gelecek evlilik teklifi olsa kabul edermiydin?",
+"Şu anki ruh haline bakarak ne tür film izlersin (aksiyon/dram/bilim kurgu/romantik komedi/biyografi/fantastik)",	
+"Kendini en ezik hissettiğin an hangisiydi ?",
+"ilerde çocuğun olursa ne isim koymak istersin?",	
+"Unicorun mu olmasını isterdin ejderhan mı?",
+"Kaç sevgilin oldu?",
+"Hayatta unutmadığın biri var mı?",	
+"en sevdiğin şarkı?",
+"Yapmaman gereken bir şeyi yaparken hiç yakalandın mı?",
+"En sevdiğin sanatçı kim?",
+"karşı cinste ilk dikkatini çeken ne?",
+"bu yıl hayatında neyi değişmeyi uygun görüyorsun?",	
+"Birinin telefonunda gördüğün en tuhaf şey nedir?",
+"Süper kahramanlar gerçekten var olsaydı Dünya nasıl bir yer olurdu?",
+"Hayatın size öğrettiği en önemli ders nedir?",
+"Kültürümüzün en çok sevdiğiniz yanı nedir?",
+"Ailenizin uyguladığı en tuhaf gelenek nedir?",
+"Aileniz dışında, yaşamınız üzerinde en büyük etkisi olan kişi kimdir?",
+"Kadın/Erkek olmanın en kötü ve en iyi yanı nedir?",
+"Beynini bir robota yerleştirebilir ve sonsuza kadar bu şekilde yaşayabilsedin,bunu yapar mıydın?",
+"Evinizde ağırladığın en kötü misafir kimdi ve ne oldu?",
+"İnsanların size ne sormasından bıktınız?",
+"En tuhaf korkunuz nedir?",
+"En sevdiğiniz TV programı hangisidir?",
+"Girdiğiniz en saçma tartışma nedir?",	
+"En son söylediğin yalan nedir?",
+"Biriyle çıkarken yaptığın en utanç verici şey neydi?",
+"Hiç arabanla (varsa) yanlışlıkla bir şeye birine çarptın mı?",	
+"Hoşuna gittiğini düşündüğün ama bir türlü açılamadığın biri oldu mu?",
+"En tuhaf takma adın nedir?",
+	"Fiziksel olarak sana en acı veren deneyimin ne oldu?",
+"Hangi köprüleri yakmak seni rahatlattı?",	
+"Toplu taşıma araçlarında yaptığın en çılgınca şey neydi?",
+"Şişeden bir cin çıksa üç dileğin ne olurdu?",
+"Dünyadaki herhangi birini Türkiye’nin başkanı yapabilseydin bu kim olurdu?",
+"Şimdiye kadar bir başkasına söylediğin en acımasızca şey neydi?",
+"Birini öperken kendini hiç kötü hissettin mi?",
+"Hiçbir sonucu olmayacağını bilsen ne yapmak isterdin?",	"Bir aynanın önünde yaptığın en çılgınca şey nedir?",
+"Şimdiye kadar başkasına söylediğin en anlamlı şey neydi?",
+"Arkadaşlarınla yapmayı sevdiğin ama sevgilinin önünde asla yapmayacağın şey nedir?",
+"Bu hayatta en çok kimi kıskanıyorsun?",
+"En sevdiğin pijamaların neye benziyor?",
+"Bir buluşmadan kaçmak için hiç hasta numarası yaptın mı?",
+"Çıktığın en yaşlı kişi kim?",
+"Günde kaç tane özçekim yaparsın?"
+,"Aşk için her şeyi yaparım ama “bunu” yapmam dediğin şey nedir?",
+"Haftada kaç kez aynı pantolonu giyiyorsun?",
+"Bugün şansın olsa lise aşkınla çıkar mısın?",
+"Vücudunun hangi bölümlerinden gıdıklanıyorsun?",
+"Çeşitli batıl inançların var mı? Varsa onlar neler?",
+"Sevdiğini itiraf etmekten utandığın film hangisidir?",
+"En utan verici kişisel bakım alışkanlığın nedir?",
+"En son ne zaman ve ne için özür diledin?",
+"Sözlü destanlar hakkında ne düşünüyorsun?",
+"Utanç verici kokularınızın çoğu nereden geliyor?",
+"Hiç sevgilini aldatmayı düşündün mü?",
+"Hiç sevgilini biriyle aldattın mı?",
+"Saçlarını uzatmayı düşünsen ne kadar uzatırdın?",
+"Kimsenin bilmeyeceği garanti olsa kimi öldürmek isterdin?",
+"Başkası için aldığın en ucuz hediye nedir?",
+"Zamanının çoğunu en çok hangi uygulamada harcıyorsun?",
+"Otobüste yaptığın en tuhaf şey nedir?",
+"Hiç toplum içinde çıplak kaldın mı?",
+"Günde ne kadar dedikodu yaparsın?",
+"Çıkmak isteyeceğin en genç kişi kaç yaşında olurdu?",
+"Hiç toplum içindeyken burnunu karıştırdın mı?",
+"Hiç yaşın hakkında yalan söyledin mi?",
+"Telefonundan bir uygulamayı silmek zorunda olsan bu hangisi olurdu?",
+"Gece geç saatte yaptığın en utanç verici şey nedir?",
+"Duş almadan en uzun süre ne kadar durdun?",
+"Hiç sahte kimlik kullandın mı?",
+"Kırmızı halıda beraber yürümek istediğin ünlü isim kim?",
+"Gizli aşkın kim?",
+   "Telefonunda en son aradığın şey neydi?",
+    "Birisi kız arkadaşın / erkek arkadaşından ayrılmak için sana 1 milyon tl önerseydi, yapar mıydın?",
+    "Bu grupda en az kimi seviyorsun ve neden?",
+    "Hiç sınıfta yüksek sesle geğirdin mi?",
+    "Hiç sınıfta yüksek sesle geğirdin mi?",
+    "Yerden bir şeyi alıp hiç yedin mi?",
+    "Bir gün karşı cins olarak uyanırsan, ilk yapacağın şey nedir?",
+    "Hiç havuzda işedin mi?",
+    "Asansörde hiç gaz kaçırdın mı?",
+    "Tuvalette otururken aklınıza gelen şeyler nelerdir?",
+    "Büyüyen hayali bir arkadaşınız var mıydı?",
+    "En kötü alışkanlığınız nedir?",
+    "Burnunu karıştırır mısın?",
+    "Banyoda şarkı söyler misin?",
+    "Hiç üzerine işedin mi?",
+    "Toplumda en utanç verici anınız neydi?",
+    "Aynada kendinle hiç konuştun mu?",
+    "Web geçmişinizi, birileri görürse utanacağınız şey ne olurdu?",
+    "Uykunda konuşur musun?",
+    "Gizli aşkın kim?",
+    "Benim hakkımda neyi sevmiyorsun?",
+    "Şu an ne renk iç çamaşır giyiyorsun?",
+    "Son attığın mesaj neydi?",
+    "İnsanları yanan bir binadan kurtarıyor olsaydınız ve bir kişiyi bu grupdan geride bırakmak zorunda kalırsanız, kim olurdu?",
+    "İç çamaşırlarını ne sıklıkla yıkıyorsun?",
+    "Hiç kulak kiri tattın mı?",
+    "Hiç osurup başka birini suçladın mı?",
+    "Hiç terinin tadına baktın mı?",
+    "Bu odadaki kim bugüne kadarki en kötü insan olurdu? Neden?",
+    "Yeniden doğmuş olsaydın, hangi yüz yılda doğmak isterdin?",
+    "Söylediğiniz veya yaptığınız bir şeyi silmek için zamanda geriye gidebilseydiniz, bu hangi yıl olurdu?",
+    "Erkek arkadaşın veya kız arkadaşın seni hiç utandırdı mı?",
+    "Birdenbire görünmez olsaydın ne yapardın?",
+    "Banyoda kaldığınız en uzun süre nedir ve neden bu kadar uzun süre kaldınız?",
+    "Şimdiye kadar gördüğüm en garip rüyayı anlat.",
+    "Duşta işiyor musun?",
+    "Hala yaptığın en çocukça şey nedir?",
+    "Hangi çocuk filmini tekrar tekrar izleyebilirsin?",
+    "Ayak kokunuz kötü mü?",
+    "Saçma takma adların var mı?",
+    "Telefonunuzda hangi uygulamada en çok zaman harcıyorsunuz?",
+    "Tek bir oturuşta yediğin en çok yemek ne?",
+    "Tek başınayken dans ediyor musun?",
+    "Karanlıktan korkar mısın?",
+    "Bütün gün evdeysen ne yapardın?",
+    "Günde kaç öz çekim yapıyorsunuz?",
+    "En son ne zaman dişlerini fırçaladın?",
+    "En sevdiğin pijamalar neye benziyor?",
+    "Hiç yerden bir şey yedin mi?",
+    "Yapmaman gereken bir şeyi yaparken hiç yakalandın mı?",
+    "Vücudunun hangi bölümünü seviyorsun, hangi kısmından nefret ediyorsun?",
+    "Hiç bitlendin mi?",
+    "Pantolonunu hiç kestin mi?",
+    "Tabağını yalıyor musun?",
+    "Kimsenin senin hakkında bilmediği bir şey nedir?",
+    "Hiç tabağını yaladın mı?",
+    "Dirseğini yalayabilir misin?",
+    "Eğer buradaki herkesi yanan bir binadan kurtarmaya çalışıyor olsaydın ve birini geride bırakmak zorunda kalırsan, kimi geride bırakırdın?",
+    "Telefonda aradığın son şey neydi?",
+    "Bir uygulamayı telefonunuzdan silmek zorunda kalsanız hangisini silerdiniz?",
+    "Bir ilişkideki en büyük korkun nedir?",
+    "Odanın her bir kişi hakkında bir tane olumlu, bir tane olumsuz şey söyleyin.",
+    "Sevmediğin kötü huyun var mı?",
+    "Hayatında yaptığın en çılgın şey nedir?",
+    "Üç gün boyunca bir adada mahsur kalmış olsaydınız, bu grupdan kimleri seçerdiniz?",
+    "Bu odadaki en sinir bozucu kişi kim?",
+    "Bu grupdan biriyle evlenmek zorunda kalsan kim olurdu?",
+    "En uzun ilişkiniz ne kadar sürdü?",
+    "Bir ünlü Instagram’da seni takip etseydi bu ünlünün kim olmasını isterdin?",
+    "Instagram’da 5 kişiyi silmek zorunda olsan kimleri silerdin?",
+    "Kaç çocuk sahibi olmak istersin?",
+    "Hayallerinizdeki kişiyi tarif edin.",
+    "Messi mi Ronaldo mu?",
+    "Pes mi Fifa mı?",
+    "İlk işin neydi?",
+    "Üniversite hakkındaki en büyük korkun nedir?",
+    "En iyi arkadaşının seninle aynı üniversiteye gitmesini ister misin?",
+    "Mevcut erkek arkadaşının ya da kız arkadaşının seninle aynı üniversiteye gitmesini ister misin?",
+    "Hayalindeki iş ne?",
+    "Hiç bir dersten başarısız oldun mu?",
+    "Hiç kopya çektin mi?",
+    "Hiç sınıfta uyudun mu?",
+    "Sınıfta asla yanında oturmak istemeyeceğin kim?",
+    "Derse hiç geç kaldın mı?",
+    "Bir öğretmenin önünde yaptığın en utanç verici şey nedir?",
+    "Hiç masanın altına sakız attın mı?",
+    "Hiç okulda kavga ettin mi?",
+    "Bir sınavdan aldığın en kötü puan neydi?",
+    "Sınıfta hiç uyuya kaldın mı?",
+    "Hiç gözaltına alındın mı?",
+    "Eğer görünmez olsaydın hangi derse gizlice girerdin?",
+    "En kötü grup hangisidir?",
+    "Bu grupdaki sır tutma  konusunda en çok zorlanan kişi kimdir?",
+    "Söylediğin en son yalan neydi?",
+    "Spor yapar mısın?",
+    "Hayatının geri kalanında sadece bir kıyafet giyebilseydin, bu kıyafetin hangi renk olurdu?",
+    "Sizce Türkiye’nin eğitim sisteminde yapılması gereken en önemli değişiklik nedir?",
+    "Karanlıktan/yükseklikten korkar mısın?",
+    "Kendi görünuşünü 1 ile 10 arasında puanla :)",
+    "Yaptıgın en yasadışı şey neydi?",
+    "Şimdi sana bir evlenme teklifi gelse ve sevmediğin biri olsa, ve bu sana son gelecek evlilik teklifi olsa kabul edermiydin?",
+    "Şu anki ruh haline bakarak ne tür film izlersin (aksiyon/dram/bilim kurgu/romantik komedi/biyografi/fantastik)",
+    "Kendini en ezik hissettiğin an hangisiydi ?",
+    "ilerde çocuğun olursa ne isim koymak istersin?",
+    "Unicorun mu olmasını isterdin ejderhan mı?",
+    "Kaç sevgilin oldu?",
+    "Hayatta unutmadığın biri var mı?",
+    "en sevdiğin şarkı?",
+    "Yapmaman gereken bir şeyi yaparken hiç yakalandın mı?",
+    "En sevdiğin sanatçı kim?",
+    "karşı cinste ilk dikkatini çeken ne?",
+    "bu yıl hayatında neyi değişmeyi uygun görüyorsun?",
+    "Birinin telefonunda gördüğün en tuhaf şey nedir?",
+    "Süper kahramanlar gerçekten var olsaydı Dünya nasıl bir yer olurdu?",
+    "Hayatın size öğrettiği en önemli ders nedir?",
+    "Kültürümüzün en çok sevdiğiniz yanı nedir?",
+    "Ailenizin uyguladığı en tuhaf gelenek nedir?",
+    "Aileniz dışında, yaşamınız üzerinde en büyük etkisi olan kişi kimdir?",
+    "Kadın/Erkek olmanın en kötü ve en iyi yanı nedir?",
+    "Beynini bir robota yerleştirebilir ve sonsuza kadar bu şekilde yaşayabilsedin,bunu yapar mıydın?",
+    "Evinizde ağırladığın en kötü misafir kimdi ve ne oldu?",
+    "İnsanların size ne sormasından bıktınız?",
+    "En tuhaf korkunuz nedir?",
+    "En sevdiğiniz TV programı hangisidir?",
+    "Girdiğiniz en saçma tartışma nedir?",
+    "En son söylediğin yalan nedir?",
+    "Biriyle çıkarken yaptığın en utanç verici şey neydi?",
+    "Hiç arabanla (varsa) yanlışlıkla bir şeye birine çarptın mı?",
+    "Hoşuna gittiğini düşündüğün ama bir türlü açılamadığın biri oldu mu?",
+    "En tuhaf takma adın nedir?",
+    "Fiziksel olarak sana en acı veren deneyimin ne oldu?",
+    "Hangi köprüleri yakmak seni rahatlattı?",
+    "Toplu taşıma araçlarında yaptığın en çılgınca şey neydi?",
+    "Şişeden bir cin çıksa üç dileğin ne olurdu?",
+    "Dünyadaki herhangi birini Türkiye’nin başkanı yapabilseydin bu kim olurdu?",
+    "Şimdiye kadar bir başkasına söylediğin en acımasızca şey neydi?",
+    "Birini öperken kendini hiç kötü hissettin mi?",
+    "Hiçbir sonucu olmayacağını bilsen ne yapmak isterdin?",
+    "Bir aynanın önünde yaptığın en çılgınca şey nedir?",
+    "Şimdiye kadar başkasına söylediğin en anlamlı şey neydi?",
+    "Arkadaşlarınla yapmayı sevdiğin ama sevgilinin önünde asla yapmayacağın şey nedir?",
+    "Bu hayatta en çok kimi kıskanıyorsun?",
+    "En sevdiğin pijamaların neye benziyor?",
+    "Bir buluşmadan kaçmak için hiç hasta numarası yaptın mı?",
+    "Çıktığın en yaşlı kişi kim?",
+    "Günde kaç tane özçekim yaparsın?",
+    "Aşk için her şeyi yaparım ama “bunu” yapmam dediğin şey nedir?",
+    "Haftada kaç kez aynı pantolonu giyiyorsun?",
+    "Bugün şansın olsa lise aşkınla çıkar mısın?",
+    "Vücudunun hangi bölümlerinden gıdıklanıyorsun?",
+    "Çeşitli batıl inançların var mı? Varsa onlar neler?",
+    "Sevdiğini itiraf etmekten utandığın film hangisidir?",
+    "En utan verici kişisel bakım alışkanlığın nedir?",
+    "En son ne zaman ve ne için özür diledin?",
+    "Sözlü destanlar hakkında ne düşünüyorsun?",
+    "Utanç verici kokularınızın çoğu nereden geliyor?",
+    "Hiç sevgilini anlatmayı düşündün mü?",
+    "Hiç sevgilini biriyle aldattın mı?",
+    "Boxer mı yoksa külot mu?",
+    "Hiç havuza veya denize işedin mi?",
+    "Saçlarını uzatmayı düşünsen ne kadar uzatırdın?",
+    "Kimsenin bilmeyeceği garanti olsa kimi öldürmek isterdin?",
+    "Başkası için aldığın en ucuz hediye nedir?",
+    "Zamanının çoğunu en çok hangi uygulamada harcıyorsun?",
+    "Otobüste yaptığın en tuhaf şey nedir?",
+    "Hiç toplum içinde çıplak kaldın mı?",
+    "Günde ne kadar dedikodu yaparsın?",
+    "Çıkmak isteyeceğin en genç kişi kaç yaşında olurdu?",
+    "Hiç toplum içindeyken burnunu karıştırdın mı?",
+    "Hiç yaşın hakkında yalan söyledin mi?",
+    "Telefonundan bir uygulamayı silmek zorunda olsan bu hangisi olurdu?",
+    "Gece geç saatte yaptığın en utanç verici şey nedir?",
+    "Duş almadan en uzun süre ne kadar durdun?",
+    "Hiç sahte kimlik kullandın mı?",
+    "Kırmızı halıda beraber yürümek istediğin ünlü isim kim?",
+    "Gizli aşkın kim?",
+    "En son ne zaman ağladın ve ne için?",
+    "Çocuk olduğun zamana gidip kendine bir söz soyleyebilseydin  ne olurdu ?",
+    "Çocuk olduğun zamana gidip kendine bir söz soyleyebilseydin  ne olurdu ?",
+    "Senin daha güçlü bir insan olmana sebep olan en son deneyimin neydi ?",
+    "Yıllar geçse de asla unutmam dediğin anın var mı ?",
+    "Hedeflerine ulaşmak için sana umut veren şeyler var mı ?\nVarsa nelerdir ?",
+    "Sosyal sorumluluk hakkında bir proje yapmak isteseydin seçeceğin konu ne olurdu ?",
+    "Bir insanın yaşamı boyunca verebileceği en önemli karar sizce nedir ?",
+    "Gelecekte kendinizi nerede ve nasıl biri olarak görüyorsunuz ?",
+    "Çocukluğunda en çok özlediğin şey nedir ?",
+    "Boş zamanlarınızda neler yaparsınız ?",
+    "En sevdiğiniz renk nedir ?",
+    "Hayatta asla yapmam dediginiz şeyler varmı ?\nVarsa nelerdir ?",
+    "Lise zamanında kavga ettiğiniz en saçma konu nedir ?",
+    "En iyi yaptığın yemek nedir ?",
+    "Tartışsanızda asla küs kalamam dediğiniz kişler kim ?",
+    "Üzgün olduğunuzu ses tonunuzdan anlayan arkadaşların varmı ? \nVarsa  kim?",
+    "Alkol/sigara kullanır mısın?",
+    "Kaç sevgiliniz oldu ?",
+    "Hayatında hiç yapmadığın fakat  yapmak istediğin şey var mı , varsa neler ?",
+    "Seni sen yapan kötü huyun nedir ?",
+    "Şimdiye kadar gördüğünüz en garip rüya neydi ?",
+    "Burcunuz nedir ?",
+    "Hayatta en çok korktuğunuz şey  nedir ?",
+    "Kendinizde sevdiğiniz 3 tane olumlu,3 tane olumsuz huyunuz nelerdir ?",
+    "Yapmaktan zevk aldığınız 5 şey nelerdir ?",
+    "En son ne zaman ve ne için ağladınız ?",
+    "Yemeyi en çok sevdiğiniz  yemek nedir ?",
+    "Gizli gizli dinlediğiniz şarkı var mı ?",
+    "Yapmak isteyipte yapamadığın en büyük hayaliniz nelerdir ?",
+    "Hayatta en çok değer verdiğiniz şey nedir ?",
+    "Bırakmanı gerektiren kötü bir alışkanlığınız var mı ?",
+    "Sanalda kırgın olduğunuz biri varmı ?",
+    "Yaptığınız en çocukça şey nedir ?",
+    "En büyük pişmanlığınız neydi ?",
+    "Tereddütsüz bir biçimde ben ona hayranım diyebileceğiniz kişi kimdir ?",
+    "Sevdiğin birine kavuşamadığın için ağladığınız/üzüldüğünüz  oldu mu ?",
+    "Hayatınızda ertelediğiniz şeyler varmı,varsa nelerdir ?",
+    "Özlesem de  asla yazmam dediğin biri var mı ?",
+    "Senden gitmek isteyen birini kalması için çabalarmısın ?",
+    "gizlice hoşlandığın biri var mı ve kim ?",
+    "Yaşlı bir kadın ya da yaşlı bir adam gibi davran ses at.",
+    "Alfabeyi geriye doğru söyleyerek ses at.",
+    "sesli tavuk taklidi yap.",
+    "Hayattaki en büyük düşmanınıza kan lazım olsa ve bu kan grubu sadece sizde olduğu söylenip sizden kan istense verir miydiniz?",
+    "Hangi ülkede doğacağına karar verebiliyor olsaydın nereyi seçerdin ?",
+    "Ölümsüz olmak ister miydin?",
+    "En kötü alışkanlığın ne ve neden en kötüsü olduğunu düşünüyorsun?",
+    "Birini tavlamak için şimdiye kadar kullandığın en çılgınca taktik nedir?",
+    "En sevdiğin kitap karakteri nedir ?",
+    "Yediğin zaman kilo almamak gibi bir özelliğin olsaydı ne yemeyi seçerdin?",
+    "En uzun ve en kısa ilişkin ne kadar sürdü?",
+    "Hangi ülkede yaşamak isterdin?",
+    "Gelecek hafta dünyanın sonu olacak ve her şeyi yapma imkanına sahipsin. Ne yapardın?",
+    "Hiç bu oyundaki birine pişman olduğun bir şey söyledin mi?",
+    "Hedefleriniz nelerdir ?",
+    "En son bitirdiğin ilişkide yanlış giden şey neydi?",
+    "Bir odada uzun bir süre hapsolacağını düşünsen yanında olmasını istediğin üç şey ne olurdu?",
+    "Telefonunuzda aradığın son şey neydi?",
+    "Hiç yasaya aykırı bir şeyler yaptığın oldu mu?",
+    "Eğer yarın sabah uyandığında yeni bir nitelik veya yeteneğe sahip olma şansın olsa, bu ne olurdu?",
+    "Bir arkadaşınla plan yaparken bir başka arkadaşını ektiğin oldu mu?",
+    "Bir şirket kursaydın, ne hakkında olurdu?",
+    "Telegramda hangi grupta daha çok vakit geçiriyorsun?",
+    "Hiç birinin hesabına stalk yaparken yanlışlıkla fotoğrafını beğendin mi?",
+    "Uzun süredir yapmak istediğin hala yapamadığın bişey var mı evet ise neden yapmadın onu?",
+    "Hiç sırf fayda sağladığı için biriyle arkadaş kaldığın oldu mu?",
+    "Hayatta tahammül edemediğin şey nedir?",
+    "Bir ilişkide en önemli şey sence nedir?",
+    "Hiç yapmaman gereken bir şeyi yaparken yakalandın mı?",
+    "200 kilo olmak mı yoksa biri üfledigidne ucucak seviyede zayıf olmak mı?",
+    "Bir kıyamet senaryosunda sence hangi oyuncu hayatta kalmayı başarır ve ilk kim ortadan yok olur?",
+    "En son kimin dedikodusunu yaptın?",
+    "Bir mekandan erkenden ayrıldığın oldu mu, bunun sebebi nedir?",
+    "Geleceğe mi yoksa geçmişe mi yolculuk etmek isterdin?",
+    "Bir saat boyunca görünmez olsaydın ne yapmak isterdin?",
+    "Bu hayatta seni en çok kızdıran şey nedir?",
+    "Zengin olmak için böbreklerini satar mıydın?",
+    "Youtube de izlediğin en son video neydi ?",
+    "Bu oyunda yer alan biriyle sevgili olmak isteseydin kimi seçerdin?",
+    "Issız bir adaya düşsen yanına ASLA almayacağın 3 şey nedir?",
+    "Nefret edilmek mi yoksa unutulmak mı isterdin?",
+    "Biriyle çıkarken, onunla buluştuğunda yaptığın en utanç verici şey neydi?",
+    "/start",
+    "Seni en kolay yoldan ne mutlu eder?",
+    "Hiç telepati kurmayı denedin mi?",
+    "Değiştirmek istediğin niteliğin veya karakteristik özelliğin nedir?",
+    "Birisi horladığını duysa buna kayıtsız şartsız inanır mısın?",
+    "Hayalindeki erkek/kız nasıl birisi?",
+    "Bir oturuşta yediğin en fazla yemek miktarı ne kadardı?",
+    "Hayatında sevginin rolünü nasıl tanımlarsın?",
+    "Yere düşürdüğün, uzun süre bekledikten sonra yediğin en son şey neydi?",
+    "Birinden ayrılmanın en saçma nedeni neydi?",
+    "Ev boşken neler yaparsın?",
+    "Vücudunun hangi bölümünü seviyorsun ve hangi bölümünden nefret ediyorsun",
+    "(Soruyu soran kişi birini seçer ve sorar) benim hakkımdaki iyi/kötü düşüncelerin neler",
+    "En son neden ağladın?",
+    "Hiç en iyi arkadaşına yalan söyledin mi?",
+    "Çocukken en çok sevdiğiniz yiyecek neydi",
+    "Hiç hoşlanmadığın halde biri ile sevgili oldun mu?",
+    "Hiç asansörde osurdun mu",
+    "Hiç birini aldattın mı?",
+    "En son ne zaman ağladın",
+    "Bakir/Bakire olmayan biriyle evlenmeyi düşünür müsün?",
+    "Telefonunda hangi uygulamayı daha sık kullanıyorsun?",
+    "Eğer büyülü bir küre öğrenmek isteyebileceğin her şeyi söyleyebiliyor olsaydı ve tek bir hakkın olsaydı, öğrenmek isteyeceğin şey ne olurdu?",
+    "En sevmediğin huyun nedir?",
+    "En son ne zaman, nerede ve neden ağladın?",
+    "Müzik dinlemek sana huzur verir mi?",
+    "Hiç biri tarafından reddedildin mi?",
+    "İçki / Alkol kullanır mısın?",
+    "En son ne diye yalan söyledin?",
+    "Sana ne yapılırsa kin tutarsın?",
+    "En yakın arkadaşın senden yüklü bir miktar borç istese verir misin?",
+    "Bu grupta biri ile sevgili olmak zorunda kalsan kimi seçerdin? (seçmem diye bir şık yok birini seçmek zorundasın)",
+    "En son ne zaman babanı düşündün?",
+    "Hiç annen veya babanın yanına küfür ettin mi?",
+    "Bir kitap yazsaydın adı ve konusu ne olurdu?",
+    "Bir ünlünün senin en yakın arkadaşın olsa bu hangi ünlü olurdu",
+    "Bir ünlü ile çıkabilme(sevgili) olma ihtimaliniz olsaydı kiminle çıkardınız?",
+    "200 kilo olmak mı yoksa biri ufledigidne ucucak seviyede zayıf olmak mı",
+    "Söylediğiniz veya yaptığınız bir şeyi silmek için zamanda geriye gidebilseydiniz, bu ne olurdu ?",
+    "Bundan sonra hayatında sadece sınırlı sayıda kelime kullanabilseydin birinci sırada hangi kelime olurdu?",
+    "En sevdiğin 3 şarkı nedir?",
+    "İleride kız çocuğun olsa ismini ne koyardın ?",
+)
+
+
+# Gruba Katıldı Mesajı
+@Murti.on(events.ChatAction)
+async def handler(event):
+    if event.user_joined:
+        await event.reply(f"{random.choice(yeni_kisi)}, {random.choice(hgemoji)}")
+
+murti_start = b"t.me/uslanmazmurti"
+
+@Murti.on(events.NewMessage(pattern='(?i)/start+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    msg = await event.reply("🔄 **Başlatılıyor..**")
+    sleep(1)
+    await msg.delete()
+    s = await event.reply("⚡")
+    sleep(0.6)
+    c = await s.edit("🎉")
+    sleep(1)
+    m = await c.edit("✅ **Başarıyla Başlatıldı..**")
+    sleep(1)
+    await m.edit("""
+     🤖 **ᴍᴇʀʜᴀʙᴀ, ʙᴇɴ ʙᴏʀᴀ sᴏʜʙᴇᴛ ʙᴏᴛ
+
+🌠 sᴏʜʙᴇᴛ ᴠᴇ ᴏʏᴜɴ ʙᴏᴛᴜʏᴜᴍ
+
+💘 ᴍᴀʀɪғᴇᴛʟᴇʀɪᴍɪ ɢöʀᴍᴇᴋ ɪçɪɴ 
+/yardim ᴋᴏᴍᴜᴛᴜɴᴜ ᴋᴜʟʟᴀɴıɴ! 
+
+💥 sᴛᴀʙɪʟ çᴀʟışᴍᴀᴍ ɪçɪɴ, 
+ʙᴇɴɪ ɢʀᴜʙᴜɴᴜᴢᴀ ᴇᴋʟᴇʏᴇʀᴇᴋ,
+
+📌 s‌ᴜ ʏᴇᴛᴋɪʟᴇʀɪ ᴠᴇʀɪɴ﹕
+
+﹡ ᴍᴇsᴀᴊʟᴀʀı sɪʟᴍᴇ**
+"""    
+)
+    
+@Murti.on(events.NewMessage(pattern='(?i)/yardim+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"""
+    ✹> __@BoraSohbetBot Hakkında__
+
+**➜ Selam Alır Veririm, 
+➜ Nasıl Olduğunu Sorarım, 
+➜ Gruba Yeni Katılanları Karşılarım, 
+➜ Zar Ve Dart Atarım, 
+➜ Doğruluk Ve Cesaret Soruları Sorarım,
+➜ Ansızın Sohbetinize Karışırım, 
+➜ Küfür Edenleri Nazikce Uyarırım,
+➜ Sabah Olduğunda Günaydın Mesajı Gönderirim, 
+➜ Gece Olduğunda İyi Geceler Mesajı Gönderirim,
+➜ Biri Trip Atığında Kızarım,
+➜ Adminlerden Biri Ban Veya Mute Komutlarını Kullandığı Zaman Överim Yada Gömerim**,
+
+● **Oyun Listesine Erişmek İçin** `Oyna` **Yaz.
+
+● Kısacası Yalnız Hissediyorsan Ben Sana İlaç Gibi Geleceğim.** {random.choice(hgemoji)}
+"""
+)
+
+@Murti.on(events.NewMessage(pattern='(?i)selam+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(selam)} {random.choice(hgemoji)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)nbr+'))
+@Murti.on(events.NewMessage(pattern='(?i)nasılsın+'))
+@Murti.on(events.NewMessage(pattern='(?i)naber+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(nasılsın)} {random.choice(hgemoji)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)saol+'))
+@Murti.on(events.NewMessage(pattern='(?i)sağol+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(sagol)} {random.choice(hgemoji)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)grsrz+'))
+@Murti.on(events.NewMessage(pattern='(?i)bb+'))
+@Murti.on(events.NewMessage(pattern='(?i)gidiyorum+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(gidiyorum)} {random.choice(hgemoji)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)hoşbuldum+'))
+@Murti.on(events.NewMessage(pattern='(?i)geldim+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(geldim)} {random.choice(hgemoji)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)bora+'))
+@Murti.on(events.NewMessage(pattern='(?i)aşko+'))
+@Murti.on(events.NewMessage(pattern='(?i)cano+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(bora)} {random.choice(hgemoji)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)/ban+'))
+@Murti.on(events.NewMessage(pattern='(?i)/kick+'))
+@Murti.on(events.NewMessage(pattern='(?i)/mute+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(ban)} {random.choice(hgemoji)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)bot+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(bot)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)müslüm+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(müslümbaba)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)mis+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(mis)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)sen+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(2)
+    await event.reply(f"✦ {random.choice(evetben)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)😒+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(2)
+    await event.reply(f"✦ {random.choice(trip)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)neden+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(nedeni)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)yılan+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(korkarım)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)örümcek+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(korkarım)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)karanlık+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(korkarım)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)Aaa+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(bbb)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)ccc+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(2)
+    await event.reply(f"✦ {random.choice(yeterla)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)evet+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(sual)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)ebet+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(sual)}")
+    
+
+@Murti.on(events.NewMessage(pattern='(?i)hayır+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(sual)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)aşk+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(ask)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)para+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(para)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)film+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(oyunbotu)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)Hiç+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(sual)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)oyun+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(oyunbotu)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)bal+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(bal)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)muah+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(muah)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)sj+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(rand)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)kötü+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(kötü)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)gibi+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(gibi)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)murti+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(sahip)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)şiir+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(siir)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)✦ basket+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"{random.choice(basket)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)futbol+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(futbol)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)daim+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(daim)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)amk+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(küfür)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)orospu+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(küfür)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)ananı+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(küfür)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)siktir+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(küfür)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)yangın+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(yangın)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)teşekkür+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(tsk)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)saat+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(saat)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)sus+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(sus)}")
+ 
+@Murti.on(events.NewMessage(pattern='(?i)çay+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(cay)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)kalp+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(kalpler)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)tm+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(tm)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)tamam+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(tm)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)iyi+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(sevindim)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)Hm+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(sual)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)Eee+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(sual)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)ne+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(ne)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)ayn+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(aynen)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)yani+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(yani)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)off+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(oflama)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)efendim+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(efm)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)anladım+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(anldm)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)00:00+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(senona)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)01:00+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(uyanık)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)02:00+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(uyanık)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)03:00+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(uyanık)}")
+        
+@Murti.on(events.NewMessage(pattern='(?i)oyna+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"{random.choice(oyunubaslat)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)zarat+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(zar)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)dartat+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(dart)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)tabi+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(sual)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)amına+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(küfür)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)sie+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(küfür)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)hey+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(bora)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)kıskan+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(kıskanc)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)yok+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(yok)}")
+   
+@Murti.on(events.NewMessage(pattern='(?i)sigara+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(sigara)}")
+  
+@Murti.on(events.NewMessage(pattern='(?i)lan+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(lan)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)ama+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.reply(f"✦ {random.choice(ama)}")
+
+@Murti.on(events.NewMessage(pattern='(?i)csor+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(clist)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)dsor+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(dlist)}")
+    
+@Murti.on(events.NewMessage(pattern='(?i)günaydın+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(guno)}")
+    
+@Murti.on(events.NewMessage(pattern='geceler'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    sleep(1)
+    await event.reply(f"✦ {random.choice(gece)}")
+
+Murti_run = murti_start.decode("utf8")
+print("Bot Çalışıyor")
+print(f"{Murti_run}")
+Murti.run_until_disconnected()

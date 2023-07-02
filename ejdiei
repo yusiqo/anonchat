@@ -1,0 +1,18 @@
+debug: false
+uuid: 2ab17c6b-b08a-428c-94e5-2f7e3bab0aa2
+token_id: IjLVMZ79kIXtZFGg
+token: lvfjZexpe9M9kJFgxCLAoRtNKnGbsCSn5s9TIH74RwrIUwbsZxPxgomig9VMA9vO
+api:
+  host: 0.0.0.0
+  port: 8080
+  ssl:
+    enabled: true
+    cert: /etc/letsencrypt/live/node.zethost.org/fullchain.pem
+    key: /etc/letsencrypt/live/node.zethost.org/privkey.pem
+  upload_limit: 100
+system:
+  data: /var/lib/pterodactyl/volumes
+  sftp:
+    bind_port: 2022
+allowed_mounts: []
+remote: 'https://game.zethost.org'

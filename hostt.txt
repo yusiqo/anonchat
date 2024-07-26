@@ -1,1 +1,1 @@
-185.243.181.52 api.yatsogram.com
+185.243.181.52 api.yaytsogram.com
